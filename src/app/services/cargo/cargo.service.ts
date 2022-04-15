@@ -1,4 +1,5 @@
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment.prod';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Cargo } from 'src/app/models/Cargo';
@@ -7,8 +8,8 @@ import { Cargo } from 'src/app/models/Cargo';
   providedIn: 'root',
 })
 export class CargoService {
-  url = 'http://localhost:4000/api/cargos/';
-  constructor(private http: HttpClient) {}
+  url = environment.server + 'api/cargos/';
+  constructor(private http: HttpClient) { }
 
   getCargos(): Observable<any> {
     return this.http.get(this.url);

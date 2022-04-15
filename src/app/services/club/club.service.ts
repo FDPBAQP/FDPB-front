@@ -1,4 +1,5 @@
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment.prod';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Club } from 'src/app/models/Club';
@@ -7,8 +8,8 @@ import { Club } from 'src/app/models/Club';
   providedIn: 'root',
 })
 export class ClubService {
-  url = 'http://localhost:4000/api/clubes/';
-  constructor(private http: HttpClient) {}
+  url = environment.server + 'api/clubes/';
+  constructor(private http: HttpClient) { }
 
   getClubes(): Observable<any> {
     return this.http.get(this.url);

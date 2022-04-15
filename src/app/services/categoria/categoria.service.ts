@@ -1,4 +1,5 @@
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment.prod';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Categoria } from 'src/app/models/Categoria';
@@ -7,8 +8,8 @@ import { Categoria } from 'src/app/models/Categoria';
   providedIn: 'root',
 })
 export class CategoriaService {
-  url = 'http://localhost:4000/api/categorias/';
-  constructor(private http: HttpClient) {}
+  url = environment.server + 'api/categorias/';
+  constructor(private http: HttpClient) { }
 
   getCategorias(): Observable<any> {
     return this.http.get(this.url);

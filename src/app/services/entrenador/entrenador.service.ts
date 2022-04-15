@@ -1,4 +1,5 @@
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment.prod';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Entrenador } from 'src/app/models/Entrenador';
@@ -7,7 +8,7 @@ import { Entrenador } from 'src/app/models/Entrenador';
   providedIn: 'root',
 })
 export class EntrenadorService {
-  url = 'http://localhost:4000/api/entrenadores/';
+  url = environment.server + 'api/entrenadores/';
   constructor(private http: HttpClient) { }
   private data: any;
 

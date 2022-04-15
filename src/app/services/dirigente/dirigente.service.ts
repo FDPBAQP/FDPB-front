@@ -1,4 +1,5 @@
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment.prod';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Dirigente } from 'src/app/models/Dirigente';
@@ -7,7 +8,7 @@ import { Dirigente } from 'src/app/models/Dirigente';
   providedIn: 'root',
 })
 export class DirigenteService {
-  url = 'http://localhost:4000/api/dirigentes/';
+  url = environment.server + 'api/dirigentes/';
   constructor(private http: HttpClient) { }
   private data: any;
 
