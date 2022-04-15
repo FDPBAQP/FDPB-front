@@ -1,0 +1,99 @@
+.cedula {
+  width: 1116px;
+  background: #fff;
+  position: absolute;
+}
+
+.titulo {
+  width: 850px;
+  margin-top: 5px;
+  margin-left: 140px;
+  margin-bottom: 6px;
+}
+
+.sub-titulo {
+  width: 850px;
+  margin-left: 160px;
+}
+.sub-titulo-content {
+  padding-bottom: 12px;
+  padding-right: 50px;
+  border-style: double;
+  border-width: 0px 0px 10px 0px;
+}
+
+.img1 {
+  height: 150px;
+  float: left;
+  position: absolute;
+  top: 10px;
+  left: 5px;
+}
+
+.img2 {
+  height: 150px;
+  float: right;
+  position: absolute;
+  top: 10px;
+  right: 5px;
+}
+
+#content .row-content {
+  margin: 20px;
+  margin-top: 40px;
+}
+
+#content .foto {
+  width: 158px;
+  height: 184px;
+}
+
+#content .foto-text {
+  line-height: 180px;
+}
+
+#content .huella-text {
+  line-height: 340px;
+}
+
+#content .firma-text {
+  padding-top: 173px;
+}
+
+#content .firma-padre {
+  padding-top: 70px;
+}
+
+#content .firma-presidente {
+  padding-top: 100px;
+}
+
+#content .apoderado {
+  font-style: italic;
+}
+
+#content h3 {
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-bottom: 30px;
+}
+
+#content .indice {
+  font-size: 17pt;
+}
+
+#content .datos-mt {
+  margin-top: 15px;
+  font-size: 16pt;
+}
+
+#content .datos {
+  font-size: 16pt;
+}
+
+h2 {
+  text-align: center;
+  margin: 0 auto;
+  padding: 0;
+  font-size: 24pt;
+}

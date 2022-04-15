@@ -1,0 +1,57 @@
+<div class="container mt-4">
+  <div class="row cuerpo">
+    <div class="col-lg-8 offset-lg-2">
+      <div class="card">
+        <div class="card-body text-center">
+          <span class="titulo">DIRIGENTES</span>
+          <button
+            class="btn btn-info float-end"
+            [routerLink]="['/crear-dirigente']"
+          >
+            NUEVO
+          </button>
+          <table
+            *ngIf="listDirigentes.length > 0"
+            class="table table-hover mt-4"
+          >
+            <thead>
+              <tr>
+                <th scope="col">DNI</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Club</th>
+                <th scope="col">Cargo</th>
+                <th scope="col">Teléfono</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let Dirigentes of listDirigentes">
+                <th scope="row">{{ Dirigentes.dni }}</th>
+                <td>{{ Dirigentes.nombres }} {{ Dirigentes.apellidos }}</td>
+                <td>{{ Dirigentes.club }}</td>
+                <td>{{ Dirigentes.cargo }}</td>
+                <td>{{ Dirigentes.telefono }}</td>
+                <td>
+                  <i
+                    [routerLink]="['/editar-dirigente', Dirigentes._id]"
+                    class="fa fa-pencil text-success"
+                  ></i
+                  ><i
+                    (click)="eliminarDirigente(Dirigentes._id)"
+                    class="fa fa-trash text-primary"
+                  ></i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <h5
+            *ngIf="listDirigentes.length == 0"
+            style="text-align: start; margin-top: 10px"
+          >
+            Actualmente no existen dirigentes
+          </h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

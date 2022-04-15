@@ -1,0 +1,47 @@
+<div class="container mt-4">
+  <div class="row cuerpo">
+    <div class="col-lg-10 offset-lg-1">
+      <div class="card">
+        <div class="card-body text-center">
+          <span class="titulo">{{ titulo | uppercase }}</span>
+          <form class="mt-4" [formGroup]="clubForm" (ngSubmit)="agregarClub()">
+            <div class="row mb-3">
+              <div class="col-sm-8 mx-auto">
+                <input
+                  type="text"
+                  formControlName="club"
+                  class="form-control form-control-lg"
+                  placeholder="CLUB"
+                />
+                <div
+                  class="text-danger"
+                  *ngIf="
+                    clubForm.get('club')?.hasError('required') &&
+                    clubForm.get('club')?.touched
+                  "
+                >
+                  <span>Este campo es <strong>obligatorio</strong></span>
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <button
+                routerLink="/club"
+                class="btn btn-secondary btn-lg float-start"
+              >
+                VOLVER
+              </button>
+              <button
+                type="submit"
+                [disabled]="clubForm.invalid"
+                class="btn btn-success btn-lg float-end"
+              >
+                ACEPTAR
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

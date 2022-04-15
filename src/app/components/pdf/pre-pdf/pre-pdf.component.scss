@@ -1,0 +1,113 @@
+#card {
+  // width: 14cm;
+  // height: 8cm;
+  width: 530px;
+  height: 290px;
+  padding: 25px;
+  padding-top: 10px;
+  padding-bottom: 0;
+  background: #fff;
+  z-index: 5;
+}
+
+#card1 {
+  // width: 14cm;
+  // height: 8cm;
+  margin-left: 0px;
+  width: 530px;
+  height: 290px;
+  padding: 25px;
+  padding-top: 10px;
+  padding-bottom: 0;
+  background: #fff;
+  z-index: 5;
+}
+
+#card .img1 {
+  width: 100px;
+  float: left;
+  margin-left: -16px;
+  border-radius: 5px;
+}
+
+#card .img2 {
+  width: 80px;
+  float: right;
+  margin-right: -16px;
+  border-radius: 5px;
+}
+
+#card .foto {
+  width: 130px;
+  height: 150px;
+  float: left;
+  border-radius: 2px;
+}
+
+#card h2 {
+  text-align: center;
+  font-family: courier;
+  color: #333;
+  margin: 0 auto;
+  padding: 0;
+  font-size: 16pt;
+}
+
+#card .h1 {
+  position: absolute;
+  top: 90px;
+  right: 150px;
+  width: 200px;
+}
+
+#card .bottom {
+  position: absolute;
+  top: 240px;
+  text-align: center;
+  width: 200px;
+}
+
+#card .bottom-back {
+  position: absolute;
+  top: 240px;
+  text-align: center;
+  width: 200px;
+}
+
+#card h1 {
+  text-align: center;
+  color: #333;
+  margin: 0 auto;
+  padding: 0;
+  font-size: 18pt;
+}
+
+#card p {
+  font-family: courier;
+  color: #555;
+  font-size: 13px;
+}
+
+#card span {
+  font-family: courier;
+}
+
+.carnet {
+  width: 1116px;
+  // position: relative;
+}
+
+.carnet-row {
+  width: 1116px;
+  //
+}
+
+.card-border-left {
+  margin-left: 30px;
+  position: relative;
+}
+
+.card-border-left {
+  margin-left: -26px;
+  position: relative;
+}

@@ -1,0 +1,118 @@
+<div class="container mt-4">
+  <div class="row cuerpo">
+    <div class="col-lg-10 offset-lg-1">
+      <div class="card">
+        <div class="card-body text-center">
+          <span class="titulo">{{ titulo | uppercase }}</span>
+          <form class="mt-4" [formGroup]="dirigenteForm" (ngSubmit)="agregarDirigente()">
+            <div class="row mb-3">
+              <div class="col-2">
+                <label for="dni">DNI</label>
+                <input type="text" formControlName="dni" class="form-control form-control-lg" id="dni" placeholder="" />
+                <div class="text-danger" *ngIf="
+                    dirigenteForm.get('dni')?.hasError('required') &&
+                    dirigenteForm.get('dni')?.touched
+                  ">
+                  <span>Este campo es <strong>obligatorio</strong></span>
+                </div>
+              </div>
+
+              <div class="col-5">
+                <label for="club">CLUB</label>
+                <div class="form-control form-control-lg ng-autocomplete">
+                  <ng-autocomplete [data]="listClubes" id="club" formControlName="club" [searchKeyword]="keyword"
+                    placeholder="Seleccione un club" [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate"
+                    (selected)="selectClub($event)">
+                  </ng-autocomplete>
+
+                  <ng-template #itemTemplate let-item>
+                    <a [innerHTML]="item.detalle"></a>
+                  </ng-template>
+
+                  <ng-template #notFoundTemplate let-notFound>
+                    <div [innerHTML]="notFound"></div>
+                  </ng-template>
+                </div>
+
+                <div class="text-danger" *ngIf="
+                dirigenteForm.get('club')?.hasError('required') &&
+                dirigenteForm.get('club')?.touched
+                  ">
+                  <span>Este campo es <strong>obligatorio</strong></span>
+                </div>
+              </div>
+
+              <div class="col-5">
+                <label for="cargo">CARGO</label>
+                <div class="form-control form-control-lg ng-autocomplete">
+                  <ng-autocomplete [data]="listCargos" id="cargo" formControlName="cargo" [searchKeyword]="keyword"
+                    placeholder="Seleccione un cargo" [itemTemplate]="itemTemplate"
+                    [notFoundTemplate]="notFoundTemplate" (selected)="selectCargo($event)">
+                  </ng-autocomplete>
+
+                  <ng-template #itemTemplate let-item>
+                    <a [innerHTML]="item.detalle"></a>
+                  </ng-template>
+
+                  <ng-template #notFoundTemplate let-notFound>
+                    <div [innerHTML]="notFound"></div>
+                  </ng-template>
+                </div>
+
+                <div class="text-danger" *ngIf="
+                dirigenteForm.get('cargo')?.hasError('required') &&
+                dirigenteForm.get('cargo')?.touched
+                  ">
+                  <span>Este campo es <strong>obligatorio</strong></span>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col">
+                <label for="nombres">NOMBRES</label>
+                <input id="nombres" type="text" formControlName="nombres" class="form-control form-control-lg"
+                  placeholder="" />
+                <div class="text-danger" *ngIf="
+                    dirigenteForm.get('nombres')?.hasError('required') &&
+                    dirigenteForm.get('nombres')?.touched
+                  ">
+                  <span>Este campo es <strong>obligatorio</strong></span>
+                </div>
+              </div>
+              <div class="col">
+                <label for="apellidos">APELLIDOS</label>
+                <input id="apellidos" type="text" formControlName="apellidos" class="form-control form-control-lg"
+                  placeholder="" />
+                <div class="text-danger" *ngIf="
+                    dirigenteForm.get('apellidos')?.hasError('required') &&
+                    dirigenteForm.get('apellidos')?.touched
+                  ">
+                  <span>Este campo es <strong>obligatorio</strong></span>
+                </div>
+              </div>
+              <div class="col-3">
+                <label for="telefono">TELÉFONO</label>
+                <input id="telefono" type="text" formControlName="telefono" class="form-control form-control-lg"
+                  placeholder="" />
+                <div class="text-danger" *ngIf="
+                    dirigenteForm.get('telefono')?.hasError('required') &&
+                    dirigenteForm.get('telefono')?.touched
+                  ">
+                  <span>Este campo es <strong>obligatorio</strong></span>
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <button routerLink="/dirigente" class="btn btn-secondary btn-lg float-start">
+                VOLVER
+              </button>
+              <button type="submit" [disabled]="dirigenteForm.invalid" class="btn btn-success btn-lg float-end">
+                ACEPTAR
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,195 @@
+<div class="container">
+  <div class="row cuerpo">
+    <div class="col-lg-12">
+      <div class="row mb-4">
+        <div class="col-6 text-center">
+          <button routerLink="/jugador" class="btn btn-secondary">
+            CANCELAR
+          </button>
+        </div>
+        <div class="col-6 text-center">
+          <button class="btn btn-info" (click)="download()">
+            DESCARGAR PFD
+          </button>
+        </div>
+      </div>
+      <div class="row mb-2 mt-4">
+        <div class="col-12 text-left" style="background-color: white">
+          <h3>
+            PREVIZUALIZAR CEDULA DE: {{ jugador.nombres }}
+            {{ jugador.apellidos }}
+          </h3>
+        </div>
+      </div>
+
+      <div id="cedula" class="cedula">
+        <div class="header">
+          <img src="assets/img/carnet/fdpb.png" class="img1" />
+          <div class="text-center titulo">
+            <h2>
+              LIGA DEPORTIVA DISTRITAL MASCULINA DE BASKETBALL <br />DE AREQUIPA
+            </h2>
+          </div>
+          <div class="text-center sub-titulo">
+            <p class="sub-titulo-content">
+              Fundada el 12 de Noviembre de 1930 - Afiliada a la Federación
+              Deportiva Peruana de Basketball<br />Coliseo Arequipa Oficina N°23
+              Av.Independencia s/n Arequipa
+            </p>
+          </div>
+          <img src="assets/img/carnet/escudoArequipa.png" class="img2" />
+        </div>
+        <div id="content" class="content">
+          <div class="row row-content">
+            <div class="col-6 text-start"><h3>CEDULA DE INSCRIPCION</h3></div>
+            <div class="col-6 text-end">
+              <h3>N° {{ jugador.cedula }}</h3>
+            </div>
+            <div class="col-12"><p class="indice">Señor Presidente.</p></div>
+            <div class="col-12"><p class="indice">Yo:</p></div>
+            <div class="col-1"></div>
+            <div class="col-11">
+              <div class="row">
+                <div class="col-9">
+                  <div class="row">
+                    <div class="col-12 datos-mt">
+                      <b>Nombre y Apellidos:</b> {{ jugador.nombres }}
+                      {{ jugador.apellidos }}
+                    </div>
+                    <div class="col-12 datos-mt">
+                      <b>Nacionalidad:</b> {{ jugador.nacionalidad }}
+                    </div>
+                    <div class="col-12 datos-mt">
+                      <b>Nacido en:</b> {{ jugador.ciudad_nacimiento }}
+                    </div>
+                    <div class="col-12 datos-mt">
+                      <b>DNI/OTRO:</b> {{ jugador.dni }}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div class="border text-center foto">
+                    <h4 class="foto-text">FOTO</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <p class="mt-4 datos">
+                Solicito a Ud. Se me inscriba por el club
+                <b>{{ this.jugadorClubes[0].detalle }}</b> de la categoria
+                <b>{{ jugador.categoria }}</b>
+              </p>
+            </div>
+          </div>
+          <div class="row row-content">
+            <div class="col-12 text-center"><h3>PROMESA DE HONOR</h3></div>
+            <div class="col-12 datos">
+              <p>
+                Me comprometo a cumplir fielmente los estatutos y reglamento del
+                Club, de la Liga, de la F.P.B.B y de las Reglas Oficiales de
+                Basketball, al mismo tiempo me comprometo a no alegar ignorancia
+                de las mismas
+              </p>
+            </div>
+            <div class="col-12 datos">
+              <p>
+                Arequipa _______ de ____________________________ del 20_______
+              </p>
+            </div>
+            <div class="col-12">
+              <div class="row">
+                <div class="col">
+                  <div class="row" *ngIf="age <= 17">
+                    <!-- <div class="row"> -->
+                    <div class="col-12">
+                      <b class="apoderado"
+                        >Autorización del padre o apoderado</b
+                      >
+                    </div>
+                    <div class="col-12 datos-mt">
+                      <b>Nombre y Apellidos:</b>
+                    </div>
+                    <div class="col-12 datos">
+                      <b>DNI:</b>
+                    </div>
+                    <div class="col-12 text-center firma-padre">
+                      <span>__________________________________</span><br />Firma
+                    </div>
+                  </div>
+                </div>
+                <div class="col-3 text-center firma-text">
+                  <span>__________________________________</span><br />Firma del
+                  jugador
+                </div>
+                <div class="col-3">
+                  <div class="border text-center foto">
+                    <h4 class="huella-text">HUELLA</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 text-center firma-presidente">
+              <span
+                >_________________________________________________________</span
+              ><br />Sello y Firma del Presidente o Delegado Del Club
+            </div>
+          </div>
+          <div class="row row-content">
+            <div class="col-12 text-center"><h3>TRANSFERENCIAS</h3></div>
+            <div class="col-12">
+              <div class="row">
+                <div class="col">
+                  <div class="row">
+                    <div class="col"></div>
+                    <div class="col-5 border">
+                      <b>CLUB</b>
+                    </div>
+                    <div class="col-2 border">
+                      <b>TIPO:</b>
+                    </div>
+                    <div class="col-2 border">
+                      <b>DIA:</b>
+                    </div>
+                    <div class="col"></div>
+                  </div>
+
+                  <div *ngFor="let Club of jugadorClubes; let i = index">
+                    <div *ngIf="i <= 7">
+                      <div class="row">
+                        <div class="col"></div>
+                        <div class="col-5 border">{{ Club.detalle }}</div>
+                        <div class="col-2 border">{{ Club.tipo }}</div>
+                        <div class="col-2 border">
+                          {{ formatDate_ddmmyyyy(Club.fecha_grabacion) }}
+                        </div>
+                        <div class="col"></div>
+                      </div>
+                      <div *ngIf="i + 1 == jugadorClubes.length">
+                        <div
+                          *ngFor="
+                            let n of numSequence(8 - jugadorClubes.length)
+                          "
+                        >
+                          <div class="row">
+                            <div class="col"></div>
+                            <div class="col-5 border">-</div>
+                            <div class="col-2 border">-</div>
+                            <div class="col-2 border">-</div>
+                            <div class="col"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

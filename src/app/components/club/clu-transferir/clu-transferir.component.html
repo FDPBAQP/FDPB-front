@@ -1,0 +1,95 @@
+<div class="container mt-4">
+  <div class="row cuerpo">
+    <div class="col-lg-10 offset-lg-1">
+      <div class="card">
+        <div class="card-body text-center">
+          <div>
+            <span class="titulo">Transferir {{ jugadorNombre }} a:</span>
+            <form class="mt-4" [formGroup]="transferenciaForm" (ngSubmit)="agregarTransferencia()">
+              <div class="row mb-4">
+                <div class="col-5">
+                  <label for="club">CLUB</label>
+                  <div class="form-control form-control-lg ng-autocomplete">
+                    <ng-autocomplete [data]="listClubes" id="club" formControlName="club" [searchKeyword]="keywordClub"
+                      placeholder="Seleccione un club" [itemTemplate]="itemTemplate"
+                      [notFoundTemplate]="notFoundTemplate" (selected)="selectEvent($event)">
+                    </ng-autocomplete>
+
+                    <ng-template #itemTemplate let-item>
+                      <a [innerHTML]="item.detalle"></a>
+                    </ng-template>
+
+                    <ng-template #notFoundTemplate let-notFound>
+                      <div [innerHTML]="notFound"></div>
+                    </ng-template>
+                  </div>
+
+                  <div class="text-danger" *ngIf="
+                      transferenciaForm.get('club')?.hasError('required') &&
+                      transferenciaForm.get('club')?.touched
+                    ">
+                    <span>Este campo es <strong>obligatorio</strong></span>
+                  </div>
+                </div>
+                <div class="col-3">
+                  <label for="tipo">TIPO</label>
+                  <select id="tipo" class="form-select form-select-lg mb-3" formControlName="tipo">
+                    <option Value="externo">externo</option>
+                    <option Value="otro1">otro1</option>
+                    <option Value="otro2">otro2</option>
+                  </select>
+                </div>
+                <div class="col-4">
+                  <label for="fecha">FECHA</label>
+                  <input id="fecha" type="date" formControlName="fecha" class="form-control form-control-lg"
+                    placeholder="dd/mm/aaaa" />
+                  <div class="text-danger" *ngIf="
+                      transferenciaForm.get('fecha')?.hasError('required') &&
+                      transferenciaForm.get('fecha')?.touched
+                    ">
+                    <span>Este campo es <strong>obligatorio</strong></span>
+                  </div>
+                </div>
+              </div>
+              <div class="row mb-4">
+                <div class="col">
+                  <button routerLink="/jugador" class="btn btn-secondary btn-lg float-start">
+                    VOLVER
+                  </button>
+                  <button type="submit" [disabled]="transferenciaForm.invalid" class="btn btn-success btn-lg float-end">
+                    ACEPTAR
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="mt-4">
+            <div class="col-12">
+              <div class="overflow-auto p-3 mb-3 mb-md-0 mr-md-3 bg-light" style="max-width: 100%; max-height: 200px">
+                <span class="titulo pb-2 border-bottom">Historial de clubs del jugador</span>
+                <table class="table table-hover mt-2">
+                  <thead>
+                    <tr>
+                      <th scope="col">Club</th>
+                      <th scope="col">Tipo de transferencia</th>
+                      <th scope="col">Fecha de grabacion</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let Club of jugadorClubes">
+                      <th scope="row">{{ Club.detalle }}</th>
+                      <th scope="row">{{ Club.tipo }}</th>
+                      <th scope="row">
+                        {{ formatDate_ddmmyyyy(Club.fecha_grabacion) }}
+                      </th>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

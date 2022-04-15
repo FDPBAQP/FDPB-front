@@ -1,0 +1,57 @@
+<div class="container mt-4">
+  <div class="row cuerpo">
+    <div class="col-lg-8 offset-lg-2">
+      <div class="card">
+        <div class="card-body text-center">
+          <span class="titulo">ENTRENADORES</span>
+          <button
+            class="btn btn-info float-end"
+            [routerLink]="['/crear-entrenador']"
+          >
+            NUEVO
+          </button>
+          <table
+            *ngIf="listEntrenadors.length > 0"
+            class="table table-hover mt-4"
+          >
+            <thead>
+              <tr>
+                <th scope="col">DNI</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Club</th>
+                <th scope="col">Nacionalidad</th>
+                <th scope="col">Teléfono</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let Entrenadors of listEntrenadors">
+                <th scope="row">{{ Entrenadors.dni }}</th>
+                <td>{{ Entrenadors.nombres }} {{ Entrenadors.apellidos }}</td>
+                <td>{{ Entrenadors.club }}</td>
+                <td>{{ Entrenadors.nacionalidad }}</td>
+                <td>{{ Entrenadors.telefono }}</td>
+                <td>
+                  <i
+                    [routerLink]="['/editar-entrenador', Entrenadors._id]"
+                    class="fa fa-pencil text-success"
+                  ></i
+                  ><i
+                    (click)="eliminarEntrenador(Entrenadors._id)"
+                    class="fa fa-trash text-primary"
+                  ></i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <h5
+            *ngIf="listEntrenadors.length == 0"
+            style="text-align: start; margin-top: 10px"
+          >
+            Actualmente no existen entrenadors
+          </h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,119 @@
+<nav class="navbar navbar-expand-lg navbar-dark absolute-top scrolling-navbar bg-inverse" id="navbar">
+  <div class="container" id="navbarContainer">
+    <button id="navbarVerButton" class="navbar-toggler" type="button" data-bs-toggle="collapse"
+      data-bs-target="#navbarDetalle" aria-controls="navbarDetalle" aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarDetalle">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">VER</a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" style="left: 10px">
+            <li>
+              <a class="dropdown-item" [routerLink]="['/jugador']">JUGADOR</a>
+            </li>
+            <li>
+              <a class="dropdown-item" [routerLink]="['/entrenador']">ENTRENADOR</a>
+            </li>
+            <li>
+              <a class="dropdown-item" [routerLink]="['/dirigente']">DIRIGENTE</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">INGRESAR NUEVO</a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" style="left: 10px">
+            <li>
+              <a class="dropdown-item" [routerLink]="['/crear-jugador']">JUGADOR</a>
+            </li>
+            <li>
+              <a class="dropdown-item" [routerLink]="['/crear-entrenador']">ENTRENADOR</a>
+            </li>
+            <li>
+              <a class="dropdown-item" [routerLink]="['/crear-dirigente']">DIRIGENTE</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">PARAMETROS</a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" style="left: 10px">
+            <li>
+              <a class="dropdown-item" [routerLink]="['/club']">CLUB</a>
+            </li>
+            <li>
+              <a class="dropdown-item" [routerLink]="['/cargo']">CARGO</a>
+            </li>
+            <li>
+              <a class="dropdown-item" [routerLink]="['/categoria']">CATEGORIA</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">CARNETS</a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" style="left: 10px">
+            <li>
+              <a class="dropdown-item" [routerLink]="['/jugadores-pdf']">JUGADORES</a>
+            </li>
+            <li>
+              <a class="dropdown-item" [routerLink]="['/entrenadores-pdf']">ENTRENADORES</a>
+            </li>
+            <li>
+              <a class="dropdown-item" [routerLink]="['/dirigentes-pdf']">DIRIGENTES</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/reporte-club-categoria']">REPORTES</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/Inicio']">INGRESAR</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/Nosotros']">Nosotros</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/Contactanos']">Contáctanos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/Unetenos']">Únetenos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/Galeria']">Galeria</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/Otro']">Otro</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            id="navbarDropdown"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            >Blog</a
+          >
+          <ul
+            class="dropdown-menu dropdown-menu-end"
+            aria-labelledby="navbarDropdown"
+          >
+            <li>
+              <a class="dropdown-item" href="blog-home.html">Blog Home</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="blog-post.html">Blog Post</a>
+            </li>
+          </ul>
+        </li> -->
+    <a class="navbar-brand" [routerLink]="['/']"><img src="assets/img/logo.png" class="img-fluid" height="60px"
+        width="60px" alt="" /></a>
+  </div>
+</nav>

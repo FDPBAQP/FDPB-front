@@ -1,0 +1,96 @@
+<div class="container mt-4">
+  <div class="row cuerpo">
+    <div class="col-lg-10 offset-lg-1">
+      <div class="card">
+        <div class="card-body text-center">
+          <span class="titulo">CARNETS DIRIGENTES</span>
+          <div class="row mb-4 mt-4">
+            <div class="col">
+              <div class="ng-autocomplete">
+                <ng-autocomplete [data]="listDirigentes" id="dirigente" formControlName="dirigente"
+                  [searchKeyword]="'dni'" placeholder="Buscar por DNI" [itemTemplate]="itemTemplate"
+                  [notFoundTemplate]="notFoundTemplate" (selected)="selectEvent($event)">
+                </ng-autocomplete>
+
+                <ng-template #itemTemplate let-item>
+                  <a [innerHTML]="item.dni + ' - ' + item.nombres + ' ' + item.apellidos"></a>
+                </ng-template>
+
+                <ng-template #notFoundTemplate let-notFound>
+                  <div [innerHTML]="notFound"></div>
+                </ng-template>
+              </div>
+            </div>
+            <div class="col">
+              <div class="ng-autocomplete">
+                <ng-autocomplete [data]="listDirigentes" id="dirigente" formControlName="dirigente"
+                  [searchKeyword]="'nombres'" placeholder="Buscar por nombres" [itemTemplate]="itemTemplate"
+                  [notFoundTemplate]="notFoundTemplate" (selected)="selectEvent($event)">
+                </ng-autocomplete>
+
+                <ng-template #itemTemplate let-item>
+                  <a [innerHTML]="item.dni + ' - ' + item.nombres + ' ' + item.apellidos"></a>
+                </ng-template>
+
+                <ng-template #notFoundTemplate let-notFound>
+                  <div [innerHTML]="notFound"></div>
+                </ng-template>
+              </div>
+            </div>
+            <div class="col">
+              <div class="ng-autocomplete">
+                <ng-autocomplete [data]="listDirigentes" id="dirigente" formControlName="dirigente"
+                  [searchKeyword]="'apellidos'" placeholder="Buscar por apellidos" [itemTemplate]="itemTemplate"
+                  [notFoundTemplate]="notFoundTemplate" (selected)="selectEvent($event)">
+                </ng-autocomplete>
+
+                <ng-template #itemTemplate let-item>
+                  <a [innerHTML]="item.dni + ' - ' + item.nombres + ' ' + item.apellidos"></a>
+                </ng-template>
+
+                <ng-template #notFoundTemplate let-notFound>
+                  <div [innerHTML]="notFound"></div>
+                </ng-template>
+              </div>
+            </div>
+          </div>
+          <table *ngIf="listDirigentesTabla.length > 0" class="table table-hover mt-4">
+            <thead>
+              <tr>
+                <th scope="col">DNI</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Cargo</th>
+                <th scope="col">Club</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let Dirigente of listDirigentesTabla">
+                <th scope="row">{{ Dirigente.dni }}</th>
+                <td>{{ Dirigente.nombres }} {{ Dirigente.apellidos }}</td>
+                <td>{{ Dirigente.cargo }}</td>
+                <td>{{ Dirigente.club }}</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="row mb-4">
+            <div class="col-4">
+              <button *ngIf="listDirigentesTabla.length > 0" class="btn btn-danger float-end" (click)="quitar()">
+                Quitar Ultimo Agregado
+              </button>
+            </div>
+            <div class="col-4"></div>
+            <div class="col-4">
+              <button *ngIf="listDirigentesTabla.length > 0" class="btn btn-success" (click)="ver()">
+                VER CARNET(S)
+              </button>
+            </div>
+          </div>
+          <h5 *ngIf="listDirigentesTabla.length == 0" style="text-align: center; margin-top: 10px">
+            Agrega dirigentes a la tabla
+          </h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

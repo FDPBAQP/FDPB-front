@@ -1,0 +1,94 @@
+<div class="container mt-4">
+  <div class="row cuerpo">
+    <div class="col-lg-10 offset-lg-1">
+      <div class="card">
+        <div class="card-body text-center">
+          <span class="titulo">{{ titulo | uppercase }}</span>
+          <form
+            class="mt-4"
+            [formGroup]="categoriaForm"
+            (ngSubmit)="agregarCategoria()"
+          >
+            <div class="row mb-3">
+              <div class="col-sm-4 mx-auto">
+                <label for="categoria">CATEGORIA</label>
+                <input
+                  type="text"
+                  formControlName="categoria"
+                  class="form-control form-control-lg"
+                  placeholder="CATEGORIA"
+                />
+                <div
+                  class="text-danger"
+                  *ngIf="
+                    categoriaForm.get('categoria')?.hasError('required') &&
+                    categoriaForm.get('categoria')?.touched
+                  "
+                >
+                  <span>Este campo es <strong>obligatorio</strong></span>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-sm-4 mx-auto">
+                <label for="desde">DESDE</label>
+                <input
+                  id="desde"
+                  type="number"
+                  formControlName="desde"
+                  class="form-control form-control-lg"
+                  (keypress)="($event.charCode >= 48 && $event.charCode < 58)"
+                />
+                <div
+                  class="text-danger"
+                  *ngIf="
+                    categoriaForm.get('desde')?.hasError('required') &&
+                    categoriaForm.get('desde')?.touched
+                  "
+                >
+                  <span>Este campo es <strong>obligatorio</strong></span>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-sm-4 mx-auto">
+                <label for="fecha_hasta">HASTA</label>
+                <input
+                  id="hasta"
+                  type="number"
+                  formControlName="hasta"
+                  class="form-control form-control-lg"
+                  (keypress)="($event.charCode >= 48 && $event.charCode < 58)"
+                />
+                <div
+                  class="text-danger"
+                  *ngIf="
+                    categoriaForm.get('hasta')?.hasError('required') &&
+                    categoriaForm.get('hasta')?.touched
+                  "
+                >
+                  <span>Este campo es <strong>obligatorio</strong></span>
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <button
+                routerLink="/categoria"
+                class="btn btn-secondary btn-lg float-start"
+              >
+                VOLVER
+              </button>
+              <button
+                type="submit"
+                [disabled]="categoriaForm.invalid"
+                class="btn btn-success btn-lg float-end"
+              >
+                ACEPTAR
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

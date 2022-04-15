@@ -1,0 +1,308 @@
+<div class="container mt-4">
+  <div class="row cuerpo">
+    <div class="col-lg-10 offset-lg-1">
+      <div class="card">
+        <div class="card-body text-center">
+          <span class="titulo">{{ titulo | uppercase }}</span>
+          <form
+            class="mt-4"
+            [formGroup]="jugadorForm"
+            (ngSubmit)="agregarJugador()"
+          >
+            <div class="row mb-4">
+              <div class="col-3">
+                <label for="cedula">CEDULA</label>
+                <input
+                  id="cedula"
+                  type="text"
+                  formControlName="cedula"
+                  class="form-control form-control-lg"
+                  (keypress)="($event.charCode >= 48 && $event.charCode < 58)"
+                />
+                <div
+                  class="text-danger"
+                  *ngIf="
+                    jugadorForm.get('cedula')?.hasError('required') &&
+                    jugadorForm.get('cedula')?.touched
+                  "
+                >
+                  <span>Este campo es <strong>obligatorio</strong></span>
+                </div>
+              </div>
+
+              <div class="col-3">
+                <label for="dni">DOCUMENTO</label>
+                <input
+                  id="dni"
+                  type="text"
+                  formControlName="dni"
+                  class="form-control form-control-lg"
+                  (keypress)="($event.charCode >= 48 && $event.charCode < 58)"
+                />
+                <div
+                  class="text-danger"
+                  *ngIf="
+                    jugadorForm.get('dni')?.hasError('required') &&
+                    jugadorForm.get('dni')?.touched
+                  "
+                >
+                  <span>Este campo es <strong>obligatorio</strong></span>
+                </div>
+              </div>
+
+              <div class="col-3">
+                <label for="fecha_nacimiento">FECHA DE NAC.</label>
+                <input
+                  id="fecha_nacimiento"
+                  type="date"
+                  formControlName="fecha_nacimiento"
+                  class="form-control form-control-lg"
+                  placeholder="dd/mm/aaaa"
+                  (change)="changeCategoria()"
+                />
+                <div
+                  class="text-danger"
+                  *ngIf="
+                    jugadorForm.get('fecha_nacimiento')?.hasError('required') &&
+                    jugadorForm.get('fecha_nacimiento')?.touched
+                  "
+                >
+                  <span>Este campo es <strong>obligatorio</strong></span>
+                </div>
+              </div>
+              <div class="col-3">
+                <label for="categoria">CATEGORIA</label>
+                <input
+                  id="categoria"
+                  type="text"
+                  formControlName="categoria"
+                  class="form-control form-control-lg"
+                  placeholder="Categoria"
+                  readonly
+                />
+                <div
+                  class="text-danger"
+                  *ngIf="
+                    jugadorForm.get('categoria')?.hasError('required') &&
+                    jugadorForm.get('categoria')?.touched
+                  "
+                >
+                  <span>Este campo es <strong>obligatorio</strong></span>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-4">
+              <div class="col">
+                <label for="libro">LIBRO</label>
+                <input
+                  id="libro"
+                  type="number"
+                  formControlName="libro"
+                  class="form-control form-control-lg"
+                  (keypress)="($event.charCode >= 48 && $event.charCode < 58)"
+                />
+                <div
+                  class="text-danger"
+                  *ngIf="
+                    jugadorForm.get('libro')?.hasError('required') &&
+                    jugadorForm.get('libro')?.touched
+                  "
+                >
+                  <span>Este campo es <strong>obligatorio</strong></span>
+                </div>
+              </div>
+              <div class="col">
+                <label for="folio">FOLIO</label>
+                <input
+                  id="folio"
+                  type="number"
+                  formControlName="folio"
+                  class="form-control form-control-lg"
+                  (keypress)="($event.charCode >= 48 && $event.charCode < 58)"
+                />
+                <div
+                  class="text-danger"
+                  *ngIf="
+                    jugadorForm.get('folio')?.hasError('required') &&
+                    jugadorForm.get('folio')?.touched
+                  "
+                >
+                  <span>Este campo es <strong>obligatorio</strong></span>
+                </div>
+              </div>
+
+              <div class="col-9">
+                <div class="row">
+                  <div class="col">
+                    <label for="nombres">NOMBRES</label>
+                    <input
+                      id="nombres"
+                      type="text"
+                      formControlName="nombres"
+                      class="form-control form-control-lg"
+                      placeholder="Nombres"
+                    />
+                    <div
+                      class="text-danger"
+                      *ngIf="
+                        jugadorForm.get('nombres')?.hasError('required') &&
+                        jugadorForm.get('nombres')?.touched
+                      "
+                    >
+                      <span>Este campo es <strong>obligatorio</strong></span>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <label for="apellidos">APELLIDOS</label>
+                    <input
+                      id="apellidos"
+                      type="text"
+                      formControlName="apellidos"
+                      class="form-control form-control-lg"
+                      placeholder="Apellidos"
+                    />
+                    <div
+                      class="text-danger"
+                      *ngIf="
+                        jugadorForm.get('apellidos')?.hasError('required') &&
+                        jugadorForm.get('apellidos')?.touched
+                      "
+                    >
+                      <span>Este campo es <strong>obligatorio</strong></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-4">
+              <div class="col">
+                <label for="nacionalidad">NACIONALIDAD</label>
+                <input
+                  id="nacionalidad"
+                  type="text"
+                  formControlName="nacionalidad"
+                  class="form-control form-control-lg"
+                  placeholder="Nacionalidad"
+                />
+                <div
+                  class="text-danger"
+                  *ngIf="
+                    jugadorForm.get('nacionalidad')?.hasError('required') &&
+                    jugadorForm.get('nacionalidad')?.touched
+                  "
+                >
+                  <span>Este campo es <strong>obligatoria</strong></span>
+                </div>
+              </div>
+              <div class="col">
+                <label for="ciudad_nacimiento">CIUDAD DE NAC.</label>
+                <input
+                  id="ciudad_nacimiento"
+                  type="text"
+                  formControlName="ciudad_nacimiento"
+                  class="form-control form-control-lg"
+                  placeholder="Ciudad De Nacimiento"
+                />
+                <div
+                  class="text-danger"
+                  *ngIf="
+                    jugadorForm
+                      .get('ciudad_nacimiento')
+                      ?.hasError('required') &&
+                    jugadorForm.get('ciudad_nacimiento')?.touched
+                  "
+                >
+                  <span>Este campo es <strong>obligatorio</strong></span>
+                </div>
+              </div>
+              <div class="col-3">
+                <label for="fecha_inscripcion">FEC. INSCRIPCION</label>
+                <input
+                  id="fecha_inscripcion"
+                  type="date"
+                  formControlName="fecha_inscripcion"
+                  class="form-control form-control-lg"
+                  placeholder="Fecha Inscripcion"
+                />
+                <div
+                  class="text-danger"
+                  *ngIf="
+                    jugadorForm
+                      .get('fecha_inscripcion')
+                      ?.hasError('required') &&
+                    jugadorForm.get('fecha_inscripcion')?.touched
+                  "
+                >
+                  <span>Este campo es <strong>obligatoria</strong></span>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-4">
+              <!-- <div class="col-4">
+                <label for="club_actual">CLUB ACTUAL</label>
+                <input
+                  id="club_actual"
+                  type="text"
+                  formControlName="club_actual"
+                  class="form-control form-control-lg"
+                  placeholder="Club Actual"
+                  readonly
+                />
+              </div> -->
+              <div class="col-4">
+                <label for="club_actual">CLUB ACTUAL</label>
+                <div
+                  class="form-control form-control-lg ng-autocomplete"
+                  *ngIf="id == null"
+                >
+                  <ng-autocomplete
+                    [data]="listClubes"
+                    id="club_actual"
+                    formControlName="club_actual"
+                    [searchKeyword]="keywordClub"
+                    placeholder="Seleccione un club"
+                    [itemTemplate]="itemTemplate"
+                    [notFoundTemplate]="notFoundTemplate"
+                    (selected)="selectEvent($event)"
+                  >
+                  </ng-autocomplete>
+
+                  <ng-template #itemTemplate let-item>
+                    <a [innerHTML]="item.detalle"></a>
+                  </ng-template>
+
+                  <ng-template #notFoundTemplate let-notFound>
+                    <div [innerHTML]="notFound"></div>
+                  </ng-template>
+                </div>
+                <div *ngIf="id !== null">
+                  <input
+                    type="text"
+                    formControlName="club_actual"
+                    class="form-control form-control-lg"
+                    readonly
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="mb-4">
+              <button
+                routerLink="/jugador"
+                class="btn btn-secondary btn-lg float-start"
+              >
+                VOLVER
+              </button>
+              <button
+                type="submit"
+                [disabled]="jugadorForm.invalid"
+                class="btn btn-success btn-lg float-end"
+              >
+                ACEPTAR
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

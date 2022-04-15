@@ -1,0 +1,111 @@
+<div class="container mt-4">
+  <div class="row cuerpo">
+    <div class="col-lg-10 offset-lg-1">
+      <div class="card">
+        <div class="card-body text-center">
+          <div>
+            <span class="titulo">Reporte:</span>
+            <form class="mt-4" [formGroup]="filtrosForm" (ngSubmit)="Buscar()">
+              <div class="row mb-4">
+                <div class="col-6">
+                  <label for="club">CLUB</label>
+                  <div class="form-control form-control-lg ng-autocomplete">
+                    <ng-autocomplete [data]="listClubes" id="club" formControlName="club" [searchKeyword]="keyword"
+                      placeholder="Seleccione un club" [itemTemplate]="itemTemplate"
+                      [notFoundTemplate]="notFoundTemplate" (selected)="selectClub($event)">
+                    </ng-autocomplete>
+
+                    <ng-template #itemTemplate let-item>
+                      <a [innerHTML]="item.detalle"></a>
+                    </ng-template>
+
+                    <ng-template #notFoundTemplate let-notFound>
+                      <div [innerHTML]="notFound"></div>
+                    </ng-template>
+                  </div>
+
+                  <div class="text-danger" *ngIf="
+                      filtrosForm.get('club')?.hasError('required') &&
+                      filtrosForm.get('club')?.touched
+                    ">
+                    <span>Este campo es <strong>obligatorio</strong></span>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <label for="categoria">CATEGORIA</label>
+                  <div class="form-control form-control-lg ng-autocomplete">
+                    <ng-autocomplete [data]="listCategorias" id="categoria" formControlName="categoria"
+                      [searchKeyword]="keyword" placeholder="Seleccione una categoria" [itemTemplate]="itemTemplate"
+                      [notFoundTemplate]="notFoundTemplate" (selected)="selectCategoria($event)">
+                    </ng-autocomplete>
+
+                    <ng-template #itemTemplate let-item>
+                      <a [innerHTML]="item.detalle"></a>
+                    </ng-template>
+
+                    <ng-template #notFoundTemplate let-notFound>
+                      <div [innerHTML]="notFound"></div>
+                    </ng-template>
+                  </div>
+
+                  <div class="text-danger" *ngIf="
+                      filtrosForm.get('categoria')?.hasError('required') &&
+                      filtrosForm.get('categoria')?.touched
+                    ">
+                    <span>Este campo es <strong>obligatorio</strong></span>
+                  </div>
+                </div>
+              </div>
+              <div class="row mb-4">
+                <div class="col">
+                  <button class="btn btn-secondary btn-lg float-start" disabled>
+                    IMPRIMIR
+                  </button>
+                  <button type="submit"
+                    [disabled]="(filtrosForm.get('categoria')?.value == '' || filtrosForm.get('categoria')?.value == null) && (filtrosForm.get('club')?.value == '' || filtrosForm.get('club')?.value == null)"
+                    class="btn btn-success btn-lg float-end">
+                    BUSCAR
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="mt-4">
+            <div class="col-12">
+              <div class="overflow-auto p-3 mb-3 mb-md-0 mr-md-3 bg-light" style="max-width: 100%; max-height: 200px">
+                <span *ngIf="listJugadores.length > 0" class="pb-2 border-bottom">Club = "{{clubDet}}" /
+                  Categoria = "{{categoria}}"</span>
+                <table *ngIf="listJugadores.length > 0" class="table table-hover mt-4">
+                  <thead>
+                    <tr>
+                      <th scope="col">DNI</th>
+                      <th scope="col">Apellidos</th>
+                      <th scope="col">Nombre</th>
+                      <th scope="col">Categoria</th>
+                      <th scope="col">Club</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let Jugador of listJugadores">
+                      <th scope="row">{{ Jugador.dni }}</th>
+                      <td>{{ Jugador.apellidos }}</td>
+                      <td>{{ Jugador.nombres }}</td>
+                      <td>{{ Jugador.categoria }}</td>
+                      <td *ngIf="Jugador.club.length > 0">
+                        {{ Jugador.club[0].detalle }}
+                      </td>
+                      <td *ngIf="Jugador.club.length <= 0">no hay</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <h5 *ngIf="listJugadores.length == 0" style="text-align: center">
+                  Seleccione uno de los filtros y oprima el boton "BUSCAR"
+                </h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

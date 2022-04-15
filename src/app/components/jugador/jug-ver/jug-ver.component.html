@@ -1,0 +1,75 @@
+<div class="container mt-4">
+  <div class="row cuerpo">
+    <div class="col-lg-10 offset-lg-1">
+      <div class="card">
+        <div class="card-body text-center">
+          <span class="titulo">JUGADORES</span>
+          <button
+            class="btn btn-info float-end"
+            [routerLink]="['/crear-jugador']"
+          >
+            NUEVO
+          </button>
+          <table
+            *ngIf="listJugadores.length > 0"
+            class="table table-hover mt-4"
+          >
+            <thead>
+              <tr>
+                <th scope="col">DNI</th>
+                <th scope="col">Apellidos</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Categoria</th>
+                <th scope="col">Club</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let Jugador of listJugadores">
+                <th scope="row">{{ Jugador.dni }}</th>
+                <td>{{ Jugador.apellidos }}</td>
+                <td>{{ Jugador.nombres }}</td>
+                <td>{{ Jugador.categoria }}</td>
+                <td *ngIf="Jugador.club.length > 0">
+                  {{ Jugador.club[0].detalle }}
+                </td>
+                <td *ngIf="Jugador.club.length <= 0">no hay</td>
+                <td>
+                  <i
+                    [routerLink]="['/editar-jugador', Jugador._id]"
+                    class="fa fa-pencil text-success"
+                  ></i
+                  ><i
+                    (click)="eliminarJugador(Jugador._id)"
+                    class="fa fa-trash text-primary"
+                  ></i
+                  ><i
+                    [routerLink]="['/cedula-pdf', Jugador._id]"
+                    class="fa fa-print text-danger"
+                    title="Imprimir Cedula"
+                  ></i
+                  ><i
+                    [routerLink]="['/transferir', Jugador._id]"
+                    class="fa fa-address-book-o text-info"
+                    title="Transferir Club"
+                  ></i>
+                  <!-- <i
+                    [routerLink]="['/transferir', Jugador._id]"
+                    class="fa fa-arrow-circle-right text-light"
+                    title="Transferir Club"
+                  ></i> -->
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <h5
+            *ngIf="listJugadores.length == 0"
+            style="text-align: start; margin-top: 10px"
+          >
+            Actualmente no existen jugadores
+          </h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
