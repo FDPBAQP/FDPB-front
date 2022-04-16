@@ -45,17 +45,17 @@ export class JugCrearEditarComponent implements OnInit {
   ) {
     this.jugadorForm = this.fb.group({
       cedula: ['', Validators.required],
-      dni: ['', Validators.required],
+      dni: [''],
       libro: ['', Validators.required],
       folio: ['', Validators.required],
       nombres: ['', Validators.required],
-      apellidos: [],
+      apellidos: ['', Validators.required],
       categoria: ['', Validators.required],
       fecha_nacimiento: ['', Validators.required],
       ciudad_nacimiento: ['', Validators.required],
       nacionalidad: ['', Validators.required],
       club: [],
-      club_actual: ['', Validators.required],
+      club_inicial: ['', Validators.required],
       fecha_inscripcion: ['', Validators.required],
     });
     this.id = this.aRoute.snapshot.paramMap.get('id');
@@ -79,7 +79,7 @@ export class JugCrearEditarComponent implements OnInit {
       ciudad_nacimiento: '',
       nacionalidad: '',
       club: '',
-      club_actual: '',
+      club_inicial: '',
       fecha_inscripcion: Fecha.formatDate_yyyymmdd(dateTime.toISOString()),
     });
     setTimeout(() => {
@@ -106,15 +106,19 @@ export class JugCrearEditarComponent implements OnInit {
         this.jugadorClubesSend.unshift({
           fecha_grabacion: this.jugadorForm.get('fecha_inscripcion')?.value,
           detalle: this.clubtemp,
-          tipo: 'externo',
+          tipo: 'inicio',
         });
       } else {
       }
     }
+    let tempDNI = this.jugadorForm.get('dni')?.value
+    if (tempDNI == null || tempDNI == undefined || tempDNI == '') {
+      tempDNI = '-'
+    }
 
     const JUGADOR: Jugador = {
       cedula: this.jugadorForm.get('cedula')?.value,
-      dni: this.jugadorForm.get('dni')?.value,
+      dni: tempDNI,
       libro: this.jugadorForm.get('libro')?.value,
       folio: this.jugadorForm.get('folio')?.value,
       nombres: this.jugadorForm.get('nombres')?.value,
@@ -192,7 +196,7 @@ export class JugCrearEditarComponent implements OnInit {
             ciudad_nacimiento: data.ciudad_nacimiento,
             nacionalidad: data.nacionalidad,
             club: 0,
-            club_actual: this.listClubes.find((e) => e._id === clubDetalle)
+            club_inicial: this.listClubes.find((e) => e._id === clubDetalle)
               ?.detalle,
             fecha_inscripcion: Fecha.formatDate_yyyymmdd(
               data.fecha_inscripcion

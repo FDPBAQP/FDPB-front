@@ -25,7 +25,7 @@ export class CluTransferirComponent implements OnInit {
 
     this.transferenciaForm.setValue({
       club: '',
-      tipo: 'externo',
+      tipo: 'excepcional',
       fecha: Fecha.formatDate_yyyymmdd(dateTime.toISOString()),
     });
   }

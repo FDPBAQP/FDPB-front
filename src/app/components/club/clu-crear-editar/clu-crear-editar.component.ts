@@ -36,7 +36,7 @@ export class CluCrearEditarComponent implements OnInit {
   agregarClub() {
     const CLUB: Club = {
       detalle: this.clubForm.get('club')?.value,
-      tipo: 'externo',
+      tipo: 'inicio',
       fecha_grabacion: this.today,
     };
 
@@ -45,8 +45,8 @@ export class CluCrearEditarComponent implements OnInit {
         (data) => {
           this.toastr.success(
             'El club ' +
-              this.clubForm.get('club')?.value +
-              ' fue actualizado correctamente!',
+            this.clubForm.get('club')?.value +
+            ' fue actualizado correctamente!',
             'Club actualizado!'
           );
           this.router.navigate(['/club']);
@@ -61,8 +61,8 @@ export class CluCrearEditarComponent implements OnInit {
         (data) => {
           this.toastr.success(
             'El club ' +
-              this.clubForm.get('club')?.value +
-              ' fue agregado correctamente!',
+            this.clubForm.get('club')?.value +
+            ' fue agregado correctamente!',
             'Club agregado!'
           );
           this.router.navigate(['/club']);

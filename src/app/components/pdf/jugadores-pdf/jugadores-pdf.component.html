@@ -7,13 +7,13 @@
           <div class="row mb-4 mt-4">
             <div class="col">
               <div class="ng-autocomplete">
-                <ng-autocomplete [data]="listJugadores" id="jugador" formControlName="jugador" [searchKeyword]="'dni'"
-                  placeholder="Buscar por DNI" [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate"
-                  (selected)="selectEvent($event)">
+                <ng-autocomplete [data]="listJugadores" id="jugador" formControlName="jugador"
+                  [searchKeyword]="'cedula'" placeholder="Buscar por CEDULA" [itemTemplate]="itemTemplate"
+                  [notFoundTemplate]="notFoundTemplate" (selected)="selectEvent($event)">
                 </ng-autocomplete>
 
                 <ng-template #itemTemplate let-item>
-                  <a [innerHTML]="item.dni + ' - ' + item.nombres + ' ' + item.apellidos"></a>
+                  <a [innerHTML]="item.cedula + ' - ' + item.nombres + ' ' + item.apellidos"></a>
                 </ng-template>
 
                 <ng-template #notFoundTemplate let-notFound>
@@ -29,7 +29,7 @@
                 </ng-autocomplete>
 
                 <ng-template #itemTemplate let-item>
-                  <a [innerHTML]="item.dni + ' - ' + item.nombres + ' ' + item.apellidos"></a>
+                  <a [innerHTML]="item.cedula + ' - ' + item.nombres + ' ' + item.apellidos"></a>
                 </ng-template>
 
                 <ng-template #notFoundTemplate let-notFound>
@@ -45,7 +45,7 @@
                 </ng-autocomplete>
 
                 <ng-template #itemTemplate let-item>
-                  <a [innerHTML]="item.dni + ' - ' + item.nombres + ' ' + item.apellidos"></a>
+                  <a [innerHTML]="item.cedula + ' - ' + item.nombres + ' ' + item.apellidos"></a>
                 </ng-template>
 
                 <ng-template #notFoundTemplate let-notFound>
@@ -57,7 +57,7 @@
           <table *ngIf="listJugadoresTabla.length > 0" class="table table-hover mt-4">
             <thead>
               <tr>
-                <th scope="col">DNI</th>
+                <th scope="col">CEDULA</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Categoria</th>
                 <th scope="col">Club</th>
@@ -65,7 +65,7 @@
             </thead>
             <tbody>
               <tr *ngFor="let Jugador of listJugadoresTabla">
-                <th scope="row">{{ Jugador.dni }}</th>
+                <th scope="row">{{ Jugador.cedula }}</th>
                 <td>{{ Jugador.nombres }} {{ Jugador.apellidos }}</td>
                 <td>{{ Jugador.categoria }}</td>
                 <td *ngIf="Jugador.club.length > 0">
