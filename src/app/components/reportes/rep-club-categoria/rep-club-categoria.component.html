@@ -4,7 +4,7 @@
       <div class="card">
         <div class="card-body text-center">
           <div>
-            <span class="titulo">Reporte:</span>
+            <span class="titulo">REPORTES</span>
             <form class="mt-4" [formGroup]="filtrosForm" (ngSubmit)="Buscar()">
               <div class="row mb-4">
                 <div class="col-6">
@@ -73,7 +73,7 @@
           <div class="mt-4">
             <div class="col-12">
               <div class="overflow-auto p-3 mb-3 mb-md-0 mr-md-3 bg-light" style="max-width: 100%; max-height: 200px">
-                <span *ngIf="listJugadores.length > 0" class="pb-2 border-bottom">Club = "{{clubDet}}" /
+                <span *ngIf="listJugadores.length > 0" class="pb-2 border-bottom">Club = "{{club}}" /
                   Categoria = "{{categoria}}"</span>
                 <table *ngIf="listJugadores.length > 0" class="table table-hover mt-4">
                   <thead>

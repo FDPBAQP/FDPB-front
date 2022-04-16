@@ -41,7 +41,6 @@ export class RepClubCategoriaComponent implements OnInit {
 
   selectClub(item: any) {
     this.club = item._id;
-    this.clubDet = item.detalle;
   }
 
   selectCategoria(item: any) {
@@ -53,7 +52,7 @@ export class RepClubCategoriaComponent implements OnInit {
       this.categoria = ''
     }
     if (this.filtrosForm.get('club')?.value == null || this.filtrosForm.get('club')?.value == "" || this.filtrosForm.get('club')?.value == undefined) {
-      this.club = ''
+      this.club = '';
     }
 
     const FILTROS = `cat=${this.categoria}&clu=${this.club}`;
