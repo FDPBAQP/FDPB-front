@@ -1,21 +1,6 @@
 #card {
-  // width: 14cm;
-  // height: 8cm;
   width: 530px;
-  height: 290px;
-  padding: 25px;
-  padding-top: 10px;
-  padding-bottom: 0;
-  background: #fff;
-  z-index: 5;
-}
-
-#card1 {
-  // width: 14cm;
-  // height: 8cm;
-  margin-left: 0px;
-  width: 530px;
-  height: 290px;
+  height: 274px;
   padding: 25px;
   padding-top: 10px;
   padding-bottom: 0;
@@ -24,23 +9,25 @@
 }
 
 #card .img1 {
-  width: 100px;
+  width: 50px;
   float: left;
   margin-left: -16px;
   border-radius: 5px;
 }
 
 #card .img2 {
-  width: 80px;
+  width: 40px;
   float: right;
   margin-right: -16px;
   border-radius: 5px;
 }
 
 #card .foto {
-  width: 130px;
-  height: 150px;
-  float: left;
+  top: 74px;
+  left: 10px;
+  position: absolute;
+  width: 177px;
+  height: 186px;
   border-radius: 2px;
 }
 
@@ -55,21 +42,14 @@
 
 #card .h1 {
   position: absolute;
-  top: 90px;
-  right: 150px;
+  top: 74px;
+  right: 90px;
   width: 200px;
 }
 
 #card .bottom {
   position: absolute;
-  top: 240px;
-  text-align: center;
-  width: 200px;
-}
-
-#card .bottom-back {
-  position: absolute;
-  top: 240px;
+  top: 246px;
   text-align: center;
   width: 200px;
 }
@@ -84,8 +64,7 @@
 
 #card p {
   font-family: courier;
-  color: #555;
-  font-size: 13px;
+  font-size: 16px;
 }
 
 #card span {
@@ -94,12 +73,10 @@
 
 .carnet {
   width: 1116px;
-  // position: relative;
 }
 
 .carnet-row {
   width: 1116px;
-  //
 }
 
 .card-border-left {
@@ -110,4 +87,8 @@
 .card-border-left {
   margin-left: -26px;
   position: relative;
+}
+
+.detalle-bajo {
+  margin-top: -12px;
 }

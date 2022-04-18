@@ -5,9 +5,6 @@ import { JugadorService } from 'src/app/services/jugador/jugador.service';
 import { DirigenteService } from 'src/app/services/dirigente/dirigente.service';
 import { Router } from '@angular/router';
 import { EntrenadorService } from 'src/app/services/entrenador/entrenador.service';
-import { Jugador } from 'src/app/models/Jugador';
-import { Dirigente } from 'src/app/models/Dirigente';
-import { Entrenador } from 'src/app/models/Entrenador';
 
 @Component({
   selector: 'app-pre-pdf',
@@ -52,71 +49,52 @@ export class PrePdfComponent implements OnInit {
 
   download() {
     var doc = new jsPDF('p', 'mm', [297, 210]);
-    var pageHeight = doc.internal.pageSize.height;
-    var pageWidth = doc.internal.pageSize.width;
-    var newImgDel = '';
     var newImg = '';
-    var elementDel = document.getElementById('carnet-delantero');
-    var element = document.getElementById('carnet-trasero');
+    var element = document.getElementById('carnets');
     var fila: number = 0;
 
     switch (this.list.length) {
       case 1:
+        fila = 52;
+        break;
       case 2:
-        fila = 46.7;
+        fila = 103.9;
         break;
       case 3:
+        fila = 155.9;
+        break;
       case 4:
-        fila = 93.5;
+        fila = 207.9;
         break;
       case 5:
-      case 6:
-        fila = 140;
+        fila = 260;
         break;
-      case 7:
-      case 8:
-        fila = 186.5;
-        break;
-      case 9:
-      case 10:
-        fila = 233;
-        break;
-      case 11:
-      case 12:
-        fila = 280;
-        break;
-    }
-
-    if (elementDel != null) {
-      html2canvas(elementDel).then((canvasDel) => {
-        newImgDel = canvasDel.toDataURL('image/png');
-      });
     }
 
     if (element != null) {
-      html2canvas(element).then((canvas) => {
-        newImg = canvas.toDataURL('image/png');
-
-        setTimeout(function () {
-          doc.addImage(newImgDel, 19.82, 6, 170, fila);
-        }, 2000);
-
-        var y = 500;
-        if (y >= pageHeight) {
-          setTimeout(function () {
-            doc.addPage();
-          }, 3000);
-
-          y = 0;
-        }
+      html2canvas(element).then((canvasDel) => {
+        newImg = canvasDel.toDataURL('image/png');
 
         setTimeout(function () {
           doc.addImage(newImg, 19.82, 6, 170, fila);
-        }, 3000);
+        }, 2000);
+
+        // var y = 500;
+        // if (y >= pageHeight) {
+        //   setTimeout(function () {
+        //     doc.addPage();
+        //   }, 3000);
+
+        //   y = 0;
+        // }
+
+        // setTimeout(function () {
+        //   doc.addImage(newImg, 19.82, 6, 170, fila);
+        // }, 3000);
 
         setTimeout(function () {
           doc.save('cadula.pdf');
-        }, 5000);
+        }, 3000);
       });
     }
   }

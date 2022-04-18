@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Jugador } from 'src/app/models/Jugador';
 import { JugadorService } from 'src/app/services/jugador/jugador.service';
 import { ClubService } from 'src/app/services/club/club.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-jugadores-pdf',
@@ -14,13 +15,19 @@ export class JugadoresPdfComponent implements OnInit {
   listJugadores: Jugador[] = [];
   listJugadoresTabla: Jugador[] = [];
   jugadortemp = '';
+  filtroForm: FormGroup;
 
   selectEvent(item: any) {
     this.jugadortemp = item._id;
-    console.log(this.jugadortemp)
 
-    if (this.listJugadoresTabla.length > 11) {
-      this.toastr.warning('No puede agregar más de 12 carnets por hoja!');
+    this.filtroForm.setValue({
+      cedula: '',
+      nombres: '',
+      apellidos: ''
+    });
+
+    if (this.listJugadoresTabla.length > 4) {
+      this.toastr.warning('No puede agregar más de 5 carnets por hoja!');
     } else {
       this._jugadorService.getJugador(this.jugadortemp).subscribe(
         (data) => {
@@ -35,11 +42,18 @@ export class JugadoresPdfComponent implements OnInit {
   }
 
   constructor(
+    private fb: FormBuilder,
     private _jugadorService: JugadorService,
     private _clubService: ClubService,
     private toastr: ToastrService,
     private router: Router
-  ) { }
+  ) {
+    this.filtroForm = this.fb.group({
+      cedula: [''],
+      nombres: [''],
+      apellidos: [''],
+    });
+  }
 
   ngOnInit(): void {
     this.obtenerJugadores();

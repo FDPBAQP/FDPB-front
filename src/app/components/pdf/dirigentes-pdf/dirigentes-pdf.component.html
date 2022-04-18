@@ -4,56 +4,58 @@
       <div class="card">
         <div class="card-body text-center">
           <span class="titulo">CARNETS DIRIGENTES</span>
-          <div class="row mb-4 mt-4">
-            <div class="col">
-              <div class="ng-autocomplete">
-                <ng-autocomplete [data]="listDirigentes" id="dirigente" formControlName="dirigente"
-                  [searchKeyword]="'dni'" placeholder="Buscar por DNI" [itemTemplate]="itemTemplate"
-                  [notFoundTemplate]="notFoundTemplate" (selected)="selectEvent($event)">
-                </ng-autocomplete>
+          <form class="mt-4" [formGroup]="filtroForm">
+            <div class="row mb-4 mt-4">
+              <div class="col">
+                <div class="ng-autocomplete">
+                  <ng-autocomplete [data]="listDirigentes" id="dirigente" formControlName="dni" [searchKeyword]="'dni'"
+                    placeholder="Buscar por DNI" [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate"
+                    (selected)="selectEvent($event)">
+                  </ng-autocomplete>
 
-                <ng-template #itemTemplate let-item>
-                  <a [innerHTML]="item.dni + ' - ' + item.nombres + ' ' + item.apellidos"></a>
-                </ng-template>
+                  <ng-template #itemTemplate let-item>
+                    <a [innerHTML]="item.dni + ' - ' + item.nombres + ' ' + item.apellidos"></a>
+                  </ng-template>
 
-                <ng-template #notFoundTemplate let-notFound>
-                  <div [innerHTML]="notFound"></div>
-                </ng-template>
+                  <ng-template #notFoundTemplate let-notFound>
+                    <div [innerHTML]="notFound"></div>
+                  </ng-template>
+                </div>
+              </div>
+              <div class="col">
+                <div class="ng-autocomplete">
+                  <ng-autocomplete [data]="listDirigentes" id="dirigente" formControlName="nombres"
+                    [searchKeyword]="'nombres'" placeholder="Buscar por nombres" [itemTemplate]="itemTemplate"
+                    [notFoundTemplate]="notFoundTemplate" (selected)="selectEvent($event)">
+                  </ng-autocomplete>
+
+                  <ng-template #itemTemplate let-item>
+                    <a [innerHTML]="item.dni + ' - ' + item.nombres + ' ' + item.apellidos"></a>
+                  </ng-template>
+
+                  <ng-template #notFoundTemplate let-notFound>
+                    <div [innerHTML]="notFound"></div>
+                  </ng-template>
+                </div>
+              </div>
+              <div class="col">
+                <div class="ng-autocomplete">
+                  <ng-autocomplete [data]="listDirigentes" id="dirigente" formControlName="apellidos"
+                    [searchKeyword]="'apellidos'" placeholder="Buscar por apellidos" [itemTemplate]="itemTemplate"
+                    [notFoundTemplate]="notFoundTemplate" (selected)="selectEvent($event)">
+                  </ng-autocomplete>
+
+                  <ng-template #itemTemplate let-item>
+                    <a [innerHTML]="item.dni + ' - ' + item.nombres + ' ' + item.apellidos"></a>
+                  </ng-template>
+
+                  <ng-template #notFoundTemplate let-notFound>
+                    <div [innerHTML]="notFound"></div>
+                  </ng-template>
+                </div>
               </div>
             </div>
-            <div class="col">
-              <div class="ng-autocomplete">
-                <ng-autocomplete [data]="listDirigentes" id="dirigente" formControlName="dirigente"
-                  [searchKeyword]="'nombres'" placeholder="Buscar por nombres" [itemTemplate]="itemTemplate"
-                  [notFoundTemplate]="notFoundTemplate" (selected)="selectEvent($event)">
-                </ng-autocomplete>
-
-                <ng-template #itemTemplate let-item>
-                  <a [innerHTML]="item.dni + ' - ' + item.nombres + ' ' + item.apellidos"></a>
-                </ng-template>
-
-                <ng-template #notFoundTemplate let-notFound>
-                  <div [innerHTML]="notFound"></div>
-                </ng-template>
-              </div>
-            </div>
-            <div class="col">
-              <div class="ng-autocomplete">
-                <ng-autocomplete [data]="listDirigentes" id="dirigente" formControlName="dirigente"
-                  [searchKeyword]="'apellidos'" placeholder="Buscar por apellidos" [itemTemplate]="itemTemplate"
-                  [notFoundTemplate]="notFoundTemplate" (selected)="selectEvent($event)">
-                </ng-autocomplete>
-
-                <ng-template #itemTemplate let-item>
-                  <a [innerHTML]="item.dni + ' - ' + item.nombres + ' ' + item.apellidos"></a>
-                </ng-template>
-
-                <ng-template #notFoundTemplate let-notFound>
-                  <div [innerHTML]="notFound"></div>
-                </ng-template>
-              </div>
-            </div>
-          </div>
+          </form>
           <table *ngIf="listDirigentesTabla.length > 0" class="table table-hover mt-4">
             <thead>
               <tr>

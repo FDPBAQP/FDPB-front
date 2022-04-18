@@ -18,154 +18,57 @@
           <h2>PARTE DELANTERA</h2>
         </div>
       </div>
-      <div id="carnet-delantero" class="carnet">
+      <div id="carnets" class="carnet">
         <div *ngFor="let Jugador of list; let i = index">
-          <div *ngIf="parImpar(i)">
-            <div class="row">
-              <div class="col">
-                <div class="border border-dark" id="card" style="margin-left: 30px; position: relative">
-                  <img src="assets/img/carnet/fdpb.png" class="img1" />
-                  <img src="assets/img/carnet/escudoArequipa.png" class="img2" />
-                  <h2>
-                    LIGA DEPORTIVA DISTRITAL DE BASKETBALL MASCULINO DE AREQUIPA
-                  </h2>
-                  <div class="h1 border border-dark">
-                    <h1 *ngIf="origenData == 'jug'">{{ list[i].categoria }}</h1>
-                    <h1 *ngIf="origenData == 'dir'">{{ list[i].cargo }}</h1>
-                    <h1 *ngIf="origenData == 'ent'">Entrenador</h1>
-                  </div>
-                  <br />
-                  <br />
-                  <div class="foto border border-dark"></div>
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                  <div class="row" style="width: 348px">
-                    <div class="col">
-                      <p class="bottom">_________________ SECRETARIO</p>
-                    </div>
-
-                    <div class="col">
-                      <p class="bottom">_________________ PRESIDENTE</p>
-                    </div>
-                  </div>
+          <div class="row">
+            <div class="col">
+              <div class="border border-dark" id="card" style="margin-left: 30px; position: relative">
+                <img src="assets/img/carnet/fdpb.png" class="img1" />
+                <img src="assets/img/carnet/escudoArequipa.png" class="img2" />
+                <h2>
+                  LIGA DEPORTIVA DISTRITAL DE BASKETBALL MASCULINO DE AREQUIPA
+                </h2>
+                <div class="h1 border border-dark">
+                  <h1 *ngIf="origenData == 'jug'">{{ list[i].categoria }}</h1>
+                  <h1 *ngIf="origenData == 'dir'">{{ list[i].cargo }}</h1>
+                  <h1 *ngIf="origenData == 'ent'">Entrenador</h1>
                 </div>
-              </div>
-              <div class="col" *ngIf="i + 1 < list.length">
-                <div class="border border-dark" id="card" style="margin-left: -26px; position: relative">
-                  <img src="assets/img/carnet/fdpb.png" class="img1" />
-                  <img src="assets/img/carnet/escudoArequipa.png" class="img2" />
-                  <h2>
-                    LIGA DEPORTIVA DISTRITAL DE BASKETBALL MASCULINO DE AREQUIPA
-                  </h2>
-                  <div class="h1 border border-dark">
-                    <h1 *ngIf="origenData == 'jug'">{{ list[i + 1].categoria }}</h1>
-                    <h1 *ngIf="origenData == 'dir'">{{ list[i + 1].cargo }}</h1>
-                    <h1 *ngIf="origenData == 'ent'">Entrenador</h1>
+                <div class="foto border border-dark"></div>
+                <div class="row">
+                  <div class="col">
                   </div>
-                  <br />
-                  <br />
-                  <div class="foto border border-dark"></div>
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                  <div class="row" style="width: 348px">
-                    <div class="col">
-                      <p class="bottom">_________________ SECRETARIO</p>
-                    </div>
-
-                    <div class="col">
-                      <p class="bottom">_________________ PRESIDENTE</p>
-                    </div>
-                  </div>
+                  <!-- <div class="col">
+                    <p class="border-top border-dark bottom">PRESIDENTE</p>
+                  </div> -->
                 </div>
-              </div>
-              <div class="col" *ngIf="i + 1 >= list.length">
-                <div class="border-start border-dark" id="card" style="margin-left: -26px; position: relative"></div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="row mb-2 mt-4">
-        <div class="col-12 text-left" style="background-color: white">
-          <h2>PARTE TRASERA</h2>
-        </div>
-      </div>
-      <div id="carnet-trasero" class="carnet">
-        <div *ngFor="let Jugador of list; let i = index">
-          <div *ngIf="parImpar(i)">
-            <div class="row">
-              <div class="col" *ngIf="i + 1 < list.length">
-                <div class="border border-dark" id="card" style="margin-left: 30px; position: relative">
-                  <h2>CARNET DE AFILIACIÓN {{ year }}</h2>
-
-                  <div class="row mt-4">
-                    <div class="col-7">
-                      <p>APELLIDOS: {{ list[i + 1].apellidos }}</p>
-                    </div>
-                    <div class="col-5">
-                      <p *ngIf="origenData == 'jug'">CÉDULA: {{ list[i + 1].cedula }}</p>
-                      <p *ngIf="origenData == 'dir' || origenData == 'ent'">DNI: {{ list[i + 1].dni }}</p>
-                    </div>
-                    <div class="col-7">
-                      <p>NOMBRES: {{ list[i + 1].nombres }}</p>
-                    </div>
-                    <div class="col-5">
-                      <p *ngIf="origenData == 'jug'">CLUB: {{ list[i + 1].club[0].detalle }}</p>
-                      <p *ngIf="origenData == 'dir' || origenData == 'ent'">CLUB: {{ list[i + 1].club }}</p>
-                    </div>
-                    <div class="col">
-                      <p class="bottom-back">
-                        __________________________ REGISTRADOR
-                      </p>
-                    </div>
-
-                    <div class="col">
-                      <p class="bottom-back">
-                        __________________________ FIRMA DEL JUGADOR
-                      </p>
-                    </div>
+            <div class="col">
+              <div class="border border-dark" id="card" style="margin-left: -26px; position: relative">
+                <h2>CARNET DE AFILIACIÓN {{ year }}</h2>
+                <div class="row mt-4">
+                  <div class="col-7">
+                    <p><b>APELLIDOS:</b> {{ list[i].apellidos }}</p>
                   </div>
-                </div>
-              </div>
-              <div class="col" *ngIf="i + 1 >= list.length">
-                <div id="card" style="margin-left: 30px"></div>
-              </div>
-              <div class="col">
-                <div class="border border-dark" id="card" style="margin-left: -26px; position: relative">
-                  <h2>CARNET DE AFILIACIÓN {{ year }}</h2>
-                  <div class="row mt-4">
-                    <div class="col-7">
-                      <p>APELLIDOS: {{ list[i].apellidos }}</p>
-                    </div>
-                    <div class="col-5">
-                      <p *ngIf="origenData == 'jug'">CÉDULA: {{ list[i].cedula }}</p>
-                      <p *ngIf="origenData == 'dir' || origenData == 'ent'">DNI: {{ list[i].dni }}</p>
-                    </div>
-                    <div class="col-7">
-                      <p>NOMBRES: {{ list[i].nombres }}</p>
-                    </div>
-                    <div class="col-5">
-                      <p *ngIf="origenData == 'jug'">CLUB: {{ list[i].club[0].detalle }}</p>
-                      <p *ngIf="origenData == 'dir' || origenData == 'ent'">CLUB: {{ list[i].club }}</p>
-                    </div>
-                    <div class="col">
-                      <p class="bottom-back">
-                        __________________________ REGISTRADOR
-                      </p>
-                    </div>
-
-                    <div class="col">
-                      <p class="bottom-back">
-                        __________________________ FIRMA DEL JUGADOR
-                      </p>
-                    </div>
+                  <div class="col-5">
+                    <p *ngIf="origenData == 'jug'"><b>CÉDULA:</b> {{ list[i].cedula }}</p>
+                    <p *ngIf="origenData == 'dir' || origenData == 'ent'"><b>DNI:</b> {{ list[i].dni }}</p>
                   </div>
-                  <!-- <div class="row mt-2" style="width: 500px">
-                  </div> -->
+                  <div class="col-7 detalle-bajo">
+                    <p><b>NOMBRES:</b> {{ list[i].nombres }}</p>
+                  </div>
+                  <div class="col-5 detalle-bajo">
+                    <p *ngIf="origenData == 'jug'"><b>CLUB:</b> {{ list[i].club[0].detalle }}</p>
+                    <p *ngIf="origenData == 'dir' || origenData == 'ent'"><b>CLUB:</b> {{ list[i].club }}</p>
+                  </div>
+                  <div class="col">
+                  </div>
+
+                  <div class="col">
+                    <p class="border-top border-dark bottom">
+                      FIRMA DEL JUGADOR
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>

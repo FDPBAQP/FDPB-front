@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Dirigente } from 'src/app/models/Dirigente';
 import { DirigenteService } from 'src/app/services/dirigente/dirigente.service';
 import { ClubService } from 'src/app/services/club/club.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-dirigentes-pdf',
@@ -14,13 +15,19 @@ export class DirigentesPdfComponent implements OnInit {
   listDirigentes: Dirigente[] = [];
   listDirigentesTabla: Dirigente[] = [];
   dirigentetemp = '';
+  filtroForm: FormGroup;
 
   selectEvent(item: any) {
     this.dirigentetemp = item._id;
-    console.log(this.dirigentetemp)
 
-    if (this.listDirigentesTabla.length > 11) {
-      this.toastr.warning('No puede agregar más de 12 carnets por hoja!');
+    this.filtroForm.setValue({
+      dni: '',
+      nombres: '',
+      apellidos: ''
+    });
+
+    if (this.listDirigentesTabla.length > 4) {
+      this.toastr.warning('No puede agregar más de 5 carnets por hoja!');
     } else {
       this._dirigenteService.getDirigente(this.dirigentetemp).subscribe(
         (data) => {
@@ -34,10 +41,17 @@ export class DirigentesPdfComponent implements OnInit {
   }
 
   constructor(
+    private fb: FormBuilder,
     private _dirigenteService: DirigenteService,
     private _clubService: ClubService,
     private toastr: ToastrService,
-    private router: Router) { }
+    private router: Router) {
+    this.filtroForm = this.fb.group({
+      dni: [''],
+      nombres: [''],
+      apellidos: [''],
+    });
+  }
 
   ngOnInit(): void {
     this.obtenerDririgentes();
