@@ -6,6 +6,9 @@ import { Categoria } from 'src/app/models/Categoria';
 import { Jugador } from 'src/app/models/Jugador';
 import { ClubService } from 'src/app/services/club/club.service';
 import { CategoriaService } from 'src/app/services/categoria/categoria.service';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
+import { Fecha } from 'src/app/functions/fecha/fecha';
 
 @Component({
   selector: 'app-rep-club-categoria',
@@ -79,6 +82,9 @@ export class RepClubCategoriaComponent implements OnInit {
         this._clubService.getClub(id).subscribe(
           (data) => {
             jugador.club[0].detalle = data.detalle;
+            if (this.club != '') {
+              this.club = data.detalle;
+            }
           },
           (error) => {
             console.log(error);
@@ -133,5 +139,18 @@ export class RepClubCategoriaComponent implements OnInit {
         element.focus();
       }
     }
+  }
+
+  formatDate_yyyymmdd(date: any) {
+    return Fecha.formatDate_yyyymmdd(date);
+  }
+
+  printPage() {
+    var divElements = document.getElementById("tabla")?.innerHTML;
+    document.body.innerHTML =
+      '<html><head><meta charset="utf-8"/><title>LIGA DEPORTIVA DISTRITAL DE BASKETBALL MASCULINO DE AREQUIPA</title><base href="/" /><meta name="viewport" content="width=device-width, initial-scale=1" /><link rel="icon" type="image/x-icon" href="favicon.ico" /></head><body>' +
+      divElements + '</body>';
+    window.print();
+    window.location.reload();
   }
 }

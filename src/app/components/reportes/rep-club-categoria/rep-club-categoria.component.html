@@ -58,7 +58,7 @@
               </div>
               <div class="row mb-4">
                 <div class="col">
-                  <button class="btn btn-secondary btn-lg float-start" disabled>
+                  <button class="btn btn-secondary btn-lg float-start" (click)="printPage()">
                     IMPRIMIR
                   </button>
                   <button type="submit" name="submit"
@@ -72,29 +72,44 @@
           </div>
           <div class="mt-4">
             <div class="col-12">
-              <div class="overflow-auto p-3 mb-3 mb-md-0 mr-md-3 bg-light" style="max-width: 100%; max-height: 200px">
+              <div id="tabla" class="overflow-auto p-3 mb-3 mb-md-0 mr-md-3 bg-light"
+                style="max-width: 100%; max-height: 200px">
                 <span *ngIf="listJugadores.length > 0" class="pb-2 border-bottom">Club = "{{club}}" /
                   Categoria = "{{categoria}}"</span>
                 <table *ngIf="listJugadores.length > 0" class="table table-hover mt-4">
                   <thead>
                     <tr>
                       <th scope="col">DNI</th>
+                      <th scope="col">Cedula</th>
                       <th scope="col">Apellidos</th>
                       <th scope="col">Nombre</th>
                       <th scope="col">Categoria</th>
+                      <th scope="col">Fecha de nacimiento</th>
                       <th scope="col">Club</th>
+                      <th scope="col">Fecha de nacimiento</th>
+                      <th scope="col">Libro</th>
+                      <th scope="col">Folio</th>
+                      <th scope="col">Nacionalidad</th>
+                      <th scope="col">Ciudad de Nacimiento</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr *ngFor="let Jugador of listJugadores">
                       <th scope="row">{{ Jugador.dni }}</th>
+                      <td>{{ Jugador.cedula }}</td>
                       <td>{{ Jugador.apellidos }}</td>
                       <td>{{ Jugador.nombres }}</td>
                       <td>{{ Jugador.categoria }}</td>
+                      <td>{{ formatDate_yyyymmdd(Jugador.fecha_nacimiento) }}</td>
                       <td *ngIf="Jugador.club.length > 0">
                         {{ Jugador.club[0].detalle }}
                       </td>
                       <td *ngIf="Jugador.club.length <= 0">no hay</td>
+                      <td>{{ formatDate_yyyymmdd(Jugador.fecha_inscripcion) }}</td>
+                      <td>{{ Jugador.libro }}</td>
+                      <td>{{ Jugador.folio }}</td>
+                      <td>{{ Jugador.nacionalidad }}</td>
+                      <td>{{ Jugador.ciudad_nacimiento }}</td>
                     </tr>
                   </tbody>
                 </table>

@@ -15,7 +15,7 @@ export class CarVerComponent implements OnInit {
   constructor(
     private _cargoService: CargoService,
     private toastr: ToastrService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.obtenerCargos();
