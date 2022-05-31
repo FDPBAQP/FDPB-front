@@ -33,48 +33,74 @@ export class CatCrearEditarComponent implements OnInit {
 
   ngOnInit(): void {
     this.esEditar();
+    document.getElementsByName("input-0")[0].focus();
     this.today = new Date();
   }
 
   agregarCategoria() {
-    const CATEGORIA: Categoria = {
-      detalle: this.categoriaForm.get('categoria')?.value,
-      desde: this.categoriaForm.get('desde')?.value,
-      hasta: this.categoriaForm.get('hasta')?.value,
-    };
 
-    if (this.id !== null) {
-      this._categoriaService.editCategoria(this.id, CATEGORIA).subscribe(
-        (data) => {
-          this.toastr.success(
-            'El categoria ' +
-            this.categoriaForm.get('categoria')?.value +
-            ' fue actualizado correctamente!',
-            'Categoria actualizado!'
-          );
-          this.router.navigate(['/categoria']);
-        },
-        (error) => {
-          console.log(error);
-          this.categoriaForm.reset();
+    if (this.categoriaForm.valid) {
+      const CATEGORIA: Categoria = {
+        detalle: this.categoriaForm.get('categoria')?.value,
+        desde: this.categoriaForm.get('desde')?.value,
+        hasta: this.categoriaForm.get('hasta')?.value,
+      };
+
+      if (this.id !== null) {
+        this._categoriaService.editCategoria(this.id, CATEGORIA).subscribe(
+          (data) => {
+            this.toastr.success(
+              'El categoria ' +
+              this.categoriaForm.get('categoria')?.value +
+              ' fue actualizado correctamente!',
+              'Categoria actualizado!'
+            );
+            this.router.navigate(['/categoria']);
+          },
+          (error) => {
+            console.log(error);
+            this.categoriaForm.reset();
+          }
+        );
+      } else {
+        this._categoriaService.saveCategoria(CATEGORIA).subscribe(
+          (data) => {
+            this.toastr.success(
+              'El categoria ' +
+              this.categoriaForm.get('categoria')?.value +
+              ' fue agregado correctamente!',
+              'Categoria agregado!'
+            );
+            this.router.navigate(['/categoria']);
+          },
+          (error) => {
+            console.log(error);
+            this.categoriaForm.reset();
+          }
+        );
+      }
+    }
+  }
+
+  keytab(event: any) {
+    const input = event.target.name;
+    if (input != "submit") {
+      const num = parseInt(input.substring(6, 7))
+      const nextInput = num + 1
+      event.preventDefault();
+      let element: any = document.getElementsByName("input-" + nextInput)[0];
+
+      if (element == null) {
+        if (this.categoriaForm.valid) {
+          document.getElementsByName("submit")[0].focus();
         }
-      );
-    } else {
-      this._categoriaService.saveCategoria(CATEGORIA).subscribe(
-        (data) => {
-          this.toastr.success(
-            'El categoria ' +
-            this.categoriaForm.get('categoria')?.value +
-            ' fue agregado correctamente!',
-            'Categoria agregado!'
-          );
-          this.router.navigate(['/categoria']);
-        },
-        (error) => {
-          console.log(error);
-          this.categoriaForm.reset();
+        else {
+          document.getElementsByName("input-0")[0].focus();
         }
-      );
+      }
+      else {
+        element.focus();
+      }
     }
   }
 

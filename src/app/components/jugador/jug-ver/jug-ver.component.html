@@ -19,7 +19,8 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let Jugador of listJugadores">
+              <tr
+                *ngFor="let Jugador of listJugadores | slice: (page-1) * pageSize : page * pageSize | sortBy: sortDir: columOrder;">
                 <th scope="row">{{ Jugador.cedula }}</th>
                 <td>{{ Jugador.apellidos }}</td>
                 <td>{{ Jugador.nombres }}</td>
@@ -43,6 +44,10 @@
               </tr>
             </tbody>
           </table>
+          <ngb-pagination *ngIf="listJugadores.length > 0"
+            class="d-flex justify-content-center font-pagination pagination-margin d-none d-md-flex d-lg-flex"
+            [(page)]="page" [pageSize]="pageSize" [collectionSize]="listJugadores.length" [maxSize]="maxSize"
+            [rotate]="true" [ellipses]="false"> </ngb-pagination>
           <h5 *ngIf="listJugadores.length == 0" style="text-align: start; margin-top: 10px">
             Actualmente no existen jugadores
           </h5>

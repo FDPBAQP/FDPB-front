@@ -4,42 +4,25 @@
       <div class="card">
         <div class="card-body text-center">
           <span class="titulo">{{ titulo | uppercase }}</span>
-          <form
-            class="mt-4"
-            [formGroup]="cargoForm"
-            (ngSubmit)="agregarCargo()"
-          >
+          <form (keydown.enter)="keytab($event)" class="mt-4" [formGroup]="cargoForm" (ngSubmit)="agregarCargo()">
             <div class="row mb-3">
               <div class="col-sm-8 mx-auto">
-                <input
-                  type="text"
-                  formControlName="cargo"
-                  class="form-control form-control-lg"
-                  placeholder="CARGO"
-                />
-                <div
-                  class="text-danger"
-                  *ngIf="
+                <input name="input-0" type="text" formControlName="cargo" class="form-control form-control-lg"
+                  placeholder="CARGO" />
+                <div class="text-danger" *ngIf="
                     cargoForm.get('cargo')?.hasError('required') &&
                     cargoForm.get('cargo')?.touched
-                  "
-                >
+                  ">
                   <span>Este campo es <strong>obligatorio</strong></span>
                 </div>
               </div>
             </div>
             <div class="mb-3">
-              <button
-                routerLink="/cargo"
-                class="btn btn-secondary btn-lg float-start"
-              >
+              <button routerLink="/cargo" class="btn btn-secondary btn-lg float-start">
                 VOLVER
               </button>
-              <button
-                type="submit"
-                [disabled]="cargoForm.invalid"
-                class="btn btn-success btn-lg float-end"
-              >
+              <button type="submit" name="submit" [disabled]="cargoForm.invalid"
+                class="btn btn-success btn-lg float-end">
                 ACEPTAR
               </button>
             </div>

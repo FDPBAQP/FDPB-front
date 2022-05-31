@@ -4,11 +4,13 @@
       <div class="card">
         <div class="card-body text-center">
           <span class="titulo">{{ titulo | uppercase }}</span>
-          <form class="mt-4" [formGroup]="dirigenteForm" (ngSubmit)="agregarDirigente()">
+          <form (keydown.enter)="keytab($event)" class="mt-4" [formGroup]="dirigenteForm"
+            (ngSubmit)="agregarDirigente()">
             <div class="row mb-3">
               <div class="col-2">
                 <label for="dni">DNI</label>
-                <input type="text" formControlName="dni" class="form-control form-control-lg" id="dni" placeholder="" />
+                <input name="input-0" type="text" formControlName="dni" class="form-control form-control-lg" id="dni"
+                  placeholder="" />
                 <div class="text-danger" *ngIf="
                     dirigenteForm.get('dni')?.hasError('required') &&
                     dirigenteForm.get('dni')?.touched
@@ -20,9 +22,9 @@
               <div class="col-5">
                 <label for="club">CLUB</label>
                 <div class="form-control form-control-lg ng-autocomplete">
-                  <ng-autocomplete [data]="listClubes" id="club" formControlName="club" [searchKeyword]="keyword"
-                    placeholder="Seleccione un club" [itemTemplate]="itemTemplate" [notFoundTemplate]="notFoundTemplate"
-                    (selected)="selectClub($event)">
+                  <ng-autocomplete name="input-0" [data]="listClubes" id="club" formControlName="club"
+                    [searchKeyword]="keyword" placeholder="Seleccione un club" [itemTemplate]="itemTemplate"
+                    [notFoundTemplate]="notFoundTemplate" (selected)="selectClub($event)">
                   </ng-autocomplete>
 
                   <ng-template #itemTemplate let-item>
@@ -106,7 +108,8 @@
               <button routerLink="/dirigente" class="btn btn-secondary btn-lg float-start">
                 VOLVER
               </button>
-              <button type="submit" [disabled]="dirigenteForm.invalid" class="btn btn-success btn-lg float-end">
+              <button type="submit" name="submit" [disabled]="dirigenteForm.invalid"
+                class="btn btn-success btn-lg float-end">
                 ACEPTAR
               </button>
             </div>

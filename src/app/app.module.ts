@@ -35,6 +35,9 @@ import { CluTransferirComponent } from './components/club/clu-transferir/clu-tra
 import { RepClubCategoriaComponent } from './components/reportes/rep-club-categoria/rep-club-categoria.component';
 import { DirigentesPdfComponent } from './components/pdf/dirigentes-pdf/dirigentes-pdf.component';
 import { EntrenadoresPdfComponent } from './components/pdf/entrenadores-pdf/entrenadores-pdf.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SortByPipe } from './pipes/SortBy/sort-by.pipe';
+import { GeneralPipe } from './pipes/General/general.pipe';
 
 @NgModule({
   declarations: [
@@ -60,6 +63,8 @@ import { EntrenadoresPdfComponent } from './components/pdf/entrenadores-pdf/entr
     RepClubCategoriaComponent,
     DirigentesPdfComponent,
     EntrenadoresPdfComponent,
+    SortByPipe,
+    GeneralPipe,
   ],
   imports: [
     BrowserModule,
@@ -73,6 +78,7 @@ import { EntrenadoresPdfComponent } from './components/pdf/entrenadores-pdf/entr
     Ng2OrderModule,
     NgxPaginationModule,
     AutocompleteLibModule,
+    NgbModule,
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],

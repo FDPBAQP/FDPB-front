@@ -30,6 +30,7 @@ export class CarCrearEditarComponent implements OnInit {
 
   ngOnInit(): void {
     this.esEditar();
+    document.getElementsByName("input-0")[0].focus();
     this.today = new Date();
   }
 
@@ -44,8 +45,8 @@ export class CarCrearEditarComponent implements OnInit {
         (data) => {
           this.toastr.success(
             'El cargo ' +
-              this.cargoForm.get('cargo')?.value +
-              ' fue actualizado correctamente!',
+            this.cargoForm.get('cargo')?.value +
+            ' fue actualizado correctamente!',
             'Cargo actualizado!'
           );
           this.router.navigate(['/cargo']);
@@ -60,8 +61,8 @@ export class CarCrearEditarComponent implements OnInit {
         (data) => {
           this.toastr.success(
             'El cargo ' +
-              this.cargoForm.get('cargo')?.value +
-              ' fue agregado correctamente!',
+            this.cargoForm.get('cargo')?.value +
+            ' fue agregado correctamente!',
             'Cargo agregado!'
           );
           this.router.navigate(['/cargo']);
@@ -71,6 +72,30 @@ export class CarCrearEditarComponent implements OnInit {
           this.cargoForm.reset();
         }
       );
+    }
+  }
+
+
+  keytab(event: any) {
+    const input = event.target.name;
+    if (input != "submit") {
+      const num = parseInt(input.substring(6, 7))
+      const nextInput = num + 1
+      event.preventDefault();
+      let element: any = document.getElementsByName("input-" + nextInput)[0];
+
+      if (element == null) {
+        if (this.cargoForm.valid) {
+          document.getElementsByName("submit")[0].focus();
+        }
+        else {
+          document.getElementsByName("input-0")[0].focus();
+        }
+      }
+
+      else {
+        element.focus();
+      }
     }
   }
 

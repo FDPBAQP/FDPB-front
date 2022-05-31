@@ -4,7 +4,8 @@
       <div class="card">
         <div class="card-body text-center">
           <span class="titulo">{{ titulo | uppercase }}</span>
-          <form class="mt-4" [formGroup]="entrenadorForm" (ngSubmit)="agregarEntrenador()">
+          <form (keydown.enter)="keytab($event)" class="mt-4" [formGroup]="entrenadorForm"
+            (ngSubmit)="agregarEntrenador()">
             <div class="row mb-2">
               <div class="col-2">
                 <label for="dni">DNI</label>
@@ -91,7 +92,8 @@
               <button routerLink="/entrenador" class="btn btn-secondary btn-lg float-start">
                 VOLVER
               </button>
-              <button type="submit" [disabled]="entrenadorForm.invalid" class="btn btn-success btn-lg float-end">
+              <button type="submit" name="submit" [disabled]="entrenadorForm.invalid"
+                class="btn btn-success btn-lg float-end">
                 ACEPTAR
               </button>
             </div>

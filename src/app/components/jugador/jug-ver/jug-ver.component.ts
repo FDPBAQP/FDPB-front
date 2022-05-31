@@ -10,6 +10,11 @@ import { ClubService } from 'src/app/services/club/club.service';
   styleUrls: ['./jug-ver.component.scss'],
 })
 export class JugVerComponent implements OnInit {
+  page: number = 1;
+  pageSize: number = 10;
+  maxSize: number = 5;
+  sortDir = 'asc';
+  columOrder = 'cedula';
   listJugadores: Jugador[] = [];
 
   constructor(

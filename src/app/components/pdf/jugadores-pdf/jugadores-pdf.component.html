@@ -4,7 +4,7 @@
       <div class="card">
         <div class="card-body text-center">
           <span class="titulo">CARNETS JUGADORES</span>
-          <form class="mt-4" [formGroup]="filtroForm">
+          <form (keydown.enter)="keytab($event)" class="mt-4" [formGroup]="filtroForm">
             <div class="row mb-4 mt-4">
               <div class="col">
                 <div class="ng-autocomplete">

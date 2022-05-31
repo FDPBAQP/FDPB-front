@@ -47,6 +47,7 @@ export class EntCrearEditarComponent implements OnInit {
 
   ngOnInit(): void {
     this.esEditar();
+    document.getElementsByName("input-0")[0].focus();
     this.cargarSelects();
   }
 
@@ -103,6 +104,29 @@ export class EntCrearEditarComponent implements OnInit {
     }
   }
 
+
+  keytab(event: any) {
+    const input = event.target.name;
+    if (input != "submit") {
+      const num = parseInt(input.substring(6, 7))
+      const nextInput = num + 1
+      event.preventDefault();
+      let element: any = document.getElementsByName("input-" + nextInput)[0];
+
+      if (element == null) {
+        if (this.entrenadorForm.valid) {
+          document.getElementsByName("submit")[0].focus();
+        }
+        else {
+          document.getElementsByName("input-0")[0].focus();
+        }
+      }
+
+      else {
+        element.focus();
+      }
+    }
+  }
   esEditar() {
     if (this.id !== null) {
       this.titulo = 'Editar Entrenador';

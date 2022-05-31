@@ -107,4 +107,27 @@ export class JugadoresPdfComponent implements OnInit {
       }
     });
   }
+
+  keytab(event: any) {
+    const input = event.target.name;
+    if (input != "submit") {
+      const num = parseInt(input.substring(6, 7))
+      const nextInput = num + 1
+      event.preventDefault();
+      let element: any = document.getElementsByName("input-" + nextInput)[0];
+
+      if (element == null) {
+        if (this.filtroForm.valid) {
+          document.getElementsByName("submit")[0].focus();
+        }
+        else {
+          document.getElementsByName("input-0")[0].focus();
+        }
+      }
+
+      else {
+        element.focus();
+      }
+    }
+  }
 }
