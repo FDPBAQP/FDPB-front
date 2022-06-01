@@ -32,8 +32,10 @@ export class PrePdfComponent implements OnInit {
       this.list = this.dataEntrenador;
       this.origenData = "ent"
     } else {
-      window.history.go(-1);
-      window.history.back();
+      // window.location.href("jugadores-pdf")
+      this.router.navigate(['jugadores-pdf']);
+      // window.history.go(-1);
+      // window.history.back();
     }
   }
 
