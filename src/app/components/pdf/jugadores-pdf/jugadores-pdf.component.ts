@@ -30,9 +30,20 @@ export class JugadoresPdfComponent implements OnInit {
       this.toastr.warning('No puede agregar más de 5 carnets por hoja!');
     } else {
       this._jugadorService.getJugador(this.jugadortemp).subscribe(
-        (data) => {
-          this.listJugadoresTabla.push(data);
-          this.club();
+        (jugador) => {
+          console.log("data", jugador)
+          var id = jugador.club[0].detalle;
+          console.log("id", id)
+          this._clubService.getClub(id).subscribe(
+            (club) => {
+              jugador.club[0].detalle = club.detalle;
+            },
+            (error) => {
+              console.log(error);
+            }
+          );
+          this.listJugadoresTabla.push(jugador);
+          // this.club();
         },
         (error) => {
           console.log(error);

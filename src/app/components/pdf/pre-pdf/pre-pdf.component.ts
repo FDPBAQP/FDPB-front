@@ -5,6 +5,7 @@ import { JugadorService } from 'src/app/services/jugador/jugador.service';
 import { DirigenteService } from 'src/app/services/dirigente/dirigente.service';
 import { Router } from '@angular/router';
 import { EntrenadorService } from 'src/app/services/entrenador/entrenador.service';
+import { ClubService } from 'src/app/services/club/club.service';
 
 @Component({
   selector: 'app-pre-pdf',
@@ -20,7 +21,7 @@ export class PrePdfComponent implements OnInit {
   year = this.currentTime.getFullYear();
   origenData = ''
 
-  constructor(private _jugadorService: JugadorService, private _dirigenteService: DirigenteService, private _entrenadorService: EntrenadorService, private router: Router) {
+  constructor(private _jugadorService: JugadorService, private _dirigenteService: DirigenteService, private _entrenadorService: EntrenadorService, private router: Router, private _clubService: ClubService) {
     if (this.dataJugadores) {
 
       this.list = this.dataJugadores;
@@ -39,7 +40,23 @@ export class PrePdfComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void { this.club() }
+
+  club() {
+    this.list.map((item: any) => {
+      if (item.club.length > 0) {
+        var id = item.club[0].detalle;
+        this._clubService.getClub(id).subscribe(
+          (data) => {
+            item.club[0].detalle = data.detalle;
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+      }
+    });
+  }
 
   parImpar(numero: number) {
     if (numero % 2 == 0) {
