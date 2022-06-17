@@ -85,6 +85,8 @@ export class CatCrearEditarComponent implements OnInit {
   keytab(event: any) {
     const input = event.target.name;
     if (input != "submit") {
+      const arrayInput = input.split("-");
+      console.log("arrayInput", arrayInput)
       const num = parseInt(input.substring(6, 7))
       const nextInput = num + 1
       event.preventDefault();

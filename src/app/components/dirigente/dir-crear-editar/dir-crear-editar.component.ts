@@ -32,7 +32,6 @@ export class DirCrearEditarComponent implements OnInit {
 
   selectCargo(item: any) {
     this.cargotemp = item.detalle;
-    console.log("en selectCargo", this.cargotemp)
   }
 
   constructor(

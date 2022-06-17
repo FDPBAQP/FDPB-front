@@ -61,7 +61,6 @@ export class DirigentesPdfComponent implements OnInit {
     this._dirigenteService.getDirigentes().subscribe(
       (data) => {
         this.listDirigentes = data;
-        console.log("this.listDririgentes", this.listDirigentes)
       },
       (error) => {
         console.log(error);

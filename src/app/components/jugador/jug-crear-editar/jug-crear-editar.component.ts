@@ -62,6 +62,8 @@ export class JugCrearEditarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    document.getElementsByName("input-0")[0].focus();
     this.obtenerClubes();
     this.obtenerCategorias();
     this.getCLubes();
@@ -82,10 +84,6 @@ export class JugCrearEditarComponent implements OnInit {
       club_inicial: '',
       fecha_inscripcion: Fecha.formatDate_yyyymmdd(dateTime.toISOString()),
     });
-    setTimeout(() => {
-      this.esEditar();
-      document.getElementsByName("input-0")[0].focus();
-    }, 2000);
   }
 
   getCLubes() {
@@ -175,10 +173,12 @@ export class JugCrearEditarComponent implements OnInit {
   keytab(event: any) {
     const input = event.target.name;
     if (input != "submit") {
-      const num = parseInt(input.substring(6, 7))
+      const arrayInput = input.split("-");
+      const num = parseInt(arrayInput[1])
       const nextInput = num + 1
       event.preventDefault();
       let element: any = document.getElementsByName("input-" + nextInput)[0];
+      console.log("input-" + nextInput)
 
       if (element == null) {
         if (this.jugadorForm.valid) {

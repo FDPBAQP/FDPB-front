@@ -61,7 +61,6 @@ export class EntrenadoresPdfComponent implements OnInit {
     this._entrenadorService.getEntrenadores().subscribe(
       (data) => {
         this.listEntrenadores = data;
-        console.log("this.listDririgentes", this.listEntrenadores)
       },
       (error) => {
         console.log(error);
