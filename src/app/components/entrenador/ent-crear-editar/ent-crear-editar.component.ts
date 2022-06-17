@@ -47,7 +47,9 @@ export class EntCrearEditarComponent implements OnInit {
 
   ngOnInit(): void {
     this.esEditar();
-    document.getElementsByName("input-0")[0].focus();
+    setTimeout(() => {
+      document.getElementsByName("input-0")[0].focus();
+    }, 20);
     this.cargarSelects();
   }
 

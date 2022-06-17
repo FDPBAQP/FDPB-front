@@ -21,6 +21,10 @@ export class CluTransferirComponent implements OnInit {
       this.getJugadorClubes();
       this.getJugador();
     }, 2000);
+
+    setTimeout(() => {
+      document.getElementsByName("input-0")[0].focus();
+    }, 20);
     let dateTime = new Date();
 
     this.transferenciaForm.setValue({

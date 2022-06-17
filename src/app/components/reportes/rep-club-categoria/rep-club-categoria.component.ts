@@ -40,6 +40,9 @@ export class RepClubCategoriaComponent implements OnInit {
   ngOnInit(): void {
     this.getCLubes();
     this.getCategorias();
+    setTimeout(() => {
+      document.getElementsByName("input-0")[0].focus();
+    }, 20);
   }
 
   selectClub(item: any) {

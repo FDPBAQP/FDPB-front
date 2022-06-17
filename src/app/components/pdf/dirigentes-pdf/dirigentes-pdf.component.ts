@@ -55,6 +55,9 @@ export class DirigentesPdfComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerDririgentes();
+    setTimeout(() => {
+      document.getElementsByName("input-0")[0].focus();
+    }, 20);
   }
 
   obtenerDririgentes() {

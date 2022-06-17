@@ -9,7 +9,8 @@
             <div class="row mb-2">
               <div class="col-2">
                 <label for="dni">DNI</label>
-                <input type="text" formControlName="dni" class="form-control form-control-lg" id="dni" placeholder="" />
+                <input name="input-0" type="text" formControlName="dni" class="form-control form-control-lg" id="dni"
+                  placeholder="" />
                 <div class="text-danger" *ngIf="
                     entrenadorForm.get('dni')?.hasError('required') &&
                     entrenadorForm.get('dni')?.touched
@@ -19,8 +20,8 @@
               </div>
               <div class="col">
                 <label for="nombres">NOMBRES</label>
-                <input id="nombres" type="text" formControlName="nombres" class="form-control form-control-lg"
-                  placeholder="" />
+                <input name="input-1" id="nombres" type="text" formControlName="nombres"
+                  class="form-control form-control-lg" placeholder="" />
                 <div class="text-danger" *ngIf="
                     entrenadorForm.get('nombres')?.hasError('required') &&
                     entrenadorForm.get('nombres')?.touched
@@ -30,8 +31,8 @@
               </div>
               <div class="col">
                 <label for="apellidos">APELLIDOS</label>
-                <input id="apellidos" type="text" formControlName="apellidos" class="form-control form-control-lg"
-                  placeholder="" />
+                <input name="input-2" id="apellidos" type="text" formControlName="apellidos"
+                  class="form-control form-control-lg" placeholder="" />
                 <div class="text-danger" *ngIf="
                     entrenadorForm.get('apellidos')?.hasError('required') &&
                     entrenadorForm.get('apellidos')?.touched
@@ -67,8 +68,8 @@
               </div>
               <div class="col-3">
                 <label for="telefono">TELÉFONO</label>
-                <input id="telefono" type="text" formControlName="telefono" class="form-control form-control-lg"
-                  placeholder="" />
+                <input name="input-3" id="telefono" type="text" formControlName="telefono"
+                  class="form-control form-control-lg" placeholder="" />
                 <div class="text-danger" *ngIf="
                     entrenadorForm.get('telefono')?.hasError('required') &&
                     entrenadorForm.get('telefono')?.touched
@@ -78,8 +79,8 @@
               </div>
               <div class="col-4">
                 <label for="telefono">NACIONALIDAD</label>
-                <input id="nacionalidad" type="text" formControlName="nacionalidad" class="form-control form-control-lg"
-                  placeholder="" />
+                <input name="input-4" id="nacionalidad" type="text" formControlName="nacionalidad"
+                  class="form-control form-control-lg" placeholder="" />
                 <div class="text-danger" *ngIf="
                     entrenadorForm.get('nacionalidad')?.hasError('required') &&
                     entrenadorForm.get('nacionalidad')?.touched

@@ -63,7 +63,9 @@ export class JugCrearEditarComponent implements OnInit {
 
   ngOnInit(): void {
 
-    document.getElementsByName("input-0")[0].focus();
+    setTimeout(() => {
+      document.getElementsByName("input-0")[0].focus();
+    }, 20);
     this.obtenerClubes();
     this.obtenerCategorias();
     this.getCLubes();
