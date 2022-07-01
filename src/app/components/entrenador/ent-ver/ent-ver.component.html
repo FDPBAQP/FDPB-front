@@ -4,16 +4,10 @@
       <div class="card">
         <div class="card-body text-center">
           <span class="titulo">ENTRENADORES</span>
-          <button
-            class="btn btn-info float-end"
-            [routerLink]="['/crear-entrenador']"
-          >
+          <button class="btn btn-info float-end" [routerLink]="['/crear-entrenador']">
             NUEVO
           </button>
-          <table
-            *ngIf="listEntrenadors.length > 0"
-            class="table table-hover mt-4"
-          >
+          <table *ngIf="listEntrenadors.length > 0" class="table table-hover mt-4">
             <thead>
               <tr>
                 <th scope="col">DNI</th>
@@ -32,22 +26,14 @@
                 <td>{{ Entrenadors.nacionalidad }}</td>
                 <td>{{ Entrenadors.telefono }}</td>
                 <td>
-                  <i
-                    [routerLink]="['/editar-entrenador', Entrenadors._id]"
-                    class="fa fa-pencil text-success"
-                  ></i
-                  ><i
-                    (click)="eliminarEntrenador(Entrenadors._id)"
-                    class="fa fa-trash text-primary"
-                  ></i>
+                  <i [routerLink]="['/editar-entrenador', Entrenadors._id]" class="fa fa-pencil text-success"
+                    title="Editar"></i><i (click)="eliminarEntrenador(Entrenadors._id)" class="fa fa-trash text-primary"
+                    title="Eliminar"></i>
                 </td>
               </tr>
             </tbody>
           </table>
-          <h5
-            *ngIf="listEntrenadors.length == 0"
-            style="text-align: start; margin-top: 10px"
-          >
+          <h5 *ngIf="listEntrenadors.length == 0" style="text-align: start; margin-top: 10px">
             Actualmente no existen entrenadors
           </h5>
         </div>

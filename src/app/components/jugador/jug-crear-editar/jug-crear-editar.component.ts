@@ -62,14 +62,14 @@ export class JugCrearEditarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    setTimeout(() => {
-      document.getElementsByName("input-0")[0].focus();
-    }, 20);
     this.obtenerClubes();
     this.obtenerCategorias();
     this.getCLubes();
     let dateTime = new Date();
+    setTimeout(() => {
+      this.esEditar();
+      document.getElementsByName("input-0")[0].focus();
+    }, 20);
 
     this.jugadorForm.setValue({
       cedula: '',
@@ -196,6 +196,7 @@ export class JugCrearEditarComponent implements OnInit {
       }
     }
   }
+
   esEditar() {
     if (this.id !== null) {
       this.titulo = 'Editar Jugador';

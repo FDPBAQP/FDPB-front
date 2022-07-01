@@ -4,10 +4,7 @@
       <div class="card">
         <div class="card-body text-center">
           <span class="titulo">CARGOS</span>
-          <button
-            class="btn btn-info float-end"
-            [routerLink]="['/crear-cargo']"
-          >
+          <button class="btn btn-info float-end" [routerLink]="['/crear-cargo']">
             NUEVO
           </button>
           <table *ngIf="listCargos.length > 0" class="table table-hover mt-4">
@@ -23,23 +20,13 @@
                 <th scope="row">{{ Cargo.detalle }}</th>
                 <td>{{ formatDate_yyyymmdd(Cargo.fecha_grabacion) }}</td>
                 <td>
-                  <i
-                    [routerLink]="['/editar-cargo', Cargo._id]"
-                    class="fa fa-pencil text-success"
-                  >
-                  </i
-                  ><i
-                    (click)="eliminarCargo(Cargo._id)"
-                    class="fa fa-trash text-primary"
-                  ></i>
+                  <i [routerLink]="['/editar-cargo', Cargo._id]" class="fa fa-pencil text-success" title="Editar">
+                  </i><i (click)="eliminarCargo(Cargo._id)" class="fa fa-trash text-primary" title="Eliminar"></i>
                 </td>
               </tr>
             </tbody>
           </table>
-          <h5
-            *ngIf="listCargos.length == 0"
-            style="text-align: start; margin-top: 10px"
-          >
+          <h5 *ngIf="listCargos.length == 0" style="text-align: start; margin-top: 10px">
             Actualmente no existen cargos
           </h5>
         </div>

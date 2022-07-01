@@ -20,23 +20,13 @@
                 <th scope="row">{{ Club.detalle }}</th>
                 <td>{{ formatDate_yyyymmdd(Club.fecha_grabacion) }}</td>
                 <td>
-                  <i
-                    [routerLink]="['/editar-club', Club._id]"
-                    class="fa fa-pencil text-success"
-                  >
-                  </i
-                  ><i
-                    (click)="eliminarClub(Club._id)"
-                    class="fa fa-trash text-primary"
-                  ></i>
+                  <i [routerLink]="['/editar-club', Club._id]" class="fa fa-pencil text-success" title="Editar">
+                  </i><i (click)="eliminarClub(Club._id)" class="fa fa-trash text-primary" title="Eliminar"></i>
                 </td>
               </tr>
             </tbody>
           </table>
-          <h5
-            *ngIf="listClubes.length == 0"
-            style="text-align: start; margin-top: 10px"
-          >
+          <h5 *ngIf="listClubes.length == 0" style="text-align: start; margin-top: 10px">
             Actualmente no existen clubes
           </h5>
         </div>

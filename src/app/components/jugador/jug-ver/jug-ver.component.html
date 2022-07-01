@@ -30,9 +30,9 @@
                 </td>
                 <td *ngIf="Jugador.club.length <= 0">no hay</td>
                 <td>
-                  <i [routerLink]="['/editar-jugador', Jugador._id]" class="fa fa-pencil text-success"></i><i
-                    (click)="eliminarJugador(Jugador._id)" class="fa fa-trash text-primary"></i><i
-                    [routerLink]="['/cedula-pdf', Jugador._id]" class="fa fa-print text-danger"
+                  <i [routerLink]="['/editar-jugador', Jugador._id]" class="fa fa-pencil text-success"
+                    title="Editar"></i><i (click)="eliminarJugador(Jugador._id)" class="fa fa-trash text-primary"
+                    title="Eliminar"></i><i [routerLink]="['/cedula-pdf', Jugador._id]" class="fa fa-print text-danger"
                     title="Imprimir Cedula"></i><i [routerLink]="['/transferir', Jugador._id]"
                     class="fa fa-address-book-o text-info" title="Transferir Club"></i>
                   <!-- <i

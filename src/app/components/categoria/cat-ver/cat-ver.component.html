@@ -4,16 +4,10 @@
       <div class="card">
         <div class="card-body text-center">
           <span class="titulo">CATEGORIAS</span>
-          <button
-            class="btn btn-info float-end"
-            [routerLink]="['/crear-categoria']"
-          >
+          <button class="btn btn-info float-end" [routerLink]="['/crear-categoria']">
             NUEVO
           </button>
-          <table
-            *ngIf="listCategorias.length > 0"
-            class="table table-hover mt-4"
-          >
+          <table *ngIf="listCategorias.length > 0" class="table table-hover mt-4">
             <thead>
               <tr>
                 <th scope="col">Detalle</th>
@@ -28,23 +22,15 @@
                 <td>{{ Categoria.desde }}</td>
                 <td>{{ Categoria.hasta }}</td>
                 <td>
-                  <i
-                    [routerLink]="['/editar-categoria', Categoria._id]"
-                    class="fa fa-pencil text-success"
-                  >
-                  </i
-                  ><i
-                    (click)="eliminarCategoria(Categoria._id)"
-                    class="fa fa-trash text-primary"
-                  ></i>
+                  <i [routerLink]="['/editar-categoria', Categoria._id]" class="fa fa-pencil text-success"
+                    title="Editar">
+                  </i><i (click)="eliminarCategoria(Categoria._id)" class="fa fa-trash text-primary"
+                    title="Eliminar"></i>
                 </td>
               </tr>
             </tbody>
           </table>
-          <h5
-            *ngIf="listCategorias.length == 0"
-            style="text-align: start; margin-top: 10px"
-          >
+          <h5 *ngIf="listCategorias.length == 0" style="text-align: start; margin-top: 10px">
             Actualmente no existen categorias
           </h5>
         </div>
