@@ -66,10 +66,6 @@ export class JugCrearEditarComponent implements OnInit {
     this.obtenerCategorias();
     this.getCLubes();
     let dateTime = new Date();
-    setTimeout(() => {
-      this.esEditar();
-      document.getElementsByName("input-0")[0].focus();
-    }, 20);
 
     this.jugadorForm.setValue({
       cedula: '',
@@ -86,6 +82,11 @@ export class JugCrearEditarComponent implements OnInit {
       club_inicial: '',
       fecha_inscripcion: Fecha.formatDate_yyyymmdd(dateTime.toISOString()),
     });
+  }
+
+  ngAfterViewInit() {
+    this.esEditar();
+    document.getElementsByTagName("input")[0].focus();
   }
 
   getCLubes() {

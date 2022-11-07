@@ -66,9 +66,10 @@ export class JugadoresPdfComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerJugadores();
-    setTimeout(() => {
-      document.getElementsByName("input-0")[0].focus();
-    }, 20);
+  }
+
+  ngAfterViewInit() {
+    document.getElementsByTagName("input")[0].focus();
   }
 
   obtenerJugadores() {

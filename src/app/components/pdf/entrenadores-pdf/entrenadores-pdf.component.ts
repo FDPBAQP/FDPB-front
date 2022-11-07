@@ -55,9 +55,10 @@ export class EntrenadoresPdfComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerDririgentes();
-    setTimeout(() => {
-      document.getElementsByName("input-0")[0].focus();
-    }, 20);
+  }
+
+  ngAfterViewInit() {
+    document.getElementsByTagName("input")[0].focus();
   }
 
   obtenerDririgentes() {

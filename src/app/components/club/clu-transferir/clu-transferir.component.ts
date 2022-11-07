@@ -17,14 +17,6 @@ import { Fecha } from 'src/app/functions/fecha/fecha';
 export class CluTransferirComponent implements OnInit {
   ngOnInit(): void {
     this.getCLubes();
-    setTimeout(() => {
-      this.getJugadorClubes();
-      this.getJugador();
-    }, 2000);
-
-    setTimeout(() => {
-      document.getElementsByName("input-0")[0].focus();
-    }, 20);
     let dateTime = new Date();
 
     this.transferenciaForm.setValue({
@@ -32,6 +24,10 @@ export class CluTransferirComponent implements OnInit {
       tipo: 'excepcional',
       fecha: Fecha.formatDate_yyyymmdd(dateTime.toISOString()),
     });
+  }
+
+  ngAfterViewInit() {
+    document.getElementsByTagName("input")[0].focus();
   }
 
   selectEvent(item: any) {
@@ -130,10 +126,13 @@ export class CluTransferirComponent implements OnInit {
       );
     }
   }
+
   getCLubes() {
     this._clubService.getClubes().subscribe(
       (data) => {
         this.listClubes = data;
+        this.getJugadorClubes();
+        this.getJugador();
       },
       (error) => {
         console.log(error);
