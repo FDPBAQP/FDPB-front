@@ -17,7 +17,7 @@ import { Fecha } from 'src/app/functions/fecha/fecha';
 })
 export class RepClubCategoriaComponent implements OnInit {
   filtrosForm: FormGroup;
-  listClubes: Club[] = [];
+  inputFocus: number = 0;listClubes: Club[] = [];
   listCategorias: Categoria[] = [];
   listJugadores: Jugador[] = [];
   keyword = 'detalle';
@@ -124,25 +124,36 @@ export class RepClubCategoriaComponent implements OnInit {
   }
 
   keytab(event: any) {
-    const input = event.target.name;
-    if (input != "submit") {
-      const num = parseInt(input.substring(6, 7))
-      const nextInput = num + 1
-      event.preventDefault();
-      let element: any = document.getElementsByName("input-" + nextInput)[0];
+    const inputs = document.getElementsByTagName("input");
+    let maxInputs = inputs.length
+    let nextInput = document.getElementsByTagName("input")[this.inputFocus + 1]
+    let readonly = null;
 
-      if (element == null) {
-        if (this.filtrosForm.valid) {
-          document.getElementsByName("submit")[0].focus();
-        }
-        else {
-          document.getElementsByName("input-0")[0].focus();
-        }
+    if (nextInput != undefined) {
+      readonly = nextInput.readOnly
+    }else{
+      this.inputFocus = maxInputs
+    }
+
+    if (readonly != null) {
+      if (readonly) {
+        this.inputFocus = this.inputFocus + 2
+      } else {
+        this.inputFocus = this.inputFocus + 1
       }
+    }
 
+    if (this.inputFocus >= maxInputs) {
+      if (this.filtrosForm.valid) {
+        document.getElementsByName("submit")[0].focus();
+      }
       else {
-        element.focus();
+        this.inputFocus = 0
+        document.getElementsByTagName("input")[this.inputFocus].focus();
       }
+    }
+    else {
+      document.getElementsByTagName("input")[this.inputFocus].focus();
     }
   }
 

@@ -16,6 +16,7 @@ import { Fecha } from 'src/app/functions/fecha/fecha';
 })
 export class JugCrearEditarComponent implements OnInit {
   jugadorForm: FormGroup;
+  inputFocus: number = 0;
   titulo = 'Crear Jugador';
   id: string | null;
   slcClub: boolean = true;
@@ -86,7 +87,7 @@ export class JugCrearEditarComponent implements OnInit {
 
   ngAfterViewInit() {
     this.esEditar();
-    document.getElementsByTagName("input")[0].focus();
+    document.getElementsByTagName("input")[this.inputFocus].focus();
   }
 
   getCLubes() {
@@ -174,27 +175,36 @@ export class JugCrearEditarComponent implements OnInit {
 
 
   keytab(event: any) {
-    const input = event.target.name;
-    if (input != "submit") {
-      const arrayInput = input.split("-");
-      const num = parseInt(arrayInput[1])
-      const nextInput = num + 1
-      event.preventDefault();
-      let element: any = document.getElementsByName("input-" + nextInput)[0];
-      console.log("input-" + nextInput)
+    const inputs = document.getElementsByTagName("input");
+    let maxInputs = inputs.length
+    let nextInput = document.getElementsByTagName("input")[this.inputFocus + 1]
+    let readonly = null;
 
-      if (element == null) {
-        if (this.jugadorForm.valid) {
-          document.getElementsByName("submit")[0].focus();
-        }
-        else {
-          document.getElementsByName("input-0")[0].focus();
-        }
+    if (nextInput != undefined) {
+      readonly = nextInput.readOnly
+    }else{
+      this.inputFocus = maxInputs
+    }
+
+    if (readonly != null) {
+      if (readonly) {
+        this.inputFocus = this.inputFocus + 2
+      } else {
+        this.inputFocus = this.inputFocus + 1
       }
+    }
 
+    if (this.inputFocus >= maxInputs) {
+      if (this.jugadorForm.valid) {
+        document.getElementsByName("submit")[0].focus();
+      }
       else {
-        element.focus();
+        this.inputFocus = 0
+        document.getElementsByTagName("input")[this.inputFocus].focus();
       }
+    }
+    else {
+      document.getElementsByTagName("input")[this.inputFocus].focus();
     }
   }
 

@@ -10,7 +10,7 @@
               <div class="col-sm-4 mx-auto">
                 <label for="categoria">CATEGORIA</label>
                 <input name="input-0" type="text" formControlName="categoria" class="form-control form-control-lg"
-                  placeholder="CATEGORIA" />
+                  placeholder="CATEGORIA" (keypress)="($event.charCode != 13)"/>
                 <div class="text-danger" *ngIf="
                     categoriaForm.get('categoria')?.hasError('required') &&
                     categoriaForm.get('categoria')?.touched

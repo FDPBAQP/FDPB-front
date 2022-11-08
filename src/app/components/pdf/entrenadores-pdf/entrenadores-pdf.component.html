@@ -10,7 +10,7 @@
                 <div class="ng-autocomplete">
                   <ng-autocomplete [data]="listEntrenadores" id="entrenador" formControlName="dni"
                     [searchKeyword]="'dni'" placeholder="Buscar por DNI" [itemTemplate]="itemTemplate"
-                    [notFoundTemplate]="notFoundTemplate" (selected)="selectEvent($event)">
+                    [notFoundTemplate]="notFoundTemplate" (selected)="selectEvent($event)" (keypress)="($event.charCode != 13)">
                   </ng-autocomplete>
 
                   <ng-template #itemTemplate let-item>
@@ -26,7 +26,7 @@
                 <div class="ng-autocomplete">
                   <ng-autocomplete [data]="listEntrenadores" id="entrenador" formControlName="nombres"
                     [searchKeyword]="'nombres'" placeholder="Buscar por nombres" [itemTemplate]="itemTemplate"
-                    [notFoundTemplate]="notFoundTemplate" (selected)="selectEvent($event)">
+                    [notFoundTemplate]="notFoundTemplate" (selected)="selectEvent($event)" (keypress)="($event.charCode != 13)">
                   </ng-autocomplete>
 
                   <ng-template #itemTemplate let-item>
@@ -42,7 +42,7 @@
                 <div class="ng-autocomplete">
                   <ng-autocomplete [data]="listEntrenadores" id="entrenador" formControlName="apellidos"
                     [searchKeyword]="'apellidos'" placeholder="Buscar por apellidos" [itemTemplate]="itemTemplate"
-                    [notFoundTemplate]="notFoundTemplate" (selected)="selectEvent($event)">
+                    [notFoundTemplate]="notFoundTemplate" (selected)="selectEvent($event)" (keypress)="($event.charCode != 13)">
                   </ng-autocomplete>
 
                   <ng-template #itemTemplate let-item>

@@ -13,7 +13,7 @@
                   <div class="form-control form-control-lg ng-autocomplete">
                     <ng-autocomplete [data]="listClubes" id="club" formControlName="club" [searchKeyword]="keywordClub"
                       placeholder="Seleccione un club" [itemTemplate]="itemTemplate"
-                      [notFoundTemplate]="notFoundTemplate" (selected)="selectEvent($event)">
+                      [notFoundTemplate]="notFoundTemplate" (selected)="selectEvent($event)" (keypress)="($event.charCode != 13)" >
                     </ng-autocomplete>
 
                     <ng-template #itemTemplate let-item>

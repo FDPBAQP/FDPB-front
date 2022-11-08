@@ -12,7 +12,7 @@ import { ClubService } from 'src/app/services/club/club.service';
 })
 export class CluCrearEditarComponent implements OnInit {
   clubForm: FormGroup;
-  titulo = 'Crear Club';
+  inputFocus: number = 0;titulo = 'Crear Club';
   id: string | null;
   today!: Date;
   constructor(
@@ -80,27 +80,39 @@ export class CluCrearEditarComponent implements OnInit {
   }
 
   keytab(event: any) {
-    const input = event.target.name;
-    if (input != "submit") {
-      const num = parseInt(input.substring(6, 7))
-      const nextInput = num + 1
-      event.preventDefault();
-      let element: any = document.getElementsByName("input-" + nextInput)[0];
+    const inputs = document.getElementsByTagName("input");
+    let maxInputs = inputs.length
+    let nextInput = document.getElementsByTagName("input")[this.inputFocus + 1]
+    let readonly = null;
 
-      if (element == null) {
-        if (this.clubForm.valid) {
-          document.getElementsByName("submit")[0].focus();
-        }
-        else {
-          document.getElementsByName("input-0")[0].focus();
-        }
-      }
+    if (nextInput != undefined) {
+      readonly = nextInput.readOnly
+    }else{
+      this.inputFocus = maxInputs
+    }
 
-      else {
-        element.focus();
+    if (readonly != null) {
+      if (readonly) {
+        this.inputFocus = this.inputFocus + 2
+      } else {
+        this.inputFocus = this.inputFocus + 1
       }
     }
+
+    if (this.inputFocus >= maxInputs) {
+      if (this.clubForm.valid) {
+        document.getElementsByName("submit")[0].focus();
+      }
+      else {
+        this.inputFocus = 0
+        document.getElementsByTagName("input")[this.inputFocus].focus();
+      }
+    }
+    else {
+      document.getElementsByTagName("input")[this.inputFocus].focus();
+    }
   }
+
   esEditar() {
     if (this.id !== null) {
       this.titulo = 'Editar Club';

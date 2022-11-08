@@ -12,7 +12,7 @@
                   <div class="form-control form-control-lg ng-autocomplete">
                     <ng-autocomplete [data]="listClubes" id="club" formControlName="club" [searchKeyword]="keyword"
                       placeholder="Seleccione un club" [itemTemplate]="itemTemplate"
-                      [notFoundTemplate]="notFoundTemplate" (selected)="selectClub($event)">
+                      [notFoundTemplate]="notFoundTemplate" (selected)="selectClub($event)" (keypress)="($event.charCode != 13)">
                     </ng-autocomplete>
 
                     <ng-template #itemTemplate let-item>
@@ -36,7 +36,7 @@
                   <div class="form-control form-control-lg ng-autocomplete">
                     <ng-autocomplete [data]="listCategorias" id="categoria" formControlName="categoria"
                       [searchKeyword]="keyword" placeholder="Seleccione una categoria" [itemTemplate]="itemTemplate"
-                      [notFoundTemplate]="notFoundTemplate" (selected)="selectCategoria($event)">
+                      [notFoundTemplate]="notFoundTemplate" (selected)="selectCategoria($event)" (keypress)="($event.charCode != 13)">
                     </ng-autocomplete>
 
                     <ng-template #itemTemplate let-item>

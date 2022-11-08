@@ -10,7 +10,7 @@
               <div class="col-2">
                 <label for="dni">DNI</label>
                 <input name="input-0" type="text" formControlName="dni" class="form-control form-control-lg" id="dni"
-                  placeholder="" />
+                  placeholder="" (keypress)="($event.charCode != 13)" />
                 <div class="text-danger" *ngIf="
                     dirigenteForm.get('dni')?.hasError('required') &&
                     dirigenteForm.get('dni')?.touched
@@ -24,7 +24,7 @@
                 <div class="form-control form-control-lg ng-autocomplete">
                   <ng-autocomplete name="input-0" [data]="listClubes" id="club" formControlName="club"
                     [searchKeyword]="keyword" placeholder="Seleccione un club" [itemTemplate]="itemTemplate"
-                    [notFoundTemplate]="notFoundTemplate" (selected)="selectClub($event)">
+                    [notFoundTemplate]="notFoundTemplate" (selected)="selectClub($event)" (keypress)="($event.charCode != 13)" >
                   </ng-autocomplete>
 
                   <ng-template #itemTemplate let-item>
@@ -49,7 +49,7 @@
                 <div class="form-control form-control-lg ng-autocomplete">
                   <ng-autocomplete [data]="listCargos" id="cargo" formControlName="cargo" [searchKeyword]="keyword"
                     placeholder="Seleccione un cargo" [itemTemplate]="itemTemplate"
-                    [notFoundTemplate]="notFoundTemplate" (selected)="selectCargo($event)">
+                    [notFoundTemplate]="notFoundTemplate" (selected)="selectCargo($event)" (keypress)="($event.charCode != 13)" >
                   </ng-autocomplete>
 
                   <ng-template #itemTemplate let-item>
@@ -73,7 +73,7 @@
               <div class="col">
                 <label for="nombres">NOMBRES</label>
                 <input id="nombres" type="text" formControlName="nombres" class="form-control form-control-lg"
-                  placeholder="" />
+                  placeholder="" (keypress)="($event.charCode != 13)" />
                 <div class="text-danger" *ngIf="
                     dirigenteForm.get('nombres')?.hasError('required') &&
                     dirigenteForm.get('nombres')?.touched
@@ -84,7 +84,7 @@
               <div class="col">
                 <label for="apellidos">APELLIDOS</label>
                 <input id="apellidos" type="text" formControlName="apellidos" class="form-control form-control-lg"
-                  placeholder="" />
+                  placeholder="" (keypress)="($event.charCode != 13)" />
                 <div class="text-danger" *ngIf="
                     dirigenteForm.get('apellidos')?.hasError('required') &&
                     dirigenteForm.get('apellidos')?.touched
@@ -95,7 +95,7 @@
               <div class="col-3">
                 <label for="telefono">TELÉFONO</label>
                 <input id="telefono" type="text" formControlName="telefono" class="form-control form-control-lg"
-                  placeholder="" />
+                  placeholder="" (keypress)="($event.charCode != 13)" />
                 <div class="text-danger" *ngIf="
                     dirigenteForm.get('telefono')?.hasError('required') &&
                     dirigenteForm.get('telefono')?.touched

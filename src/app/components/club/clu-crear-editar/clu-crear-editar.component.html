@@ -8,7 +8,7 @@
             <div class="row mb-3">
               <div class="col-sm-8 mx-auto">
                 <input name="input-0" type="text" formControlName="club" class="form-control form-control-lg"
-                  placeholder="CLUB" />
+                  placeholder="CLUB" (keypress)="($event.charCode != 13)"/>
                 <div class="text-danger" *ngIf="
                     clubForm.get('club')?.hasError('required') &&
                     clubForm.get('club')?.touched

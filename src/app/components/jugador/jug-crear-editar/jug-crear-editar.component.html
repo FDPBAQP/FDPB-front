@@ -31,7 +31,7 @@
 
               <div class="col-3">
                 <label for="fecha_nacimiento">FECHA DE NAC.</label>
-                <input name="input-2" id="fecha_nacimiento" type="date" formControlName="fecha_nacimiento"
+                <input name="input-2" id="fecha_nacimiento" type="date" formControlName="fecha_nacimiento" (keypress)="($event.charCode >= 48 && $event.charCode < 58)"
                   class="form-control form-control-lg" placeholder="dd/mm/aaaa" (change)="changeCategoria()" />
                 <div class="text-danger" *ngIf="
                     jugadorForm.get('fecha_nacimiento')?.hasError('required') &&
@@ -42,7 +42,7 @@
               </div>
               <div class="col-3">
                 <label for="categoria">CATEGORIA</label>
-                <input name="input-3" id="categoria" type="text" formControlName="categoria"
+                <input name="input-3" id="categoria" type="text" formControlName="categoria" (keypress)="($event.charCode >= 48 && $event.charCode < 58)"
                   class="form-control form-control-lg" placeholder="Categoria" readonly />
                 <div class="text-danger" *ngIf="
                     jugadorForm.get('categoria')?.hasError('required') &&
@@ -80,7 +80,7 @@
                 <div class="row">
                   <div class="col">
                     <label for="apellidos">APELLIDOS</label>
-                    <input name="input-6" id="apellidos" type="text" formControlName="apellidos"
+                    <input name="input-6" id="apellidos" type="text" formControlName="apellidos" (keypress)="($event.charCode != 13)"
                       class="form-control form-control-lg" placeholder="Apellidos" />
                     <div class="text-danger" *ngIf="
                         jugadorForm.get('apellidos')?.hasError('required') &&
@@ -91,7 +91,7 @@
                   </div>
                   <div class="col">
                     <label for="nombres">NOMBRES</label>
-                    <input name="input-7" id="nombres" type="text" formControlName="nombres"
+                    <input name="input-7" id="nombres" type="text" formControlName="nombres" (keypress)="($event.charCode != 13)"
                       class="form-control form-control-lg" placeholder="Nombres" />
                     <div class="text-danger" *ngIf="
                         jugadorForm.get('nombres')?.hasError('required') &&
@@ -106,7 +106,7 @@
             <div class="row mb-4">
               <div class="col">
                 <label for="nacionalidad">NACIONALIDAD</label>
-                <input name="input-8" id="nacionalidad" type="text" formControlName="nacionalidad"
+                <input name="input-8" id="nacionalidad" type="text" formControlName="nacionalidad" (keypress)="($event.charCode != 13)"
                   class="form-control form-control-lg" placeholder="Nacionalidad" />
                 <div class="text-danger" *ngIf="
                     jugadorForm.get('nacionalidad')?.hasError('required') &&
@@ -117,7 +117,7 @@
               </div>
               <div class="col">
                 <label for="ciudad_nacimiento">CIUDAD DE NAC.</label>
-                <input name="input-9" id="ciudad_nacimiento" type="text" formControlName="ciudad_nacimiento"
+                <input name="input-9" id="ciudad_nacimiento" type="text" formControlName="ciudad_nacimiento" (keypress)="($event.charCode != 13)"
                   class="form-control form-control-lg" placeholder="Ciudad De Nacimiento" />
                 <div class="text-danger" *ngIf="
                     jugadorForm
@@ -130,7 +130,7 @@
               </div>
               <div class="col-3">
                 <label for="fecha_inscripcion">FEC. INSCRIPCION</label>
-                <input name="input-10" id="fecha_inscripcion" type="date" formControlName="fecha_inscripcion"
+                <input name="input-10" id="fecha_inscripcion" type="date" formControlName="fecha_inscripcion" (keypress)="($event.charCode >= 48 && $event.charCode < 58)"
                   class="form-control form-control-lg" placeholder="Fecha Inscripcion" />
                 <div class="text-danger" *ngIf="
                     jugadorForm
@@ -146,7 +146,7 @@
               <div class="col-4">
                 <label for="club_inicial">CLUB INICIAL</label>
                 <div class="form-control form-control-lg ng-autocomplete" *ngIf="id == null">
-                  <ng-autocomplete [data]="listClubes" id="club_inicial" formControlName="club_inicial"
+                  <ng-autocomplete [data]="listClubes" id="club_inicial" formControlName="club_inicial" (keypress)="($event.charCode != 13)"
                     [searchKeyword]="keywordClub" placeholder="Seleccione un club" [itemTemplate]="itemTemplate"
                     [notFoundTemplate]="notFoundTemplate" (selected)="selectEvent($event)">
                   </ng-autocomplete>
@@ -160,7 +160,7 @@
                   </ng-template>
                 </div>
                 <div *ngIf="id !== null">
-                  <input name="input-0" type="text" formControlName="club_inicial" class="form-control form-control-lg"
+                  <input name="input-0" type="text" formControlName="club_inicial" class="form-control form-control-lg" (keypress)="($event.charCode >= 48 && $event.charCode < 58)"
                     readonly />
                 </div>
               </div>
