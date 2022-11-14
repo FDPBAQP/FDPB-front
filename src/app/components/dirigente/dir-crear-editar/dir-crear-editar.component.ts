@@ -27,7 +27,7 @@ export class DirCrearEditarComponent implements OnInit {
   cargotemp = '';
 
   selectClub(item: any) {
-    this.clubtemp = item.detalle;
+    this.clubtemp = item._id;
   }
 
   selectCargo(item: any) {
@@ -158,17 +158,27 @@ export class DirCrearEditarComponent implements OnInit {
         (data) => {
           this.clubtemp = data.club;
           this.cargotemp = data.cargo;
-          this.dirigenteForm.setValue({
-            dni: data.dni,
-            club: data.club,
-            cargo: data.cargo,
-            nombres: data.nombres,
-            apellidos: data.apellidos,
-            telefono: data.telefono,
-          });
+          this._clubService.getClub(data.club).subscribe(
+            (subdata) => {
+              console.log(subdata)
+              this.clubtemp = subdata.detalle;
+              data.clubDetalle = subdata.detalle
+              this.dirigenteForm.setValue({
+                dni: data.dni,
+                club: data.clubDetalle,
+                nombres: data.nombres,
+                apellidos: data.apellidos,
+                telefono: data.telefono,
+                nacionalidad: data.nacionalidad,
+              });
 
-          this.slcClub = false;
-          this.slcCargo = false;
+              this.slcClub = false;
+              this.slcCargo = false;
+            },
+            (error) => {
+              console.log(error);
+            }
+          );
         },
         (error) => {
           console.log(error);

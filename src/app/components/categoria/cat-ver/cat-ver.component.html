@@ -19,13 +19,13 @@
             <tbody>
               <tr *ngFor="let Categoria of listCategorias">
                 <th scope="row">{{ Categoria.detalle }}</th>
-                <td>{{ Categoria.desde }}</td>
-                <td>{{ Categoria.hasta }}</td>
+                <td class="text-truncate max-td">{{ Categoria.desde }}</td>
+                <td class="text-truncate max-td">{{ Categoria.hasta }}</td>
                 <td>
-                  <i [routerLink]="['/editar-categoria', Categoria._id]" class="fa fa-pencil text-success"
+                  <em [routerLink]="['/editar-categoria', Categoria._id]" class="fa fa-pencil text-success"
                     title="Editar">
-                  </i><i (click)="eliminarCategoria(Categoria._id)" class="fa fa-trash text-primary"
-                    title="Eliminar"></i>
+                  </em><em (click)="eliminarCategoria(Categoria._id)" class="fa fa-trash text-primary"
+                    title="Eliminar"></em>
                 </td>
               </tr>
             </tbody>

@@ -6,6 +6,8 @@ export class Dirigente {
   apellidos: string;
   nombres: string;
   telefono: string;
+  filter?: string;
+  clubDetalle?: string;
 
   constructor(
     dni: string,
@@ -13,7 +15,9 @@ export class Dirigente {
     cargo: string,
     apellidos: string,
     nombres: string,
-    telefono: string
+    telefono: string,
+    filter: string,
+    clubDetalle: string
   ) {
     this.dni = dni;
     this.club = club;
@@ -21,5 +25,7 @@ export class Dirigente {
     this.apellidos = apellidos;
     this.nombres = nombres;
     this.telefono = telefono;
+    this.filter = filter;
+    this.clubDetalle = clubDetalle;
   }
 }

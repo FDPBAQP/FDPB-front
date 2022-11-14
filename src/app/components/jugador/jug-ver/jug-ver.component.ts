@@ -16,6 +16,9 @@ export class JugVerComponent implements OnInit {
   sortDir = 'asc';
   columOrder = 'cedula';
   listJugadores: Jugador[] = [];
+  listFiltered: Jugador[] = [];
+
+  keyword = 'detalle';
 
   constructor(
     private _jugadorService: JugadorService,
@@ -30,8 +33,9 @@ export class JugVerComponent implements OnInit {
   obtenerJugadores() {
     this._jugadorService.getJugadores().subscribe(
       (data) => {
-        this.listJugadores = data;
-        this.club();
+        let dataEditado = this.agregarClubDetalle(data);
+        this.listJugadores = dataEditado;
+        this.listFiltered = dataEditado;
       },
       (error) => {
         console.log(error);
@@ -51,13 +55,14 @@ export class JugVerComponent implements OnInit {
     );
   }
 
-  club() {
-    this.listJugadores.map((jugador) => {
+  agregarClubDetalle(original: Jugador[]) {
+    original.map((jugador) => {
       if (jugador.club.length > 0) {
         var id = jugador.club[0].detalle;
         this._clubService.getClub(id).subscribe(
           (data) => {
             jugador.club[0].detalle = data.detalle;
+            jugador.filter = `${jugador.dni} - ${jugador.nombres} ${jugador.apellidos} - ${jugador.cedula} - ${data.detalle}`
           },
           (error) => {
             console.log(error);
@@ -65,5 +70,24 @@ export class JugVerComponent implements OnInit {
         );
       }
     });
+    return original;
   }
+
+  filterSelect(item: any) {
+    this.listFiltered = this.listJugadores.filter(t=>t.filter?.includes(item.filter.toUpperCase()));
+  }
+
+  filterCleared() {
+    this.listFiltered = this.listJugadores
+  }
+
+  filterChange(item: any) {
+    let filter = item.target.value
+    if (filter == ""){
+      this.listFiltered = this.listJugadores
+    }else {
+      this.listFiltered = this.listJugadores.filter(t=>t.filter?.includes(filter.toUpperCase()));
+    }
+  }
+
 }

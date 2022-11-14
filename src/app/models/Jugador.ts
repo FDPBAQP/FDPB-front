@@ -12,6 +12,7 @@ export class Jugador {
   ciudad_nacimiento?: string;
   nacionalidad?: string;
   fecha_inscripcion?: Date;
+  filter?: string;
 
   constructor(
     cedula: string,
@@ -25,7 +26,8 @@ export class Jugador {
     categoria: string,
     ciudad_nacimiento: string,
     nacionalidad: string,
-    fecha_inscripcion: Date
+    fecha_inscripcion: Date,
+    filter: string
   ) {
     this.cedula = cedula;
     this.dni = dni;
@@ -39,5 +41,6 @@ export class Jugador {
     this.ciudad_nacimiento = ciudad_nacimiento;
     this.nacionalidad = nacionalidad;
     this.fecha_inscripcion = fecha_inscripcion;
+    this.filter = filter;
   }
 }

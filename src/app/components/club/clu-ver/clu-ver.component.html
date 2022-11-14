@@ -18,10 +18,10 @@
             <tbody>
               <tr *ngFor="let Club of listClubes">
                 <th scope="row">{{ Club.detalle }}</th>
-                <td>{{ formatDate_yyyymmdd(Club.fecha_grabacion) }}</td>
+                <td class="text-truncate max-td">{{ formatDate_yyyymmdd(Club.fecha_grabacion) }}</td>
                 <td>
-                  <i [routerLink]="['/editar-club', Club._id]" class="fa fa-pencil text-success" title="Editar">
-                  </i><i (click)="eliminarClub(Club._id)" class="fa fa-trash text-primary" title="Eliminar"></i>
+                  <em [routerLink]="['/editar-club', Club._id]" class="fa fa-pencil text-success" title="Editar">
+                  </em><em (click)="eliminarClub(Club._id)" class="fa fa-trash text-primary" title="Eliminar"></em>
                 </td>
               </tr>
             </tbody>

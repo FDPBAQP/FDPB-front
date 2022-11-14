@@ -7,7 +7,25 @@
           <button class="btn btn-info float-end" [routerLink]="['/crear-jugador']">
             NUEVO
           </button>
-          <table *ngIf="listJugadores.length > 0" class="table table-hover mt-4">
+          <div class="row mt-4">
+            <div class="col-12">
+              <div class="form-control form-control-lg ng-autocomplete">
+                <ng-autocomplete [data]="listJugadores" id="dni" [searchKeyword]="'filter'"
+                  placeholder="DNI - NOMBRE - CEDULA - CLUB" [itemTemplate]="itemTemplate"
+                  [notFoundTemplate]="notFoundTemplate" (selected)="filterSelect($event)" (change)="filterChange($event)" (inputCleared)="filterCleared()">
+                </ng-autocomplete>
+
+                <ng-template #itemTemplate let-item>
+                  <a [innerHTML]="item.filter"></a>
+                </ng-template>
+
+                <ng-template #notFoundTemplate let-notFound>
+                  <div [innerHTML]="notFound"></div>
+                </ng-template>
+              </div>
+            </div>
+          </div>
+          <table *ngIf="listFiltered.length > 0" class="table table-hover">
             <thead>
               <tr>
                 <th scope="col">CEDULA</th>
@@ -19,36 +37,30 @@
               </tr>
             </thead>
             <tbody>
-              <tr
-                *ngFor="let Jugador of listJugadores | slice: (page-1) * pageSize : page * pageSize | sortBy: sortDir: columOrder;">
+              <tr *ngFor="let Jugador of listFiltered | slice: (page-1) * pageSize : page * pageSize | sortBy: sortDir: columOrder;">
                 <th scope="row">{{ Jugador.cedula }}</th>
-                <td>{{ Jugador.apellidos }}</td>
-                <td>{{ Jugador.nombres }}</td>
-                <td>{{ Jugador.categoria }}</td>
-                <td *ngIf="Jugador.club.length > 0">
+                <td class="text-truncate max-td">{{ Jugador.apellidos }}</td>
+                <td class="text-truncate max-td">{{ Jugador.nombres }}</td>
+                <td class="text-truncate max-td">{{ Jugador.categoria }}</td>
+                <td class="text-truncate max-td"*ngIf="Jugador.club.length > 0">
                   {{ Jugador.club[0].detalle }}
                 </td>
-                <td *ngIf="Jugador.club.length <= 0">no hay</td>
+                <td class="text-truncate max-td"*ngIf="Jugador.club.length <= 0">no hay</td>
                 <td>
-                  <i [routerLink]="['/editar-jugador', Jugador._id]" class="fa fa-pencil text-success"
-                    title="Editar"></i><i (click)="eliminarJugador(Jugador._id)" class="fa fa-trash text-primary"
-                    title="Eliminar"></i><i [routerLink]="['/cedula-pdf', Jugador._id]" class="fa fa-print text-danger"
-                    title="Imprimir Cedula"></i><i [routerLink]="['/transferir', Jugador._id]"
-                    class="fa fa-address-book-o text-info" title="Transferir Club"></i>
-                  <!-- <i
-                    [routerLink]="['/transferir', Jugador._id]"
-                    class="fa fa-arrow-circle-right text-light"
-                    title="Transferir Club"
-                  ></i> -->
+                  <em [routerLink]="['/editar-jugador', Jugador._id]" class="fa fa-pencil text-success"
+                    title="Editar"></em><em (click)="eliminarJugador(Jugador._id)" class="fa fa-trash text-primary"
+                    title="Eliminar"></em><em [routerLink]="['/cedula-pdf', Jugador._id]" class="fa fa-print text-danger"
+                    title="Imprimir Cedula"></em><em [routerLink]="['/transferir', Jugador._id]"
+                    class="fa fa-address-book-o text-info" title="Transferir Club"></em>
                 </td>
               </tr>
             </tbody>
           </table>
-          <ngb-pagination *ngIf="listJugadores.length > 0"
+          <ngb-pagination *ngIf="listFiltered.length > 0"
             class="d-flex justify-content-center font-pagination pagination-margin d-none d-md-flex d-lg-flex"
-            [(page)]="page" [pageSize]="pageSize" [collectionSize]="listJugadores.length" [maxSize]="maxSize"
+            [(page)]="page" [pageSize]="pageSize" [collectionSize]="listFiltered.length" [maxSize]="maxSize"
             [rotate]="true" [ellipses]="false"> </ngb-pagination>
-          <h5 *ngIf="listJugadores.length == 0" style="text-align: start; margin-top: 10px">
+          <h5 *ngIf="listFiltered.length == 0" style="text-align: start; margin-top: 10px">
             Actualmente no existen jugadores
           </h5>
         </div>

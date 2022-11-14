@@ -68,9 +68,9 @@
             <tbody>
               <tr *ngFor="let Entrenador of listEntrenadoresTabla">
                 <th scope="row">{{ Entrenador.dni }}</th>
-                <td>{{ Entrenador.nombres }} {{ Entrenador.apellidos }}</td>
-                <td>Entrenador</td>
-                <td>{{ Entrenador.club }}</td>
+                <td class="text-truncate max-td">{{ Entrenador.nombres }} {{ Entrenador.apellidos }}</td>
+                <td class="text-truncate max-td">Entrenador</td>
+                <td class="text-truncate max-td">{{ Entrenador.club }}</td>
               </tr>
             </tbody>
           </table>

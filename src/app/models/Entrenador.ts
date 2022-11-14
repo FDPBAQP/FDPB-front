@@ -6,6 +6,8 @@ export class Entrenador {
   nombres: string;
   nacionalidad: string;
   telefono: string;
+  filter?: string;
+  clubDetalle?: string;
 
   constructor(
     dni: string,
@@ -13,7 +15,9 @@ export class Entrenador {
     apellidos: string,
     nombres: string,
     nacionalidad: string,
-    telefono: string
+    telefono: string,
+    filter: string,
+    clubDetalle: string
   ) {
     this.dni = dni;
     this.club = club;
@@ -21,5 +25,7 @@ export class Entrenador {
     this.nombres = nombres;
     this.nacionalidad = nacionalidad;
     this.telefono = telefono;
+    this.filter = filter;
+    this.clubDetalle = clubDetalle;
   }
 }

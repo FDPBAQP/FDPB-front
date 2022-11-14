@@ -7,7 +7,25 @@
           <button class="btn btn-info float-end" [routerLink]="['/crear-entrenador']">
             NUEVO
           </button>
-          <table *ngIf="listEntrenadors.length > 0" class="table table-hover mt-4">
+          <div class="row mt-4">
+            <div class="col-12">
+              <div class="form-control form-control-lg ng-autocomplete">
+                <ng-autocomplete [data]="listEntrenadores" id="dni" [searchKeyword]="'filter'"
+                  placeholder="DNI - NOMBRE - CLUB" [itemTemplate]="itemTemplate"
+                  [notFoundTemplate]="notFoundTemplate" (selected)="filterSelect($event)" (change)="filterChange($event)" (inputCleared)="filterCleared()">
+                </ng-autocomplete>
+
+                <ng-template #itemTemplate let-item>
+                  <a [innerHTML]="item.filter"></a>
+                </ng-template>
+
+                <ng-template #notFoundTemplate let-notFound>
+                  <div [innerHTML]="notFound"></div>
+                </ng-template>
+              </div>
+            </div>
+          </div>
+          <table *ngIf="listFiltered.length > 0" class="table table-hover mt-4">
             <thead>
               <tr>
                 <th scope="col">DNI</th>
@@ -19,22 +37,26 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let Entrenadors of listEntrenadors">
-                <th scope="row">{{ Entrenadors.dni }}</th>
-                <td>{{ Entrenadors.nombres }} {{ Entrenadors.apellidos }}</td>
-                <td>{{ Entrenadors.club }}</td>
-                <td>{{ Entrenadors.nacionalidad }}</td>
-                <td>{{ Entrenadors.telefono }}</td>
+              <tr *ngFor="let Entrenadores of listFiltered | slice: (page-1) * pageSize : page * pageSize">
+                <th scope="row">{{ Entrenadores.dni }}</th>
+                <td class="text-truncate max-td">{{ Entrenadores.nombres }} {{ Entrenadores.apellidos }}</td>
+                <td class="text-truncate max-td">{{ Entrenadores.clubDetalle }}</td>
+                <td class="text-truncate max-td">{{ Entrenadores.nacionalidad }}</td>
+                <td class="text-truncate max-td">{{ Entrenadores.telefono }}</td>
                 <td>
-                  <i [routerLink]="['/editar-entrenador', Entrenadors._id]" class="fa fa-pencil text-success"
-                    title="Editar"></i><i (click)="eliminarEntrenador(Entrenadors._id)" class="fa fa-trash text-primary"
-                    title="Eliminar"></i>
+                  <em [routerLink]="['/editar-entrenador', Entrenadores._id]" class="fa fa-pencil text-success"
+                    title="Editar"></em><em (click)="eliminarEntrenador(Entrenadores._id)" class="fa fa-trash text-primary"
+                    title="Eliminar"></em>
                 </td>
               </tr>
             </tbody>
           </table>
-          <h5 *ngIf="listEntrenadors.length == 0" style="text-align: start; margin-top: 10px">
-            Actualmente no existen entrenadors
+          <ngb-pagination *ngIf="listFiltered.length > 0"
+            class="d-flex justify-content-center font-pagination pagination-margin d-none d-md-flex d-lg-flex"
+            [(page)]="page" [pageSize]="pageSize" [collectionSize]="listFiltered.length" [maxSize]="maxSize"
+            [rotate]="true" [ellipses]="false"> </ngb-pagination>
+          <h5 *ngIf="listEntrenadores.length == 0" style="text-align: start; margin-top: 10px">
+            Actualmente no existen entrenadores
           </h5>
         </div>
       </div>

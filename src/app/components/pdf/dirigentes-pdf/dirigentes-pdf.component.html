@@ -68,9 +68,9 @@
             <tbody>
               <tr *ngFor="let Dirigente of listDirigentesTabla">
                 <th scope="row">{{ Dirigente.dni }}</th>
-                <td>{{ Dirigente.nombres }} {{ Dirigente.apellidos }}</td>
-                <td>{{ Dirigente.cargo }}</td>
-                <td>{{ Dirigente.club }}</td>
+                <td class="text-truncate max-td">{{ Dirigente.nombres }} {{ Dirigente.apellidos }}</td>
+                <td class="text-truncate max-td">{{ Dirigente.cargo }}</td>
+                <td class="text-truncate max-td">{{ Dirigente.club }}</td>
               </tr>
             </tbody>
           </table>

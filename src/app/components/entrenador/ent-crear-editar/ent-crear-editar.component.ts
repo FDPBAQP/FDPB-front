@@ -22,7 +22,7 @@ export class EntCrearEditarComponent implements OnInit {
   clubtemp = '';
 
   selectEvent(item: any) {
-    this.clubtemp = item.detalle;
+    this.clubtemp = item._id;
     // do something with selected item
   }
 
@@ -146,17 +146,26 @@ export class EntCrearEditarComponent implements OnInit {
       this.titulo = 'Editar Entrenador';
       this._entrenadorService.getEntrenador(this.id).subscribe(
         (data) => {
-          this.clubtemp = data.club;
-          this.entrenadorForm.setValue({
-            dni: data.dni,
-            club: data.club,
-            nombres: data.nombres,
-            apellidos: data.apellidos,
-            telefono: data.telefono,
-            nacionalidad: data.nacionalidad,
-          });
+          this._clubService.getClub(data.club).subscribe(
+            (subdata) => {
+              console.log(subdata)
+              this.clubtemp = subdata.detalle;
+              data.clubDetalle = subdata.detalle
+              this.entrenadorForm.setValue({
+                dni: data.dni,
+                club: data.clubDetalle,
+                nombres: data.nombres,
+                apellidos: data.apellidos,
+                telefono: data.telefono,
+                nacionalidad: data.nacionalidad,
+              });
 
-          this.slcClub = false;
+              this.slcClub = false;
+            },
+            (error) => {
+              console.log(error);
+            }
+          );
         },
         (error) => {
           console.log(error);

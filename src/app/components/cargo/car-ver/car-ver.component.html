@@ -18,10 +18,10 @@
             <tbody>
               <tr *ngFor="let Cargo of listCargos">
                 <th scope="row">{{ Cargo.detalle }}</th>
-                <td>{{ formatDate_yyyymmdd(Cargo.fecha_grabacion) }}</td>
+                <td class="text-truncate max-td">{{ formatDate_yyyymmdd(Cargo.fecha_grabacion) }}</td>
                 <td>
-                  <i [routerLink]="['/editar-cargo', Cargo._id]" class="fa fa-pencil text-success" title="Editar">
-                  </i><i (click)="eliminarCargo(Cargo._id)" class="fa fa-trash text-primary" title="Eliminar"></i>
+                  <em [routerLink]="['/editar-cargo', Cargo._id]" class="fa fa-pencil text-success" title="Editar">
+                  </em><em (click)="eliminarCargo(Cargo._id)" class="fa fa-trash text-primary" title="Eliminar"></em>
                 </td>
               </tr>
             </tbody>

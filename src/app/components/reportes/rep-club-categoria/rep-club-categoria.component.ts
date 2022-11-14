@@ -17,7 +17,8 @@ import { Fecha } from 'src/app/functions/fecha/fecha';
 })
 export class RepClubCategoriaComponent implements OnInit {
   filtrosForm: FormGroup;
-  inputFocus: number = 0;listClubes: Club[] = [];
+  inputFocus: number = 0;
+  listClubes: Club[] = [];
   listCategorias: Categoria[] = [];
   listJugadores: Jugador[] = [];
   keyword = 'detalle';

@@ -7,7 +7,25 @@
           <button class="btn btn-info float-end" [routerLink]="['/crear-dirigente']">
             NUEVO
           </button>
-          <table *ngIf="listDirigentes.length > 0" class="table table-hover mt-4">
+          <div class="row mt-4">
+            <div class="col-12">
+              <div class="form-control form-control-lg ng-autocomplete">
+                <ng-autocomplete [data]="listDirigentes" id="dni" [searchKeyword]="'filter'"
+                  placeholder="DNI - NOMBRE - CLUB" [itemTemplate]="itemTemplate"
+                  [notFoundTemplate]="notFoundTemplate" (selected)="filterSelect($event)" (change)="filterChange($event)" (inputCleared)="filterCleared()">
+                </ng-autocomplete>
+
+                <ng-template #itemTemplate let-item>
+                  <a [innerHTML]="item.filter"></a>
+                </ng-template>
+
+                <ng-template #notFoundTemplate let-notFound>
+                  <div [innerHTML]="notFound"></div>
+                </ng-template>
+              </div>
+            </div>
+          </div>
+          <table *ngIf="listFiltered.length > 0" class="table table-hover mt-4">
             <thead>
               <tr>
                 <th scope="col">DNI</th>
@@ -19,21 +37,25 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let Dirigentes of listDirigentes">
+              <tr *ngFor="let Dirigentes of listFiltered | slice: (page-1) * pageSize : page * pageSize">
                 <th scope="row">{{ Dirigentes.dni }}</th>
-                <td>{{ Dirigentes.nombres }} {{ Dirigentes.apellidos }}</td>
-                <td>{{ Dirigentes.club }}</td>
-                <td>{{ Dirigentes.cargo }}</td>
-                <td>{{ Dirigentes.telefono }}</td>
+                <td class="text-truncate max-td">{{ Dirigentes.nombres }} {{ Dirigentes.apellidos }}</td>
+                <td class="text-truncate max-td">{{ Dirigentes.clubDetalle }}</td>
+                <td class="text-truncate max-td">{{ Dirigentes.cargo }}</td>
+                <td class="text-truncate max-td">{{ Dirigentes.telefono }}</td>
                 <td>
-                  <i [routerLink]="['/editar-dirigente', Dirigentes._id]" class="fa fa-pencil text-success"
-                    title="Editar"></i><i (click)="eliminarDirigente(Dirigentes._id)" class="fa fa-trash text-primary"
-                    title="Eliminar"></i>
+                  <em [routerLink]="['/editar-dirigente', Dirigentes._id]" class="fa fa-pencil text-success"
+                    title="Editar"></em><em (click)="eliminarDirigente(Dirigentes._id)" class="fa fa-trash text-primary"
+                    title="Eliminar"></em>
                 </td>
               </tr>
             </tbody>
           </table>
-          <h5 *ngIf="listDirigentes.length == 0" style="text-align: start; margin-top: 10px">
+          <ngb-pagination *ngIf="listFiltered.length > 0"
+            class="d-flex justify-content-center font-pagination pagination-margin d-none d-md-flex d-lg-flex"
+            [(page)]="page" [pageSize]="pageSize" [collectionSize]="listFiltered.length" [maxSize]="maxSize"
+            [rotate]="true" [ellipses]="false"> </ngb-pagination>
+          <h5 *ngIf="listFiltered.length == 0" style="text-align: start; margin-top: 10px">
             Actualmente no existen dirigentes
           </h5>
         </div>

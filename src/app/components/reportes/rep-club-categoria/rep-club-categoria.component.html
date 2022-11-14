@@ -96,20 +96,20 @@
                   <tbody>
                     <tr *ngFor="let Jugador of listJugadores">
                       <th scope="row">{{ Jugador.dni }}</th>
-                      <td>{{ Jugador.cedula }}</td>
-                      <td>{{ Jugador.apellidos }}</td>
-                      <td>{{ Jugador.nombres }}</td>
-                      <td>{{ Jugador.categoria }}</td>
-                      <td>{{ formatDate_yyyymmdd(Jugador.fecha_nacimiento) }}</td>
-                      <td *ngIf="Jugador.club.length > 0">
+                      <td class="text-truncate max-td">{{ Jugador.cedula }}</td>
+                      <td class="text-truncate max-td">{{ Jugador.apellidos }}</td>
+                      <td class="text-truncate max-td">{{ Jugador.nombres }}</td>
+                      <td class="text-truncate max-td">{{ Jugador.categoria }}</td>
+                      <td class="text-truncate max-td">{{ formatDate_yyyymmdd(Jugador.fecha_nacimiento) }}</td>
+                      <td class="text-truncate max-td"*ngIf="Jugador.club.length > 0">
                         {{ Jugador.club[0].detalle }}
                       </td>
-                      <td *ngIf="Jugador.club.length <= 0">no hay</td>
-                      <td>{{ formatDate_yyyymmdd(Jugador.fecha_inscripcion) }}</td>
-                      <td>{{ Jugador.libro }}</td>
-                      <td>{{ Jugador.folio }}</td>
-                      <td>{{ Jugador.nacionalidad }}</td>
-                      <td>{{ Jugador.ciudad_nacimiento }}</td>
+                      <td class="text-truncate max-td"*ngIf="Jugador.club.length <= 0">no hay</td>
+                      <td class="text-truncate max-td">{{ formatDate_yyyymmdd(Jugador.fecha_inscripcion) }}</td>
+                      <td class="text-truncate max-td">{{ Jugador.libro }}</td>
+                      <td class="text-truncate max-td">{{ Jugador.folio }}</td>
+                      <td class="text-truncate max-td">{{ Jugador.nacionalidad }}</td>
+                      <td class="text-truncate max-td">{{ Jugador.ciudad_nacimiento }}</td>
                     </tr>
                   </tbody>
                 </table>
