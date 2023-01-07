@@ -32,6 +32,15 @@ export class DirigentesPdfComponent implements OnInit {
     } else {
       this._dirigenteService.getDirigente(this.dirigentetemp).subscribe(
         (data) => {
+          var id = data.club;
+          this._clubService.getClub(id).subscribe(
+            (club) => {
+              data.club = club.detalle;
+            },
+            (error) => {
+              console.log(error);
+            }
+          );
           this.listDirigentesTabla.push(data);
         },
         (error) => {

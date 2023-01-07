@@ -32,6 +32,15 @@ export class EntrenadoresPdfComponent implements OnInit {
     } else {
       this._entrenadorService.getEntrenador(this.entrenadortemp).subscribe(
         (data) => {
+          var id = data.club;
+          this._clubService.getClub(id).subscribe(
+            (club) => {
+              data.club = club.detalle;
+            },
+            (error) => {
+              console.log(error);
+            }
+          );
           this.listEntrenadoresTabla.push(data);
         },
         (error) => {
