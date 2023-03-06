@@ -64,6 +64,43 @@
             Actualmente no existen jugadores
           </h5>
         </div>
+        <div class="card-body text-center">
+          <span class="titulo">Se Han Encontrado Registros Repetidos</span>
+          <button class="btn btn-info float-end" [routerLink]="['/crear-jugador']">
+            NUEVO
+          </button>
+          <table *ngIf="listFiltered.length > 0" class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">CEDULA</th>
+                <th scope="col">Apellidos</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Categoria</th>
+                <th scope="col">Club</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let Jugador of listFiltered | slice: (page-1) * pageSize : page * pageSize | sortBy: sortDir: columOrder;">
+                <th scope="row">{{ Jugador.cedula }}</th>
+                <td class="text-truncate max-td">{{ Jugador.apellidos }}</td>
+                <td class="text-truncate max-td">{{ Jugador.nombres }}</td>
+                <td class="text-truncate max-td">{{ Jugador.categoria }}</td>
+                <td class="text-truncate max-td"*ngIf="Jugador.club.length > 0">
+                  {{ Jugador.club[0].detalle }}
+                </td>
+                <td class="text-truncate max-td"*ngIf="Jugador.club.length <= 0">no hay</td>
+                <td>
+                  <em [routerLink]="['/editar-jugador', Jugador._id]" class="fa fa-pencil text-success"
+                    title="Editar"></em><em (click)="eliminarJugador(Jugador._id)" class="fa fa-trash text-primary"
+                    title="Eliminar"></em><em [routerLink]="['/cedula-pdf', Jugador._id]" class="fa fa-print text-danger"
+                    title="Imprimir Cedula"></em><em [routerLink]="['/transferir', Jugador._id]"
+                    class="fa fa-address-book-o text-info" title="Transferir Club"></em>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>

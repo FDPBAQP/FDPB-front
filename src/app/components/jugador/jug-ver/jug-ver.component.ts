@@ -36,11 +36,28 @@ export class JugVerComponent implements OnInit {
         let dataEditado = this.agregarClubDetalle(data);
         this.listJugadores = dataEditado;
         this.listFiltered = dataEditado;
+        this.buscarIguales(dataEditado);
       },
       (error) => {
         console.log(error);
       }
     );
+  }
+
+  buscarIguales(jugadores: Jugador[]) {
+
+    let modifiedArr = jugadores.map(function(element: any){
+      var listFiltered = []
+      listFiltered = jugadores.filter(t => t.nombres?.includes(element.nombres) && t.apellidos?.includes(element.apellidos));
+      var obj:any = []
+      if (listFiltered.length > 1){
+        obj = listFiltered[0]
+        obj.repeat = listFiltered.length
+      }
+      return obj;
+    });
+    modifiedArr = modifiedArr.filter(item => item.length != 0)
+    console.log("modifiedArr", modifiedArr)
   }
 
   eliminarJugador(id: any) {
