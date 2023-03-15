@@ -33,7 +33,6 @@ export class JugCrearEditarComponent implements OnInit {
 
   selectEvent(item: any) {
     this.clubtemp = item._id;
-    // do something with selected item
   }
   constructor(
     private fb: FormBuilder,
@@ -124,12 +123,12 @@ export class JugCrearEditarComponent implements OnInit {
       dni: tempDNI,
       libro: this.jugadorForm.get('libro')?.value,
       folio: this.jugadorForm.get('folio')?.value,
-      nombres: this.jugadorForm.get('nombres')?.value,
-      apellidos: this.jugadorForm.get('apellidos')?.value,
+      nombres: this.jugadorForm.get('nombres')?.value.toUpperCase(),
+      apellidos: this.jugadorForm.get('apellidos')?.value.toUpperCase(),
       categoria: this.jugadorForm.get('categoria')?.value,
       fecha_nacimiento: this.jugadorForm.get('fecha_nacimiento')?.value,
-      ciudad_nacimiento: this.jugadorForm.get('ciudad_nacimiento')?.value,
-      nacionalidad: this.jugadorForm.get('nacionalidad')?.value,
+      ciudad_nacimiento: this.jugadorForm.get('ciudad_nacimiento')?.value.toUpperCase(),
+      nacionalidad: this.jugadorForm.get('nacionalidad')?.value.toUpperCase(),
       club: this.jugadorClubesSend,
       fecha_inscripcion: this.jugadorForm.get('fecha_inscripcion')?.value,
     };
@@ -139,9 +138,9 @@ export class JugCrearEditarComponent implements OnInit {
         (data) => {
           this.toastr.success(
             'El jugador ' +
-            this.jugadorForm.get('nombres')?.value +
+            this.jugadorForm.get('nombres')?.value.toUpperCase() +
             ' ' +
-            this.jugadorForm.get('apellidos')?.value +
+            this.jugadorForm.get('apellidos')?.value.toUpperCase() +
             ' fue actualizado correctamente!',
             'Jugador actualizado!'
           );
@@ -153,23 +152,48 @@ export class JugCrearEditarComponent implements OnInit {
         }
       );
     } else {
-      this._jugadorService.saveJugador(JUGADOR).subscribe(
+
+
+      const NAME = `nom=${this.jugadorForm.get('nombres')?.value}&ape=${this.jugadorForm.get('apellidos')?.value}&doc=${this.jugadorForm.get('dni')?.value}`;
+
+      this._jugadorService.getConNombre(NAME).subscribe(
         (data) => {
-          this.toastr.success(
-            'El jugador ' +
-            this.jugadorForm.get('nombres')?.value +
-            ' ' +
-            this.jugadorForm.get('apellidos')?.value +
-            ' fue agregado correctamente!',
-            'Jugador agregado!'
-          );
-          this.router.navigate(['/jugador']);
+          if(data.length > 0) {
+            this.toastr.warning(
+              'El jugador ' +
+              this.jugadorForm.get('nombres')?.value +
+              ' ' +
+              this.jugadorForm.get('apellidos')?.value +
+              ' con el documento de identidad ' +
+              this.jugadorForm.get('dni')?.value +
+              ' ya existe en la base de datos',
+              'Imposible agregar jugador ya existente!'
+            );
+          } else {
+            this._jugadorService.saveJugador(JUGADOR).subscribe(
+              (data) => {
+                this.toastr.success(
+                  'El jugador ' +
+                  this.jugadorForm.get('nombres')?.value +
+                  ' ' +
+                  this.jugadorForm.get('apellidos')?.value +
+                  ' fue agregado correctamente!',
+                  'Jugador agregado!'
+                );
+                this.router.navigate(['/jugador']);
+              },
+              (error) => {
+                console.log(error);
+                this.jugadorForm.reset();
+              }
+            );
+          }
         },
         (error) => {
           console.log(error);
-          this.jugadorForm.reset();
         }
       );
+
     }
   }
 

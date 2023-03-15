@@ -17,6 +17,8 @@ export class JugVerComponent implements OnInit {
   columOrder = 'cedula';
   listJugadores: Jugador[] = [];
   listFiltered: Jugador[] = [];
+  listRepeat: Jugador[] = [];
+  viewInfoTable:boolean = false
 
   keyword = 'detalle';
 
@@ -30,6 +32,15 @@ export class JugVerComponent implements OnInit {
     this.obtenerJugadores();
   }
 
+  detectarList(){
+    // this.listRepeat = []
+    console.log("this.listRepeat.length", this.listRepeat.length)
+    console.log("listRepeat", this.listRepeat)
+    if(this.listRepeat.length > 0){
+      this.viewInfoTable = true
+    }
+  }
+
   obtenerJugadores() {
     this._jugadorService.getJugadores().subscribe(
       (data) => {
@@ -37,6 +48,7 @@ export class JugVerComponent implements OnInit {
         this.listJugadores = dataEditado;
         this.listFiltered = dataEditado;
         this.buscarIguales(dataEditado);
+        this.detectarList();
       },
       (error) => {
         console.log(error);
@@ -46,18 +58,24 @@ export class JugVerComponent implements OnInit {
 
   buscarIguales(jugadores: Jugador[]) {
 
+    var listRepeat:any = []
     let modifiedArr = jugadores.map(function(element: any){
       var listFiltered = []
       listFiltered = jugadores.filter(t => t.nombres?.includes(element.nombres) && t.apellidos?.includes(element.apellidos));
       var obj:any = []
       if (listFiltered.length > 1){
-        obj = listFiltered[0]
-        obj.repeat = listFiltered.length
+          obj = listFiltered[0]
+          obj.repeat = listFiltered.length
+          listRepeat.push(obj);
+          console.log("indexOf", listRepeat.indexOf(listFiltered[0]._id))
+          if(listRepeat.includes(listFiltered[0].nombres)){
+            console.log(listFiltered[0].nombres + " ya esta en la lista", listRepeat)
+          }
       }
       return obj;
     });
     modifiedArr = modifiedArr.filter(item => item.length != 0)
-    console.log("modifiedArr", modifiedArr)
+    this.listRepeat = modifiedArr
   }
 
   eliminarJugador(id: any) {

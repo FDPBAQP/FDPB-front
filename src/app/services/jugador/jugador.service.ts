@@ -50,4 +50,8 @@ export class JugadorService {
   getConFiltros(filtros: any): Observable<any> {
     return this.http.get(this.url + 'getByFilters/' + filtros);
   }
+
+  getConNombre(name: any): Observable<any> {
+    return this.http.get(this.url + 'getByName/' + name);
+  }
 }

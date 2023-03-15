@@ -32,7 +32,6 @@ export class JugadoresPdfComponent implements OnInit {
     } else {
       this._jugadorService.getJugador(this.jugadortemp).subscribe(
         (jugador) => {
-          console.log("jugador", jugador)
           var id = jugador.club[0].detalle;
           this._clubService.getClub(id).subscribe(
             (club) => {
