@@ -29,9 +29,8 @@ export class DirVerComponent implements OnInit {
   obtenerDirigentes() {
     this._dirigenteService.getDirigentes().subscribe(
       (data) => {
-        let dataEditado = this.agregarClubDetalle(data);
-        this.listDirigentes = dataEditado;
-        this.listFiltered = dataEditado;
+        this.listDirigentes = data;
+        this.listFiltered = data;
       },
       (error) => {
         console.log(error);
@@ -49,24 +48,6 @@ export class DirVerComponent implements OnInit {
         console.log(error);
       }
     );
-  }
-
-  agregarClubDetalle(original: Dirigente[]) {
-    original.map((Dirigente) => {
-      if (Dirigente.club) {
-        let id = Dirigente.club;
-        this._clubService.getClub(id).subscribe(
-          (data) => {
-            Dirigente.clubDetalle = data.detalle;
-            Dirigente.filter = `${Dirigente.dni} - ${Dirigente.nombres} ${Dirigente.apellidos} -  ${data.detalle}`
-          },
-          (error) => {
-            console.log(error);
-          }
-        );
-      }
-    });
-    return original;
   }
 
   filterSelect(item: any) {

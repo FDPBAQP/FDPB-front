@@ -40,7 +40,7 @@ export class CarCrearEditarComponent implements OnInit {
 
   agregarCargo() {
     const CARGO: Cargo = {
-      detalle: this.cargoForm.get('cargo')?.value,
+      detalle: this.cargoForm.get('cargo')?.value.toUpperCase(),
       fecha_grabacion: this.today,
     };
 

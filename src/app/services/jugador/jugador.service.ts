@@ -54,4 +54,8 @@ export class JugadorService {
   getConNombre(name: any): Observable<any> {
     return this.http.get(this.url + 'getByName/' + name);
   }
+
+  editCategoria(jugador: Jugador): Observable<any> {
+    return this.http.post(this.url + 'actualizarCategoria/', jugador);
+  }
 }

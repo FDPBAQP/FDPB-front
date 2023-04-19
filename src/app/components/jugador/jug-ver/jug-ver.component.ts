@@ -3,6 +3,9 @@ import { ToastrService } from 'ngx-toastr';
 import { Jugador } from 'src/app/models/Jugador';
 import { JugadorService } from 'src/app/services/jugador/jugador.service';
 import { ClubService } from 'src/app/services/club/club.service';
+import { Fecha } from 'src/app/functions/fecha/fecha';
+import { CategoriaService } from 'src/app/services/categoria/categoria.service';
+import { Categoria } from 'src/app/models/Categoria';
 
 @Component({
   selector: 'app-jug-ver',
@@ -18,6 +21,7 @@ export class JugVerComponent implements OnInit {
   listJugadores: Jugador[] = [];
   listFiltered: Jugador[] = [];
   listRepeat: Jugador[] = [];
+  listCategorias: Categoria[] = [];
   viewInfoTable:boolean = false
 
   keyword = 'detalle';
@@ -25,11 +29,13 @@ export class JugVerComponent implements OnInit {
   constructor(
     private _jugadorService: JugadorService,
     private _clubService: ClubService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private _categoriaService: CategoriaService
   ) { }
 
   ngOnInit(): void {
     this.obtenerJugadores();
+    this.obtenerCategorias();
   }
 
   detectarList(){
@@ -44,10 +50,9 @@ export class JugVerComponent implements OnInit {
   obtenerJugadores() {
     this._jugadorService.getJugadores().subscribe(
       (data) => {
-        let dataEditado = this.agregarClubDetalle(data);
-        this.listJugadores = dataEditado;
-        this.listFiltered = dataEditado;
-        this.buscarIguales(dataEditado);
+        this.listJugadores = data;
+        this.listFiltered = data;
+        this.buscarIguales(data);
         this.detectarList();
       },
       (error) => {
@@ -90,24 +95,6 @@ export class JugVerComponent implements OnInit {
     );
   }
 
-  agregarClubDetalle(original: Jugador[]) {
-    original.map((jugador) => {
-      if (jugador.club.length > 0) {
-        var id = jugador.club[0].detalle;
-        this._clubService.getClub(id).subscribe(
-          (data) => {
-            jugador.club[0].detalle = data.detalle;
-            jugador.filter = `${jugador.dni} - ${jugador.nombres} ${jugador.apellidos} - ${jugador.cedula} - ${data.detalle}`
-          },
-          (error) => {
-            console.log(error);
-          }
-        );
-      }
-    });
-    return original;
-  }
-
   filterSelect(item: any) {
     this.listFiltered = this.listJugadores.filter(t=>t.filter?.includes(item.filter.toUpperCase()));
   }
@@ -123,6 +110,71 @@ export class JugVerComponent implements OnInit {
     }else {
       this.listFiltered = this.listJugadores.filter(t=>t.filter?.includes(filter.toUpperCase()));
     }
+  }
+
+  obtenerCategorias() {
+    this._categoriaService.getCategorias().subscribe(
+      (data) => {
+        this.listCategorias = data;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+    return true;
+  }
+
+  changeCategorias() {
+    let dateTime = new Date();
+    let year = parseInt(Fecha.formatDate_yyyy(dateTime.toISOString()));
+    let stop = false
+
+    let objArray:any = []
+
+    this.listJugadores.map((jugador) => {
+
+      const JUGADOR: any = {
+        id: jugador._id,
+        categoria: jugador.categoria,
+      };
+
+      let getNacFec = (jugador.fecha_nacimiento)!.toString();
+      let nacFec = parseInt(getNacFec.substring(0, 4));
+      this.listCategorias.forEach((cat) => {
+        const min = cat.desde;
+        const max = cat.hasta;
+        const age = year - nacFec;
+
+        if (age >= min && age <= max) {
+          if (jugador.categoria == cat.detalle){
+            stop = true
+          }else{
+            console.log("jugador.categoria",jugador.categoria)
+            console.log("cat.detalle",cat.detalle)
+            stop = false
+            JUGADOR.categoria = cat.detalle
+          }
+
+          objArray.push(JUGADOR);
+        }
+      });
+
+      if(!stop){
+        this._jugadorService.editCategoria(JUGADOR).subscribe(
+          (data) => {
+            console.log("actualizado")
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+      }
+
+    });
+
+
+
+
   }
 
 }

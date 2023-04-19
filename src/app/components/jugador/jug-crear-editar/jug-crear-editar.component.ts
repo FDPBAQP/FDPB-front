@@ -62,11 +62,7 @@ export class JugCrearEditarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.obtenerClubes();
-    this.obtenerCategorias();
-    this.getCLubes();
     let dateTime = new Date();
-
     this.jugadorForm.setValue({
       cedula: '',
       dni: '',
@@ -82,6 +78,9 @@ export class JugCrearEditarComponent implements OnInit {
       club_inicial: '',
       fecha_inscripcion: Fecha.formatDate_yyyymmdd(dateTime.toISOString()),
     });
+    this.obtenerClubes();
+    this.obtenerCategorias();
+    this.getCLubes();
   }
 
   ngAfterViewInit() {
@@ -245,6 +244,8 @@ export class JugCrearEditarComponent implements OnInit {
               this.listClubes.find((e) => e._id === element.detalle)?.detalle
             ))
           );
+
+          console.log("data", data)
 
           this.jugadorForm.setValue({
             cedula: data.cedula,

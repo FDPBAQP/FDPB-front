@@ -3,10 +3,17 @@
     <div class="col-lg-10 offset-lg-1">
       <div class="card">
         <div class="card-body text-center">
+          <div class="row">
           <span class="titulo">JUGADORES</span>
-          <button class="btn btn-info float-end" [routerLink]="['/crear-jugador']">
-            NUEVO
-          </button>
+          <div class="col-12">
+            <button class="btn btn-danger float-start" (click)="changeCategorias()">
+              AJUSTAR CATEGORIAS
+            </button>
+            <button class="btn btn-info float-end" [routerLink]="['/crear-jugador']">
+              NUEVO
+            </button>
+          </div>
+        </div>
           <div class="row mt-4">
             <div class="col-12">
               <div class="form-control form-control-lg ng-autocomplete">
@@ -42,10 +49,7 @@
                 <td class="text-truncate max-td">{{ Jugador.apellidos }}</td>
                 <td class="text-truncate max-td">{{ Jugador.nombres }}</td>
                 <td class="text-truncate max-td">{{ Jugador.categoria }}</td>
-                <td class="text-truncate max-td"*ngIf="Jugador.club.length > 0">
-                  {{ Jugador.club[0].detalle }}
-                </td>
-                <td class="text-truncate max-td"*ngIf="Jugador.club.length <= 0">no hay</td>
+                <!-- <td class="text-truncate max-td">{{ Jugador.clubActual }}</td> -->
                 <td>
                   <em [routerLink]="['/editar-jugador', Jugador._id]" class="fa fa-pencil text-success"
                     title="Editar"></em><em (click)="eliminarJugador(Jugador._id)" class="fa fa-trash text-primary"

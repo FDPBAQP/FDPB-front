@@ -24,6 +24,7 @@ export class CatVerComponent implements OnInit {
   obtenerCategorias() {
     this._categoriaService.getCategorias().subscribe(
       (data) => {
+        console.log("this.listCategorias",data)
         this.listCategorias = data;
       },
       (error) => {
