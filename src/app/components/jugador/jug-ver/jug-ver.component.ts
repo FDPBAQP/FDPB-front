@@ -6,6 +6,7 @@ import { ClubService } from 'src/app/services/club/club.service';
 import { Fecha } from 'src/app/functions/fecha/fecha';
 import { CategoriaService } from 'src/app/services/categoria/categoria.service';
 import { Categoria } from 'src/app/models/Categoria';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-jug-ver',
@@ -13,6 +14,7 @@ import { Categoria } from 'src/app/models/Categoria';
   styleUrls: ['./jug-ver.component.scss'],
 })
 export class JugVerComponent implements OnInit {
+  filterForm: FormGroup;
   page: number = 1;
   pageSize: number = 10;
   maxSize: number = 5;
@@ -27,11 +29,19 @@ export class JugVerComponent implements OnInit {
   keyword = 'detalle';
 
   constructor(
+    private fb: FormBuilder,
     private _jugadorService: JugadorService,
     private _clubService: ClubService,
     private toastr: ToastrService,
     private _categoriaService: CategoriaService
-  ) { }
+  ) {
+    this.filterForm = this.fb.group({
+      nombre: [''],
+      apellido: [''],
+      dni: [''],
+      cedula: [''],
+    });
+  }
 
   ngOnInit(): void {
     this.obtenerJugadores();
@@ -39,26 +49,43 @@ export class JugVerComponent implements OnInit {
   }
 
   detectarList(){
-    // this.listRepeat = []
-    console.log("this.listRepeat.length", this.listRepeat.length)
-    console.log("listRepeat", this.listRepeat)
     if(this.listRepeat.length > 0){
       this.viewInfoTable = true
     }
   }
 
   obtenerJugadores() {
-    this._jugadorService.getJugadores().subscribe(
-      (data) => {
-        this.listJugadores = data;
-        this.listFiltered = data;
-        this.buscarIguales(data);
-        this.detectarList();
-      },
-      (error) => {
-        console.log(error);
+    if(!(this.filterForm.value.nombre || this.filterForm.value.apellido || this.filterForm.value.dni || this.filterForm.value.cedula)){
+      this._jugadorService.getJugadores().subscribe(
+        (data) => {
+          this.listJugadores = data;
+          this.listFiltered = data;
+          this.buscarIguales(data);
+          this.detectarList();
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    }else{
+      let filtro = {
+        nombre: (this.filterForm.value.nombre).toUpperCase(),
+        apellido: (this.filterForm.value.apellido).toUpperCase(),
+        dni: (this.filterForm.value.dni).toUpperCase(),
+        cedula: (this.filterForm.value.cedula).toUpperCase(),
       }
-    );
+      this._jugadorService.getJugadoresFilter(filtro).subscribe(
+        (data) => {
+          this.listJugadores = data;
+          this.listFiltered = data;
+          this.buscarIguales(data);
+          this.detectarList();
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    }
   }
 
   buscarIguales(jugadores: Jugador[]) {
@@ -72,7 +99,6 @@ export class JugVerComponent implements OnInit {
           obj = listFiltered[0]
           obj.repeat = listFiltered.length
           listRepeat.push(obj);
-          console.log("indexOf", listRepeat.indexOf(listFiltered[0]._id))
           if(listRepeat.includes(listFiltered[0].nombres)){
             console.log(listFiltered[0].nombres + " ya esta en la lista", listRepeat)
           }
@@ -149,8 +175,6 @@ export class JugVerComponent implements OnInit {
           if (jugador.categoria == cat.detalle){
             stop = true
           }else{
-            console.log("jugador.categoria",jugador.categoria)
-            console.log("cat.detalle",cat.detalle)
             stop = false
             JUGADOR.categoria = cat.detalle
           }
@@ -171,10 +195,6 @@ export class JugVerComponent implements OnInit {
       }
 
     });
-
-
-
-
   }
 
 }

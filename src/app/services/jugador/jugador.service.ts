@@ -31,6 +31,10 @@ export class JugadorService {
     return this.http.get(this.url);
   }
 
+  getJugadoresFilter(filtro: any): Observable<any> {
+    return this.http.post(this.url + "/filter", filtro);
+  }
+
   deleteJugador(id: string): Observable<any> {
     return this.http.delete(this.url + id);
   }
