@@ -1,10 +1,10 @@
 export const environment = {
   production: true,
   //******dev******
-  server: "http://localhost:4000/"
+  // server: "http://localhost:4000/"
   //******dev******
   //******render******
-  // server: "https://fdpb-back.onrender.com/"
+  server: "https://fdpb-back.onrender.com/"
   //******render******
 
 
