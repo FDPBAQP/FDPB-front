@@ -24,7 +24,7 @@ import { CluCrearEditarComponent } from './components/club/clu-crear-editar/clu-
 import { CarCrearEditarComponent } from './components/cargo/car-crear-editar/car-crear-editar.component';
 import { CarVerComponent } from './components/cargo/car-ver/car-ver.component';
 import { CluVerComponent } from './components/club/clu-ver/clu-ver.component';
-import { DatePipe } from '@angular/common';
+import { DatePipe, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { PrePdfComponent } from './components/pdf/pre-pdf/pre-pdf.component';
 import { JugadoresPdfComponent } from './components/pdf/jugadores-pdf/jugadores-pdf.component';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
@@ -80,7 +80,8 @@ import { GeneralPipe } from './pipes/General/general.pipe';
     AutocompleteLibModule,
     NgbModule,
   ],
-  providers: [DatePipe],
+  providers: [DatePipe,
+    { provide: LocationStrategy, useClass: HashLocationStrategy },],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

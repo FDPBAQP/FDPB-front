@@ -1,6 +1,6 @@
 <div class="container mt-4">
   <div class="row cuerpo">
-    <div class="col-lg-8 offset-lg-2">
+    <div class="col-lg-10 offset-lg-1">
       <div class="card">
         <div class="card-body text-center">
           <span class="titulo">ENTRENADORES</span>
@@ -29,6 +29,7 @@
             <thead>
               <tr>
                 <th scope="col">DNI</th>
+                <th scope="col">Apellidos</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Club</th>
                 <th scope="col">Nacionalidad</th>
@@ -39,7 +40,8 @@
             <tbody>
               <tr *ngFor="let Entrenadores of listFiltered | slice: (page-1) * pageSize : page * pageSize">
                 <th scope="row">{{ Entrenadores.dni }}</th>
-                <td class="text-truncate max-td">{{ Entrenadores.nombres }} {{ Entrenadores.apellidos }}</td>
+                <td class="text-truncate max-td">{{ Entrenadores.apellidos }}</td>
+                <td class="text-truncate max-td">{{ Entrenadores.nombres }}</td>
                 <td class="text-truncate max-td">{{ Entrenadores.clubDetalle }}</td>
                 <td class="text-truncate max-td">{{ Entrenadores.nacionalidad }}</td>
                 <td class="text-truncate max-td">{{ Entrenadores.telefono }}</td>
