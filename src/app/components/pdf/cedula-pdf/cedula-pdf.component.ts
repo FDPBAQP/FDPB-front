@@ -92,6 +92,10 @@ export class CedulaPdfComponent implements OnInit {
     }
   }
 
+  formatDate_yyyymmdd(date: any) {
+    return Fecha.formatDate_yyyymmdd(date);
+  }
+
   formatDate_ddmmyyyy(date: any) {
     return Fecha.formatDate_ddmmyyyy(date);
   }

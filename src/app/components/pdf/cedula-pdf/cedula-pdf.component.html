@@ -57,6 +57,10 @@
                       {{ jugador.apellidos }}
                     </div>
                     <div class="col-12 datos-mt">
+                      <b>Fecha de Nacimiento:</b>
+                      {{ formatDate_ddmmyyyy(jugador.fecha_nacimiento) }}
+                    </div>
+                    <div class="col-12 datos-mt">
                       <b>Nacionalidad:</b> {{ jugador.nacionalidad }}
                     </div>
                     <div class="col-12 datos-mt">
