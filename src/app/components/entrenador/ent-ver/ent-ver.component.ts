@@ -29,9 +29,8 @@ export class EntVerComponent implements OnInit {
   obtenerEntrenadores() {
     this._entrenadorService.getEntrenadores().subscribe(
       (data) => {
-        let dataEditado = this.agregarClubDetalle(data);
-        this.listEntrenadores = dataEditado;
-        this.listFiltered = dataEditado;
+        this.listEntrenadores = data;
+        this.listFiltered = data;
       },
       (error) => {
         console.log(error);
@@ -52,24 +51,6 @@ export class EntVerComponent implements OnInit {
         console.log(error);
       }
     );
-  }
-
-  agregarClubDetalle(original: Entrenador[]) {
-    original.map((Entrenador) => {
-      if (Entrenador.club) {
-        let id = Entrenador.club;
-        this._clubService.getClub(id).subscribe(
-          (data) => {
-            Entrenador.clubDetalle = data.detalle;
-            Entrenador.filter = `${Entrenador.dni} - ${Entrenador.nombres} ${Entrenador.apellidos} -  ${data.detalle}`
-          },
-          (error) => {
-            console.log(error);
-          }
-        );
-      }
-    });
-    return original;
   }
 
   filterSelect(item: any) {

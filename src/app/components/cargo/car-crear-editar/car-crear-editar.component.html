@@ -7,8 +7,7 @@
           <form (keydown.enter)="keytab($event)" class="mt-4" [formGroup]="cargoForm" (ngSubmit)="agregarCargo()">
             <div class="row mb-3">
               <div class="col-sm-8 mx-auto">
-                <input name="input-0" type="text" formControlName="cargo" class="form-control form-control-lg"
-                  placeholder="CARGO" />
+                <input name="input-0" type="text" formControlName="cargo" class="form-control form-control-lg" placeholder="CARGO"/>
                 <div class="text-danger" *ngIf="
                     cargoForm.get('cargo')?.hasError('required') &&
                     cargoForm.get('cargo')?.touched

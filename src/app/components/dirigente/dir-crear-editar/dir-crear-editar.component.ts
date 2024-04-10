@@ -73,8 +73,8 @@ export class DirCrearEditarComponent implements OnInit {
       dni: this.dirigenteForm.get('dni')?.value,
       club: this.clubtemp,
       cargo: this.cargotemp,
-      nombres: this.dirigenteForm.get('nombres')?.value,
-      apellidos: this.dirigenteForm.get('apellidos')?.value,
+      nombres: this.dirigenteForm.get('nombres')?.value.toUpperCase(),
+      apellidos: this.dirigenteForm.get('apellidos')?.value.toUpperCase(),
       telefono: this.dirigenteForm.get('telefono')?.value,
     };
 
@@ -83,9 +83,9 @@ export class DirCrearEditarComponent implements OnInit {
         (data) => {
           this.toastr.success(
             'El dirigente ' +
-            this.dirigenteForm.get('nombres')?.value +
+            this.dirigenteForm.get('nombres')?.value.toUpperCase() +
             ' ' +
-            this.dirigenteForm.get('apellidos')?.value +
+            this.dirigenteForm.get('apellidos')?.value.toUpperCase() +
             ' fue actualizado correctamente!',
             'Dirigente actualizado!'
           );
@@ -101,9 +101,9 @@ export class DirCrearEditarComponent implements OnInit {
         (data) => {
           this.toastr.success(
             'El dirigente ' +
-            this.dirigenteForm.get('nombres')?.value +
+            this.dirigenteForm.get('nombres')?.value.toUpperCase() +
             ' ' +
-            this.dirigenteForm.get('apellidos')?.value +
+            this.dirigenteForm.get('apellidos')?.value.toUpperCase() +
             ' fue agregado correctamente!',
             'Dirigente agregado!'
           );

@@ -10,3 +10,32 @@
 .ng-autocomplete {
   width: 100%;
 }
+
+.col-principal{
+  width: 60%;
+  max-width: 650px;
+}
+
+.sticky-card{
+  position: absolute;
+  top: 0;
+  width: 100%;
+  background-color: #e7e7e7;
+  height: 75vh;
+  overflow: auto;
+  z-index: 100;
+}
+
+.background-card{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000000c9;
+  z-index: 100;
+}
+
+.btn-form{
+  height: 50px;
+}

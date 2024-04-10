@@ -40,7 +40,7 @@ export class PrePdfComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void { this.club() }
+  ngOnInit(): void { }
 
   club() {
     this.list.map((item: any) => {

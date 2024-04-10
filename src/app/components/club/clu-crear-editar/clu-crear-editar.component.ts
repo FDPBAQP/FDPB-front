@@ -39,7 +39,7 @@ export class CluCrearEditarComponent implements OnInit {
 
   agregarClub() {
     const CLUB: Club = {
-      detalle: this.clubForm.get('club')?.value,
+      detalle: this.clubForm.get('club')?.value.toUpperCase(),
       tipo: 'inicio',
       fecha_grabacion: this.today,
     };

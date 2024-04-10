@@ -62,9 +62,9 @@ export class EntCrearEditarComponent implements OnInit {
     const ENTRENADOR: Entrenador = {
       dni: this.entrenadorForm.get('dni')?.value,
       club: this.clubtemp,
-      apellidos: this.entrenadorForm.get('apellidos')?.value,
-      nombres: this.entrenadorForm.get('nombres')?.value,
-      nacionalidad: this.entrenadorForm.get('nacionalidad')?.value,
+      apellidos: this.entrenadorForm.get('apellidos')?.value.toUpperCase(),
+      nombres: this.entrenadorForm.get('nombres')?.value.toUpperCase(),
+      nacionalidad: this.entrenadorForm.get('nacionalidad')?.value.toUpperCase(),
       telefono: this.entrenadorForm.get('telefono')?.value,
     };
 
@@ -73,9 +73,9 @@ export class EntCrearEditarComponent implements OnInit {
         (data) => {
           this.toastr.success(
             'El entrenador ' +
-            this.entrenadorForm.get('nombres')?.value +
+            this.entrenadorForm.get('nombres')?.value.toUpperCase() +
             ' ' +
-            this.entrenadorForm.get('apellidos')?.value +
+            this.entrenadorForm.get('apellidos')?.value.toUpperCase() +
             ' fue actualizado correctamente!',
             'Entrenador actualizado!'
           );
@@ -91,9 +91,9 @@ export class EntCrearEditarComponent implements OnInit {
         (data) => {
           this.toastr.success(
             'El entrenador ' +
-            this.entrenadorForm.get('nombres')?.value +
+            this.entrenadorForm.get('nombres')?.value.toUpperCase() +
             ' ' +
-            this.entrenadorForm.get('apellidos')?.value +
+            this.entrenadorForm.get('apellidos')?.value.toUpperCase() +
             ' fue agregado correctamente!',
             'Entrenador agregado!'
           );

@@ -44,7 +44,7 @@ export class CatCrearEditarComponent implements OnInit {
 
     if (this.categoriaForm.valid) {
       const CATEGORIA: Categoria = {
-        detalle: this.categoriaForm.get('categoria')?.value,
+        detalle: this.categoriaForm.get('categoria')?.value.toUpperCase(),
         desde: this.categoriaForm.get('desde')?.value,
         hasta: this.categoriaForm.get('hasta')?.value,
       };

@@ -3,16 +3,50 @@
     <div class="col-lg-10 offset-lg-1">
       <div class="card">
         <div class="card-body text-center">
+          <div class="row">
           <span class="titulo">JUGADORES</span>
-          <button class="btn btn-info float-end" [routerLink]="['/crear-jugador']">
-            NUEVO
-          </button>
-          <div class="row mt-4">
+          <div class="col-12">
+            <button class="btn btn-danger float-start" (click)="changeCategorias()">
+              AJUSTAR CATEGORIAS
+            </button>
+            <button class="btn btn-info float-end" [routerLink]="['/crear-jugador']">
+              NUEVO
+            </button>
+          </div>
+        </div>
+        <form class="mt-4" [formGroup]="filterForm" (ngSubmit)="obtenerJugadores()">
+          <div class="row mb-3">
+            <div class="col-sm-6 mx-auto">
+              <input name="input-0" type="text" formControlName="nombre" class="form-control form-control-lg" placeholder="NOMBRES"/>
+            </div>
+            <div class="col-sm-6 mx-auto">
+              <input name="input-0" type="text" formControlName="apellido" class="form-control form-control-lg" placeholder="APELLIDOS"/>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-sm-6 mx-auto">
+              <input name="input-0" type="text" formControlName="dni" class="form-control form-control-lg" placeholder="DNI"/>
+            </div>
+            <div class="col-sm-6 mx-auto">
+              <input name="input-0" type="text" formControlName="cedula" class="form-control form-control-lg" placeholder="CEDULA"/>
+            </div>
+          </div>
+          <div class="mb-3 btn-form">
+            <button (click)="filterForm.reset()" class="btn btn-secondary btn-lg float-start">
+              LIMPIAR FILTROS
+            </button>
+            <button type="submit" name="submit"
+              class="btn btn-success btn-lg float-end">
+              BUSCAR
+            </button>
+          </div>
+        </form>
+          <!-- <div class="row mt-4">
             <div class="col-12">
               <div class="form-control form-control-lg ng-autocomplete">
                 <ng-autocomplete [data]="listJugadores" id="dni" [searchKeyword]="'filter'"
                   placeholder="DNI - NOMBRE - CEDULA - CLUB" [itemTemplate]="itemTemplate"
-                  [notFoundTemplate]="notFoundTemplate" (selected)="filterSelect($event)" (change)="filterChange($event)" (inputCleared)="filterCleared()">
+                  [notFoundTemplate]="notFoundTemplate" (selected)="filterSelect($event)" (keydown)="filterChange($event)" (inputCleared)="filterCleared()">
                 </ng-autocomplete>
 
                 <ng-template #itemTemplate let-item>
@@ -24,7 +58,7 @@
                 </ng-template>
               </div>
             </div>
-          </div>
+          </div> -->
           <table *ngIf="listFiltered.length > 0" class="table table-hover">
             <thead>
               <tr>
@@ -42,10 +76,6 @@
                 <td class="text-truncate max-td">{{ Jugador.apellidos }}</td>
                 <td class="text-truncate max-td">{{ Jugador.nombres }}</td>
                 <td class="text-truncate max-td">{{ Jugador.categoria }}</td>
-                <td class="text-truncate max-td"*ngIf="Jugador.club.length > 0">
-                  {{ Jugador.club[0].detalle }}
-                </td>
-                <td class="text-truncate max-td"*ngIf="Jugador.club.length <= 0">no hay</td>
                 <td>
                   <em [routerLink]="['/editar-jugador', Jugador._id]" class="fa fa-pencil text-success"
                     title="Editar"></em><em (click)="eliminarJugador(Jugador._id)" class="fa fa-trash text-primary"
@@ -64,6 +94,36 @@
             Actualmente no existen jugadores
           </h5>
         </div>
+
+        <div *ngIf="viewInfoTable" class="background-card"></div>
+        <div *ngIf="viewInfoTable" class="card-body text-center sticky-card">
+          <span class="titulo">Se Han Encontrado Registros Repetidos</span>
+          <button class="btn btn-outline-primary float-end border-0" tabindex="0" (click)="viewInfoTable = false"> <i class="fa fa-times m-0" aria-hidden="true"></i> </button>
+          <div class="row m-4">
+            <div class="col">
+              <button class="btn btn-primary btn-lg float-center"> ELIMINAR TODOS REPETIDOS </button>
+            </div>
+          </div>
+          <table *ngIf="listFiltered.length > 0" class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col col-principal">Nombre</th>
+                <th scope="col">Veces Repetido</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let Jugador of listRepeat | sortBy: sortDir: columOrder;">
+                <td class="text-truncate col-principal">{{ Jugador.nombres }} {{ Jugador.apellidos }}</td>
+                <td class="text-truncate max-td">{{ Jugador.repeat }}</td>
+                <td>
+                  <em class="fa fa-trash text-primary" title="Eliminar"></em>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
       </div>
     </div>
   </div>

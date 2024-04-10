@@ -1,5 +1,13 @@
 export const environment = {
   production: true,
-  // server: "http://localhost:4000/" //dev
-  server: "http://100.24.59.157:4000/" //prod
+  //******dev******
+  // server: "http://localhost:4000/"
+  //******dev******
+  //******render******
+  server: "https://fdpb-back.onrender.com/"
+  //******render******
+
+
+
+  // $env:NODE_OPTIONS = "--openssl-legacy-provider"
 };
